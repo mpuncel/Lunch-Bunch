@@ -3,5 +3,12 @@
 
     <string name="hello">Hello World, LunchBunchActivity!</string>
     <string name="app_name">LunchBunch</string>
+        <string-array name="planets_array">
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+        <item>1 day</item>
+
+    </string-array>
 
 </resources>
