@@ -1,5 +1,7 @@
 package source.code;
 
+import java.util.ArrayList;
+
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,15 +14,21 @@ import android.widget.Toast;
 
 public class LunchInvites extends ListActivity {
 
-	/** Called when the activity is first created. */
+	private ArrayList<Lunch> lunches;
+
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
+      //setContentView(R.layout.list_page);
 
-	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, COUNTRIES));
+	  lunches = new ArrayList<Lunch>();
+	  makeLunches();
 
 	  ListView lv = getListView();
 	  lv.setTextFilterEnabled(true);
+
+	  setListAdapter(new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches));
 
 	  lv.setOnItemClickListener(new OnItemClickListener() {
 	    public void onItemClick(AdapterView<?> parent, View view,
@@ -32,8 +40,16 @@ public class LunchInvites extends ListActivity {
 	  });
 	}
 
-	static final String[] COUNTRIES = new String[] {
-	    "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra",
-	    "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina",
-	    "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan"};
+	
+	public void makeLunches()
+	{
+		lunches.add(new Lunch("Taco Bell"));
+		lunches.add(new Lunch("Cosi"));
+		lunches.add(new Lunch("Masa"));
+
+
+	}
+	
+	
+			
 }
