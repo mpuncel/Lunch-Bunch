@@ -2,7 +2,7 @@ package source.code;
 
 import java.util.ArrayList;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LunchInvites extends ListActivity {
+public class LunchInvites extends Activity {
 
 	private ArrayList<Lunch> lunches;
 
@@ -20,15 +20,15 @@ public class LunchInvites extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
-      //setContentView(R.layout.list_page);
+      setContentView(R.layout.list_page);
 
 	  lunches = new ArrayList<Lunch>();
 	  makeLunches();
 
-	  ListView lv = getListView();
+      ListView lv = (ListView) findViewById(R.id.listEntries);
 	  lv.setTextFilterEnabled(true);
 
-	  setListAdapter(new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches));
+	  lv.setAdapter(new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches));
 
 	  lv.setOnItemClickListener(new OnItemClickListener() {
 	    public void onItemClick(AdapterView<?> parent, View view,

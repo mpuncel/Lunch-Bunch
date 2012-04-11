@@ -9,12 +9,12 @@ public class MyOnItemSelectedListener implements OnItemSelectedListener {
 
 
 
-	@Override
+	
     public void onItemSelected(AdapterView<?> parent,
             View view, int pos, long id) {
         }
 
-	@Override
+	
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
 		

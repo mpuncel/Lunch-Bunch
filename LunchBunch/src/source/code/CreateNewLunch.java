@@ -118,8 +118,7 @@ public class CreateNewLunch extends Activity {
     private DatePickerDialog.OnDateSetListener mDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
 
-				@Override
-                public void onDateSet(DatePicker view, int year, 
+				public void onDateSet(DatePicker view, int year, 
                         int monthOfYear, int dayOfMonth) {
 						mYear = year;
 						mMonth = monthOfYear;
@@ -131,7 +130,7 @@ public class CreateNewLunch extends Activity {
     private TimePickerDialog.OnTimeSetListener mTimeSetListener =
            new TimePickerDialog.OnTimeSetListener() {
 
-				@Override
+				
             	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         	        mHour = hourOfDay;
         	        mMinute = minute;
