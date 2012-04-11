@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, CreateNewLunchActivity!</string>
+    <string name="app_name">CreateNewLunch</string>
+    <string name="minutes"></string>
+    <string-array name="planets_array">
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+        <item>1 day</item>
+
+    </string-array>
+    
+
+</resources>
