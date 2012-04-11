@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name="LunchInvites"></activity>
+        <activity android:name=".SelectFriends"></activity>
     </application>
 
 </manifest>
