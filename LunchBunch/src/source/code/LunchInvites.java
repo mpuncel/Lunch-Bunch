@@ -27,7 +27,9 @@ public class LunchInvites extends Activity {
 
       ListView lv = (ListView) findViewById(R.id.listEntries);
 	  lv.setTextFilterEnabled(true);
-
+	  TextView header = new TextView(this);
+      header.setText("HEADER!");
+      lv.addHeaderView(header);
 	  lv.setAdapter(new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches));
 
 	  lv.setOnItemClickListener(new OnItemClickListener() {
