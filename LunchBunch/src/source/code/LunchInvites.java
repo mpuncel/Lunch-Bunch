@@ -30,7 +30,13 @@ public class LunchInvites extends Activity {
 
       ListView lv = (ListView) findViewById(R.id.listEntries);
 	  lv.setTextFilterEnabled(true);
+<<<<<<< HEAD
 	  
+=======
+	  TextView header = new TextView(this);
+      header.setText("HEADER!");
+      lv.addHeaderView(header);
+>>>>>>> 7f4ddf81827a60ef6e706959f8d8d2982f1e4b3a
 	  lv.setAdapter(new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches));
 	  
 	  
