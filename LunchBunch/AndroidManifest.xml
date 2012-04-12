@@ -21,6 +21,7 @@
         <activity android:name="LunchInvites"></activity>
         <activity android:name=".SelectFriends"></activity>
         <activity android:name="CreateNewLunch"></activity>
+        <activity android:name="TabsActivity"></activity>
 
     </application>
 
