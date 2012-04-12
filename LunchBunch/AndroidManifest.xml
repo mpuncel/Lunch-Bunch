@@ -22,6 +22,8 @@
         <activity android:name=".SelectFriends"></activity>
         <activity android:name="CreateNewLunch"></activity>
         <activity android:name="TabsActivity"></activity>
+        <activity android:name="BrowseInvites"></activity>
+        <activity android:name="BrowseAttending"></activity>
 
     </application>
 
