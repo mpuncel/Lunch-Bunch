@@ -34,21 +34,7 @@ public class SelectFriends extends Activity {
         lv.setAdapter(this.friendListAdapter);
         
 
-        lv.setOnItemClickListener(new OnItemClickListener() {
-          public void onItemClick(AdapterView<?> parent, View view,
-              int position, long id) {
-              Toast.makeText(getApplicationContext(), String.valueOf(((CheckedTextView) view).getText()),
-                      Toast.LENGTH_SHORT).show();
-            // When clicked, show a toast with the TextView text
-              CheckedTextView textView = (CheckedTextView)view;
-              textView.setChecked(!textView.isChecked());
-              //this.friendListAdapter.setChecked(position, !textView.isChecked());
-              
-
-
-          }
-        });
-        
+        lv.setOnItemClickListener(new MyOnItemClickListener(this.friendListAdapter));
 
     }
     
@@ -58,6 +44,7 @@ public class SelectFriends extends Activity {
 //        cv.setChecked(!cv.isChecked());
 //    }
     
+
     public void onSelectFriendsButtonClicked() {
         
     }
@@ -95,27 +82,44 @@ public class SelectFriends extends Activity {
 
 
     }
+    private class MyOnItemClickListener implements OnItemClickListener {
+        private FriendListAdapter<Friend> friendListAdapter;
+        public MyOnItemClickListener(FriendListAdapter<Friend> friendListAdapter) {
+            this.friendListAdapter = friendListAdapter;
+        }
+        
+        public void onItemClick(AdapterView<?> parent, View view,
+                int position, long id) {
+                Toast.makeText(getApplicationContext(), String.valueOf(((CheckedTextView) view).getText()),
+                        Toast.LENGTH_SHORT).show();
+              // When clicked, show a toast with the TextView text
+                CheckedTextView textView = (CheckedTextView)view;
+                textView.setChecked(!textView.isChecked());
+                this.friendListAdapter.setChecked(position, textView.isChecked());
+                
+
+
+        }
+    }
     
     private class FriendListAdapter<T> extends ArrayAdapter {
         
         private ArrayList<Boolean> isChecked;
+        private Context context;
         public FriendListAdapter(Context context, int resource, ArrayList<Friend> friends)
         {
             super(context, resource, friends);
+            this.context = context;
             isChecked = new ArrayList<Boolean>(friends.size());
             for (int i = 0; i < friends.size(); i++) {
                 isChecked.add(i, false);
             }
         }
-
-
-        /**
-         * Make a SpeechView to hold each row.
-         * @see android.widget.ListAdapter#getView(int, android.view.View, android.view.ViewGroup)
-         */
+        
         public View getView(int position, View convertView, ViewGroup parent) {
             CheckedTextView v = (CheckedTextView)super.getView(position, convertView, parent);
             v.setChecked(isChecked.get(position));
+            
             return v;
         }
         
