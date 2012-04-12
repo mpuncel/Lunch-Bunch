@@ -87,8 +87,6 @@ public class SelectFriends extends Activity {
         
         public void onItemClick(AdapterView<?> parent, View view,
                 int position, long id) {
-                Toast.makeText(getApplicationContext(), String.valueOf(((CheckedTextView) view).getText()),
-                        Toast.LENGTH_SHORT).show();
               // When clicked, show a toast with the TextView text
                 CheckedTextView textView = (CheckedTextView)view;
                 textView.setChecked(!textView.isChecked());
