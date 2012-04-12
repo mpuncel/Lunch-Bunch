@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 public class LunchBunchActivity extends Activity {
     /** Called when the activity is first created. */
+	int count = 0;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -16,7 +17,22 @@ public class LunchBunchActivity extends Activity {
         // Do something when the button is clicked
 
         Toast.makeText(LunchBunchActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
+<<<<<<< HEAD
+        Intent intent = new Intent(this, BrowseInvites.class);
+        count++;
+        startActivityForResult(intent, 1);
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+     super.onActivityResult(requestCode, resultCode, data);
+     if(resultCode==RESULT_OK && requestCode==1){
+      String msg = data.getStringExtra("returnedData");
+      Toast.makeText(LunchBunchActivity.this, msg, Toast.LENGTH_SHORT).show();
+     }
+=======
         Intent intent = new Intent(this, SelectFriends.class);
         startActivity(intent);
+>>>>>>> ff78a8b22f5ce16b9e239526b0fa696227d8e391
     }
 }
