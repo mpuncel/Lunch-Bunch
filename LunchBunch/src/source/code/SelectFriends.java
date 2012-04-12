@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,15 +39,11 @@ public class SelectFriends extends Activity {
 
     }
     
-//    public void onListItemClick(ListView l, View v, int position, long id) {
-//        CheckedTextView cv = (CheckedTextView)v;
-//        this.friendListAdapter.setChecked(position, !cv.isChecked());
-//        cv.setChecked(!cv.isChecked());
-//    }
-    
-
     public void onSelectFriendsButtonClicked() {
-        
+        Intent selectedFriendData = new Intent();
+        selectedFriendData.putParcelableArrayListExtra("friend names", this.friendListAdapter.getSelectedFriends());
+        setResult(Activity.RESULT_OK, selectedFriendData);
+        finish();
     }
     
     public void makeFriends()
@@ -106,10 +103,12 @@ public class SelectFriends extends Activity {
         
         private ArrayList<Boolean> isChecked;
         private Context context;
+        private ArrayList<Friend> friends;
         public FriendListAdapter(Context context, int resource, ArrayList<Friend> friends)
         {
             super(context, resource, friends);
             this.context = context;
+            this.friends = friends;
             isChecked = new ArrayList<Boolean>(friends.size());
             for (int i = 0; i < friends.size(); i++) {
                 isChecked.add(i, false);
@@ -125,6 +124,16 @@ public class SelectFriends extends Activity {
         
         public void setChecked(int position, boolean checked) {
             isChecked.add(position, checked);
+        }
+        
+        public ArrayList<Friend> getSelectedFriends() {
+            ArrayList<Friend> selectedFriends = new ArrayList<Friend>();
+            for (int i = 0; i < this.friends.size(); i++) {
+                if (this.isChecked.get(i) == true) {
+                    selectedFriends.add(this.friends.get(i));
+                }
+            }
+            return selectedFriends;
         }
     }
 
