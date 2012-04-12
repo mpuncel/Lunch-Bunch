@@ -39,7 +39,7 @@ public class SelectFriends extends Activity {
 
     }
     
-    public void onSelectFriendsButtonClicked() {
+    public void onSelectFriendsButtonClicked(View v) {
         Intent selectedFriendData = new Intent();
         selectedFriendData.putParcelableArrayListExtra("friend names", this.friendListAdapter.getSelectedFriends());
         setResult(Activity.RESULT_OK, selectedFriendData);
