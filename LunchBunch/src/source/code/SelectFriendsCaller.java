@@ -51,7 +51,7 @@ public class SelectFriendsCaller extends Activity {
         else {
             switch(requestCode) {
             case SELECTFRIENDSID:
-                ArrayList<Friend> selectedFriends = data.getParcelableArrayListExtra("Friend Names");
+                ArrayList<Friend> selectedFriends = data.getParcelableArrayListExtra("friend names");
                 Toast.makeText(SelectFriendsCaller.this, String.valueOf(selectedFriends.size()), Toast.LENGTH_SHORT).show();
                 
                 break;
