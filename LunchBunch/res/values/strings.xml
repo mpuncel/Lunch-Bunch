@@ -11,5 +11,8 @@
 
     </string-array>
         <color name="black">#000</color>
+        <color name="Gray">#B4B4B4</color>
+        <color name="Blue">#379BFF</color>
+        <color name="MidGray">#797979</color>
 
 </resources>
