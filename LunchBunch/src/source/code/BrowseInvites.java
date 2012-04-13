@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -42,45 +41,17 @@ public class BrowseInvites extends Activity {
       	        int position, long id) {
       	        Global state = (Global)getApplication();
       	        Intent eventDetails = new Intent(parent.getContext(), InviteDetails.class);
+      	        Lunch clickedLunch = state.getLunchInvite(position);
+      	        System.out.println("Browse Invites " + clickedLunch.getTitle() + clickedLunch.getDate() + clickedLunch.getTime());
       	        eventDetails.putExtra("lunch", state.getLunchInvite(position));
       	        eventDetails.putExtra("position", position);
-      	        //System.out.println(state.getLunchInvites().size() + "size");
       	        startActivity(eventDetails);
       	        finish();
-                //System.out.println(state.getLunchInvites().size() + "size2");
       	      
       	    }
       	});
   	  
   	}
-    
-//    public void onActivityResult(int resultCode, int requestCode, Intent data) {
-//
-//        System.out.println("resultCode = " + resultCode);
-//        if (resultCode == Activity.RESULT_OK) {
-//            if (data.getStringExtra("choice").equals("accept")) {
-//                Global state = (Global)getApplication();
-//                int position = data.getIntExtra("position", -1);
-//                Lunch accepted = state.getLunchAttending(position);
-//                System.out.println("first" + lunches.size());
-//                state.removeLunchInvite(position);
-//                System.out.println("second " + lunches.size());
-//                
-//                state.addLunchAttending(accepted);
-//            }
-//            
-//            else if (data.getStringExtra("choice").equals("decline")) {
-//                Global state = (Global)getApplication();
-//                int position = data.getIntExtra("position", -1);
-//                state.removeLunchInvite(position);
-//                ((BaseAdapter)lv.getAdapter()).notifyDataSetChanged();
-//            }
-//            else {
-//                throw new RuntimeException("Choice not understood");
-//            }   
-//        }
-//        
-//    }
     
     @Override
     protected void onNewIntent(Intent intent) {

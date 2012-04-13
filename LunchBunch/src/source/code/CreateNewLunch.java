@@ -1,6 +1,5 @@
 package source.code;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.app.Activity;
@@ -16,12 +15,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 public class CreateNewLunch extends Activity {
     /** Called when the activity is first created. */
 
-    private final static int SELECTFRIENDSID = 0;
     private EditText mPickDate;
     private EditText mPickTime;
     private int mYear;
