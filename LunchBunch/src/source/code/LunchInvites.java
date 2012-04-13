@@ -1,27 +1,39 @@
 package source.code;
 
-import android.app.ListActivity;
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LunchInvites extends ListActivity {
+public class LunchInvites extends Activity {
 
-	/** Called when the activity is first created. */
+	private ArrayList<Lunch> lunches;
+
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
+      setContentView(R.layout.list_page);
 
-	  setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, COUNTRIES));
+	  lunches = new ArrayList<Lunch>();
+	  makeLunches();
 
-	  ListView lv = getListView();
+      ListView lv = (ListView) findViewById(R.id.listEntries);
 	  lv.setTextFilterEnabled(true);
 
+	  lv.setAdapter(new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches));
+	  
+	  
 	  lv.setOnItemClickListener(new OnItemClickListener() {
 	    public void onItemClick(AdapterView<?> parent, View view,
 	        int position, long id) {
@@ -31,9 +43,38 @@ public class LunchInvites extends ListActivity {
 	    }
 	  });
 	}
+	
+	public void onButtonClicked(View v) {
+        // Do something when the button is clicked
+        Toast.makeText(LunchInvites.this, "Go to Create New Lunch", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, CreateNewLunch.class);
+        startActivity(intent);
+    }
 
-	static final String[] COUNTRIES = new String[] {
-	    "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra",
-	    "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina",
-	    "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan"};
+	
+	public void makeLunches()
+	{
+		lunches.add(new Lunch("Taco Bell"));
+		lunches.add(new Lunch("Cosi"));
+		lunches.add(new Lunch("Masa"));
+		lunches.add(new Lunch("Taco Bell"));
+		lunches.add(new Lunch("Cosi"));
+		lunches.add(new Lunch("Masa"));
+		lunches.add(new Lunch("Taco Bell"));
+		lunches.add(new Lunch("Cosi"));
+		lunches.add(new Lunch("Masa"));
+		lunches.add(new Lunch("Taco Bell"));
+		lunches.add(new Lunch("Cosi"));
+		lunches.add(new Lunch("Masa"));
+		lunches.add(new Lunch("Taco Bell"));
+		lunches.add(new Lunch("Cosi"));
+		lunches.add(new Lunch("Masa"));
+		lunches.add(new Lunch("Taco Bell"));
+		lunches.add(new Lunch("Cosi"));
+		lunches.add(new Lunch("Masa"));
+
+	}
+	
+	
+			
 }

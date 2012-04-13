@@ -1,7 +1,6 @@
 *.pydevproject
 .project
-*.metadata
-*.metadata/
+.metadata
 bin/**
 tmp/**
 tmp/**/*
@@ -13,6 +12,7 @@ local.properties
 .classpath
 .settings/
 .loadpath
+*.orig
 
 # External tool builders
 .externalToolBuilders/
