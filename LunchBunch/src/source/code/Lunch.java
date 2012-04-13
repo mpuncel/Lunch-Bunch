@@ -60,6 +60,7 @@ public class Lunch implements Parcelable {
 		Object a[] = { name, date,
 		        time};
 
+		//TODO: fix formatting so it looks better on invites and attending page
 		String s = String.format("%1$-10s %n %3$-8s    %2$s", a);
 		return s;
 	}
