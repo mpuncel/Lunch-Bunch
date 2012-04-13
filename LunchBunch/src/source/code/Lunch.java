@@ -1,21 +1,27 @@
 package source.code;
 
-import android.util.Log;
+import java.util.ArrayList;
 
 public class Lunch 
 {
 	
 	private String name;
+	private ArrayList<Friend> friends;
 
 	public Lunch(String n)
 	{
 		name = n;
 	}
 	
+	public void setFriends(ArrayList<Friend> friends) {
+	    this.friends = friends;
+	}
+	
 	public String getTitle()
 	{
 		return name;
 	}
+	
 	public String toString()
 	{
 		

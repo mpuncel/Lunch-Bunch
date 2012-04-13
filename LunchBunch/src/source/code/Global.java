@@ -8,6 +8,24 @@ public class Global extends Application
 {
 	private ArrayList<Lunch> lunchInvites;
 	private ArrayList<Lunch> lunchesAttending;
+	private Lunch currentCreatingLunch = null;
+	private ArrayList<Friend> lunchFriends;
+	
+	public void setCurrentCreatingLunch(Lunch l) { 
+	    currentCreatingLunch = l;
+	}
+	
+	public Lunch getCreatingLunch() {
+	    return this.currentCreatingLunch;
+	}
+	
+	public void setLunchFriends(ArrayList<Friend> friends) {
+	    lunchFriends = friends;
+	}
+	
+	public ArrayList<Friend> getLunchFriends() {
+	    return lunchFriends;
+	}
 	
 	public void addLunchInvite(Lunch lunch){
 		lunchInvites.add(lunch);
