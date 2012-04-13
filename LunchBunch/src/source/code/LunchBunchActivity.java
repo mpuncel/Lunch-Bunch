@@ -17,10 +17,7 @@ public class LunchBunchActivity extends Activity {
         // Do something when the button is clicked
 
         Toast.makeText(LunchBunchActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
-<<<<<<< HEAD
-        Intent intent = new Intent(this, EventDetails.class);
-        startActivity(intent);
-=======
+
         Intent intent = new Intent(this, BrowseInvites.class);
         count++;
         startActivityForResult(intent, 1);
@@ -33,6 +30,6 @@ public class LunchBunchActivity extends Activity {
       String msg = data.getStringExtra("returnedData");
       Toast.makeText(LunchBunchActivity.this, msg, Toast.LENGTH_SHORT).show();
      }
->>>>>>> 11e249e9d8af0e6a7885d8fef51cf24a4b634c73
+
     }
 }
