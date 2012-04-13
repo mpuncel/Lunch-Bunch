@@ -25,13 +25,9 @@ public class BrowseAttending extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.attending_page);
-        
-        //lunches = new ArrayList<Lunch>();
-        //makeLunches();
 
         Global state = (Global) getApplication();
-        lunches = state.getLunchInvites();
-        
+        lunches = state.getLunchesAttending();
         ListView lv = (ListView) findViewById(R.id.listEntries);
         lv.setTextFilterEnabled(true);
 
@@ -52,20 +48,22 @@ public class BrowseAttending extends Activity {
   	
   	public void onButtonClicked(View v) {
           // Do something when the button is clicked
-  		  Button b = (Button) v;
           //Toast.makeText(BrowseAttending.this, "" + b.getText(), Toast.LENGTH_SHORT).show();
           
-          if (b.getText().equals("Lunch \nInvites"))
-          {
-        	  Intent intent = new Intent(this, BrowseInvites.class);
-              //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-              startActivity(intent);   
-          }
-          if (b.getText().equals("Create"))
-          {
-        	  Intent intent = new Intent(this, CreateNewLunch.class);
-              startActivity(intent);        	  
-          }
+  		  switch(v.getId()) {
+  		  case R.id.create:
+              Intent create = new Intent(this, CreateNewLunch.class);
+              startActivity(create);
+              break;
+  		  case R.id.lunchinvitestab:
+  		    Intent lunchinvites = new Intent(this, BrowseInvites.class);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(lunchinvites); 
+            break;
+          default:
+              throw new RuntimeException("Button ID unknown");
+  		  }
+
       }
 
   	

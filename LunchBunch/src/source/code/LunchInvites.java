@@ -1,5 +1,4 @@
 package source.code;
-
 import java.util.ArrayList;
 
 import android.app.Activity;

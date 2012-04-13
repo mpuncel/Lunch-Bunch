@@ -42,7 +42,7 @@ public class SelectFriends extends Activity {
     public void onSelectFriendsButtonClicked(View v) {
         Global state = (Global) getApplication();
         ArrayList<Friend> friends = this.friendListAdapter.getSelectedFriends();
-        state.setLunchFriends(friends);
+        state.getCreatingLunch().setFriends(friends);
         state.createLunchDone();
         Intent attending = new Intent(this, BrowseAttending.class);
         startActivity(attending);
@@ -79,7 +79,6 @@ public class SelectFriends extends Activity {
         for (String name : names) {
             friends.add(new Friend(name));
         }
-
 
     }
     private class MyOnItemClickListener implements OnItemClickListener {
