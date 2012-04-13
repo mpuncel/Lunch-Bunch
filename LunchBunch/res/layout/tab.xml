@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+>
+
+  <TabHost android:id="@+id/tabhost" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onTabClicked">
+    <TabWidget android:id="@android:id/tabs" android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="onTabClicked"/>
+    <FrameLayout android:id="@android:id/tabcontent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="65px">
+      <AnalogClock android:id="@+id/AnalogClock01" android:layout_width="wrap_content" android:layout_height="wrap_content"></AnalogClock>
+      <DigitalClock android:text="DigitalClock01" android:id="@+id/DigitalClock01" android:layout_width="wrap_content" android:layout_height="wrap_content"></DigitalClock>
+    </FrameLayout>
+  </TabHost>
+</LinearLayout>
