@@ -10,9 +10,15 @@ public class Global extends Application
 	private ArrayList<Lunch> lunchesAttending;
 	private Lunch currentCreatingLunch = null;
 	private ArrayList<Friend> lunchFriends;
+	private Lunch clickedLunch = null;
 	
 	public void setCurrentCreatingLunch(Lunch l) { 
 	    currentCreatingLunch = l;
+	}
+	
+	public void setClickedLunch(Lunch l)
+	{
+		clickedLunch = l;
 	}
 	
 	public Lunch getCreatingLunch() {
