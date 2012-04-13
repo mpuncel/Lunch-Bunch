@@ -5,14 +5,14 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/wherelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Where:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/pickWhere"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" >
@@ -23,7 +23,7 @@
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/datelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date:"
@@ -37,7 +37,7 @@
         android:inputType="date" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/timelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Time:"
@@ -51,7 +51,7 @@
         android:inputType="time" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/reminderlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Do you want to send a reminder?"
@@ -64,47 +64,18 @@
         android:orientation="horizontal" >
 
         <RadioButton
-            android:id="@+id/radio0"
+            android:id="@+id/yesReminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="yes" />
 
         <RadioButton
-            android:id="@+id/radio1"
+            android:id="@+id/noReminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="no" />
     </RadioGroup>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <GridLayout
@@ -114,7 +85,7 @@
         android:layout_weight="1" >
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/sendreminderlabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -172,14 +143,14 @@
             android:orientation="horizontal" >
 
             <RadioButton
-                android:id="@+id/radio0"
+                android:id="@+id/yesConfirmation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="yes" />
 
             <RadioButton
-                android:id="@+id/radio1"
+                android:id="@+id/noConfirmation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="no" />
@@ -209,7 +180,7 @@
 
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/comments"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_column="0"
