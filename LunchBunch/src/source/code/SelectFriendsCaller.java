@@ -17,9 +17,9 @@ public class SelectFriendsCaller extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_caller);
         Global state = (Global) getApplication();
-        ArrayList<Lunch> lunchInvites = makeLunches();
-        state.setLunchInvites(lunchInvites);
-        state.setLunchesAttending(lunchInvites); // set lunches attending to same as lunch invites for now
+        //ArrayList<Lunch> lunchInvites = makeLunches();
+        //state.setLunchInvites(lunchInvites);
+        //state.setLunchesAttending(lunchInvites); // set lunches attending to same as lunch invites for now
     }
     
     public void onButtonClicked(View v) {

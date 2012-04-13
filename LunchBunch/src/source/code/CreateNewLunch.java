@@ -87,10 +87,15 @@ public class CreateNewLunch extends Activity {
     }
     
     public void onDoneClicked(View v) {
-        String where = ((EditText) findViewById(R.id.pickTime)).getText().toString();
+        String where = ((EditText) findViewById(R.id.pickWhere)).getText().toString();
         Lunch createdLunch = new Lunch(where);
-        
-        
+        ((Global)getApplication()).setCurrentCreatingLunch(createdLunch);
+        String time = ((EditText) findViewById(R.id.pickTime)).getText().toString();
+        createdLunch.setTime(time);
+        String date = ((EditText) findViewById(R.id.pickDate)).getText().toString();
+        createdLunch.setDate(date);
+        String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
+        createdLunch.setComments(comments);
         Intent selectFriendsIntent = new Intent(this, SelectFriends.class);
         startActivity(selectFriendsIntent);
         
@@ -100,7 +105,7 @@ public class CreateNewLunch extends Activity {
 
     	mPickTime.setText(
             new StringBuilder()
-            .append(pad(mHour)).append(":")
+            .append(pad(mHour%12)).append(":")
             .append(pad(mMinute)));
 
     }
@@ -108,8 +113,8 @@ public class CreateNewLunch extends Activity {
 
     	mPickDate.setText(
             new StringBuilder()
-                    .append(pad(mMonth)).append(" ")
-                    .append(pad(mDay)).append(",")
+                    .append(pad(mMonth+1)).append("/")
+                    .append(pad(mDay)).append("/")
                     .append(pad(mYear)));
     }
 

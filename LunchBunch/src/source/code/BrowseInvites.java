@@ -3,54 +3,83 @@ package source.code;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class BrowseInvites extends Activity {
 
     ArrayList<Lunch> lunches;
     Global state;
+    ListView lv;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.invite_page);
         
-        //lunches = new ArrayList<Lunch>();
-        //makeLunches();
-
         state = (Global) getApplication();
+        state.makeLunches();
         lunches = state.getLunchInvites();
-        ListView lv = (ListView) findViewById(R.id.listEntries);
+        lv = (ListView) findViewById(R.id.listEntries);
         lv.setTextFilterEnabled(true);
 
+        ArrayAdapter<Lunch> arrayAdapter = new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches);
+        arrayAdapter.setNotifyOnChange(true);
   	  	lv.setAdapter(new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches));
+        //Toast.makeText(BrowseInvites.this, "OnCreateMethod", Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(BrowseInvites.this, "OnCreateMethod", Toast.LENGTH_SHORT).show();
 
-
-  	  lv.setOnItemClickListener(new OnItemClickListener() {
-  	    public void onItemClick(AdapterView<?> parent, View view,
-  	        int position, long id) {
-  	      String lunchTitle = (String) ((TextView) view).getText();
-  	      // When clicked, show a toast with the TextView text
-  	      Toast.makeText(getApplicationContext(), lunchTitle,
-  	          Toast.LENGTH_SHORT).show();
-  	    }
-  	  });
-  	  //handleIntent(getIntent());
+      	lv.setOnItemClickListener(new OnItemClickListener() {
+      	    public void onItemClick(AdapterView<?> parent, View view,
+      	        int position, long id) {
+      	        Global state = (Global)getApplication();
+      	        Intent eventDetails = new Intent(parent.getContext(), InviteDetails.class);
+      	        eventDetails.putExtra("lunch", state.getLunchInvite(position));
+      	        eventDetails.putExtra("position", position);
+      	        System.out.println(state.getLunchInvites().size() + "size");
+      	        startActivity(eventDetails);
+                System.out.println(state.getLunchInvites().size() + "size2");
+      	      
+      	    }
+      	});
+  	  
   	}
+    
+//    public void onActivityResult(int resultCode, int requestCode, Intent data) {
+//
+//        System.out.println("resultCode = " + resultCode);
+//        if (resultCode == Activity.RESULT_OK) {
+//            if (data.getStringExtra("choice").equals("accept")) {
+//                Global state = (Global)getApplication();
+//                int position = data.getIntExtra("position", -1);
+//                Lunch accepted = state.getLunchAttending(position);
+//                System.out.println("first" + lunches.size());
+//                state.removeLunchInvite(position);
+//                System.out.println("second " + lunches.size());
+//                
+//                state.addLunchAttending(accepted);
+//            }
+//            
+//            else if (data.getStringExtra("choice").equals("decline")) {
+//                Global state = (Global)getApplication();
+//                int position = data.getIntExtra("position", -1);
+//                state.removeLunchInvite(position);
+//                ((BaseAdapter)lv.getAdapter()).notifyDataSetChanged();
+//            }
+//            else {
+//                throw new RuntimeException("Choice not understood");
+//            }   
+//        }
+//        
+//    }
     
     @Override
     protected void onNewIntent(Intent intent) {
@@ -79,29 +108,6 @@ public class BrowseInvites extends Activity {
         	  Intent intent = new Intent(this, CreateNewLunch.class);
               startActivity(intent);        	  
           }
+          finish();
       }
-
-  	
-  	public void makeLunches()
-  	{
-  		lunches.add(new Lunch("Taco Bell"));
-  		lunches.add(new Lunch("Cosi"));
-  		lunches.add(new Lunch("Masa"));
-  		lunches.add(new Lunch("Taco Bell"));
-  		lunches.add(new Lunch("Cosi"));
-  		lunches.add(new Lunch("Masa"));
-  		lunches.add(new Lunch("Taco Bell"));
-  		lunches.add(new Lunch("Cosi"));
-  		lunches.add(new Lunch("Masa"));
-  		lunches.add(new Lunch("Taco Bell"));
-  		lunches.add(new Lunch("Cosi"));
-  		lunches.add(new Lunch("Masa"));
-  		lunches.add(new Lunch("Taco Bell"));
-  		lunches.add(new Lunch("Cosi"));
-  		lunches.add(new Lunch("Masa"));
-  		lunches.add(new Lunch("Taco Bell"));
-  		lunches.add(new Lunch("Cosi"));
-  		lunches.add(new Lunch("Masa"));
-
-  	}
 }
