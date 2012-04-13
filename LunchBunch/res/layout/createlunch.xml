@@ -5,14 +5,14 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/wherelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Where:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/pickWhere"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" >
@@ -23,7 +23,7 @@
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/datelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date:"
@@ -37,7 +37,7 @@
         android:inputType="date" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/timelabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Time:"
@@ -51,7 +51,7 @@
         android:inputType="time" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/reminderlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Do you want to send a reminder?"
@@ -64,49 +64,19 @@
         android:orientation="horizontal" >
 
         <RadioButton
-            android:id="@+id/radio0"
+            android:id="@+id/yesReminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="yes" />
 
         <RadioButton
-            android:id="@+id/radio1"
+            android:id="@+id/noReminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="no" />
     </RadioGroup>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+
     <GridLayout
         android:id="@+id/reminder"
         android:layout_width="match_parent"
@@ -114,7 +84,7 @@
         android:layout_weight="1" >
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/sendreminderlabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
@@ -127,7 +97,7 @@
             android:id="@+id/spinner"
             android:layout_width="166dp"
             android:layout_height="wrap_content"
-            android:layout_column="2"
+            android:layout_column="3"
             android:layout_columnSpan="2"
             android:layout_row="0" />
 
@@ -143,10 +113,22 @@
             android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_column="0"
-            android:layout_columnSpan="5"
+            android:layout_columnSpan="6"
             android:layout_row="4"
             android:text="Do you want to request confirmation with the reminder?"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="2"
+            android:layout_columnSpan="3"
+            android:layout_gravity="left"
+            android:layout_row="8"
+            android:text="Done"
+            android:onClick="onDoneClicked"/>
 
         <Space
             android:layout_width="1dp"
@@ -157,7 +139,7 @@
         <RadioGroup
             android:id="@+id/radioGroup2"
             android:layout_column="0"
-            android:layout_columnSpan="5"
+            android:layout_columnSpan="6"
             android:layout_gravity="left"
             android:layout_row="3"
             android:orientation="horizontal" >
@@ -166,20 +148,20 @@
         <RadioGroup
             android:id="@+id/radioGroup3"
             android:layout_column="0"
-            android:layout_columnSpan="3"
+            android:layout_columnSpan="4"
             android:layout_gravity="right"
             android:layout_row="5"
             android:orientation="horizontal" >
 
             <RadioButton
-                android:id="@+id/radio0"
+                android:id="@+id/yesConfirmation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="yes" />
 
             <RadioButton
-                android:id="@+id/radio1"
+                android:id="@+id/noConfirmation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="no" />
@@ -199,30 +181,29 @@
             android:layout_column="0"
             android:layout_gravity="fill_horizontal"
             android:layout_row="6" />
-
-
-
-
-
-
-
-
-
+
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/comments"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_column="0"
-            android:layout_columnSpan="4"
+            android:layout_columnSpan="5"
             android:layout_row="7"
             android:ems="10"
             android:inputType="textMultiLine" />
 
         <Space
             android:layout_width="1dp"
-            android:layout_height="155dp"
+            android:layout_height="22dp"
             android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
             android:layout_row="7" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="115dp"
+            android:layout_column="0"
+            android:layout_row="8" />
 
         <Space
             android:layout_width="21dp"
@@ -233,7 +214,7 @@
         <Space
             android:layout_width="100dp"
             android:layout_height="1dp"
-            android:layout_column="3"
+            android:layout_column="4"
             android:layout_row="0" />
 
         <Space
@@ -251,7 +232,7 @@
 
         <Space
             android:layout_width="1dp"
-            android:layout_height="10dp"
+            android:layout_height="28dp"
             android:layout_column="0"
             android:layout_row="6" />
 
@@ -262,12 +243,11 @@
             android:layout_row="5" />
 
         <Space
-            android:layout_width="125dp"
+            android:layout_width="27dp"
             android:layout_height="1dp"
-            android:layout_column="1"
+            android:layout_column="2"
             android:layout_gravity="fill_horizontal"
             android:layout_row="0" />
-
     </GridLayout>
 
 </LinearLayout>
