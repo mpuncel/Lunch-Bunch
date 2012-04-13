@@ -33,6 +33,8 @@ public class CreateNewLunch extends Activity {
     static final int DATE_DIALOG_ID = 0;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        //TODO: fix layout, the button on the bottom is cut off
         setContentView(R.layout.createlunch);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
