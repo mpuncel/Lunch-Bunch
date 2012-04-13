@@ -87,6 +87,9 @@ public class CreateNewLunch extends Activity {
     }
     
     public void onDoneClicked(View v) {
+        String where = ((EditText) findViewById(R.id.pickTime)).getText().toString();
+        Lunch createdLunch = new Lunch(where);
+        
         
         Intent selectFriendsIntent = new Intent(this, SelectFriends.class);
         startActivity(selectFriendsIntent);
@@ -97,15 +100,17 @@ public class CreateNewLunch extends Activity {
 
     	mPickTime.setText(
             new StringBuilder()
-                    .append(pad(mHour)).append(":")
-                    .append(pad(mMinute)));
+            .append(pad(mHour)).append(":")
+            .append(pad(mMinute)));
+
     }
     private void updateDateDisplay() {
 
-    	mPickTime.setText(
+    	mPickDate.setText(
             new StringBuilder()
-                    .append(pad(mHour)).append(":")
-                    .append(pad(mMinute)));
+                    .append(pad(mMonth)).append(" ")
+                    .append(pad(mDay)).append(",")
+                    .append(pad(mYear)));
     }
 
     private static String pad(int c) {
