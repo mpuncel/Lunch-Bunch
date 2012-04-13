@@ -34,7 +34,8 @@ public class BrowseInvites extends Activity {
 
   	  	lv.setAdapter(new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches));
 
-        
+        Toast.makeText(BrowseInvites.this, "OnCreateMethod", Toast.LENGTH_SHORT).show();
+
 
   	  lv.setOnItemClickListener(new OnItemClickListener() {
   	    public void onItemClick(AdapterView<?> parent, View view,
@@ -44,12 +45,26 @@ public class BrowseInvites extends Activity {
   	          Toast.LENGTH_SHORT).show();
   	    }
   	  });
+  	  //handleIntent(getIntent());
   	}
+    
+    @Override
+    protected void onNewIntent(Intent intent) {
+        Toast.makeText(BrowseInvites.this, "" + intent.getClass(), Toast.LENGTH_SHORT).show();
+
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        Toast.makeText(BrowseInvites.this, "" + intent.getClass(), Toast.LENGTH_SHORT).show();
+
+    	
+    }
   	
   	public void onButtonClicked(View v) {
           // Do something when the button is clicked
   		  Button b = (Button) v;
-          Toast.makeText(BrowseInvites.this, "" + b.getText(), Toast.LENGTH_SHORT).show();
+          //Toast.makeText(BrowseInvites.this, "" + b.getText(), Toast.LENGTH_SHORT).show();
           
           if (b.getText().equals("Lunches I'm Attending"))
           {

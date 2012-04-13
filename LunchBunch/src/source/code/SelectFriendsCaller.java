@@ -25,7 +25,8 @@ public class SelectFriendsCaller extends Activity {
             break;
             
         case R.id.gotolunchinvites:
-            Intent lunchInvitesIntent = new Intent(this, LunchInvites.class);
+            Intent lunchInvitesIntent = new Intent(this, BrowseInvites.class);
+            lunchInvitesIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(lunchInvitesIntent);
             break;
             
