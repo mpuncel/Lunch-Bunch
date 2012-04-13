@@ -49,11 +49,12 @@ public class BrowseAttending extends Activity {
   	public void onButtonClicked(View v) {
           // Do something when the button is clicked
   		  Button b = (Button) v;
-          Toast.makeText(BrowseAttending.this, "" + b.getText(), Toast.LENGTH_SHORT).show();
+          //Toast.makeText(BrowseAttending.this, "" + b.getText(), Toast.LENGTH_SHORT).show();
           
-          if (b.getText().equals("Lunch Invites"))
+          if (b.getText().equals("Lunch \nInvites"))
           {
         	  Intent intent = new Intent(this, BrowseInvites.class);
+              //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
               startActivity(intent);   
           }
           if (b.getText().equals("Create"))
