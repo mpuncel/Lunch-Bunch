@@ -19,13 +19,11 @@
         <activity android:name="LunchInvites"></activity>
         <activity android:name=".SelectFriends"></activity>
         <activity android:name="CreateNewLunch"></activity>
-<<<<<<< HEAD
         <activity android:name="EventDetails"></activity>
-=======
         <activity android:name="TabsActivity"></activity>
         <activity android:name="BrowseInvites"></activity>
         <activity android:name="BrowseAttending"></activity>
->>>>>>> 11e249e9d8af0e6a7885d8fef51cf24a4b634c73
+
 
     </application>
 
