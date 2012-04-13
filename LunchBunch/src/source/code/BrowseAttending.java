@@ -26,9 +26,12 @@ public class BrowseAttending extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.attending_page);
         
-        lunches = new ArrayList<Lunch>();
-        makeLunches();
+        //lunches = new ArrayList<Lunch>();
+        //makeLunches();
 
+        Global state = (Global) getApplication();
+        lunches = state.getLunchInvites();
+        
         ListView lv = (ListView) findViewById(R.id.listEntries);
         lv.setTextFilterEnabled(true);
 
@@ -40,8 +43,9 @@ public class BrowseAttending extends Activity {
   	    public void onItemClick(AdapterView<?> parent, View view,
   	        int position, long id) {
   	      // When clicked, show a toast with the TextView text
-  	      Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
+  	      Toast.makeText(getApplicationContext(), ((TextView) view).getText() + " to be removed",
   	          Toast.LENGTH_SHORT).show();
+  	      
   	    }
   	  });
   	}

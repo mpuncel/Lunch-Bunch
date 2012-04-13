@@ -34,7 +34,7 @@ public class SelectFriends extends Activity {
         this.friendListAdapter = new FriendListAdapter<Friend>(this, R.layout.friend_item, friends);
         lv.setAdapter(this.friendListAdapter);
         
-
+        
         lv.setOnItemClickListener(new MyOnItemClickListener(this.friendListAdapter));
 
     }
@@ -44,6 +44,7 @@ public class SelectFriends extends Activity {
         selectedFriendData.putParcelableArrayListExtra("friend names", this.friendListAdapter.getSelectedFriends());
         setResult(Activity.RESULT_OK, selectedFriendData);
         finish();
+    	
     }
     
     public void makeFriends()
