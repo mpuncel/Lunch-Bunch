@@ -15,7 +15,7 @@ public class LunchBunchActivity extends Activity {
     public void onButtonClicked(View v) {
         // Do something when the button is clicked
         Toast.makeText(LunchBunchActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, SelectFriends.class);
+        Intent intent = new Intent(this, EventDetails.class);
         startActivity(intent);
     }
 }
