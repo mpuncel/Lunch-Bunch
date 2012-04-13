@@ -44,9 +44,10 @@ public class BrowseInvites extends Activity {
       	        Intent eventDetails = new Intent(parent.getContext(), InviteDetails.class);
       	        eventDetails.putExtra("lunch", state.getLunchInvite(position));
       	        eventDetails.putExtra("position", position);
-      	        System.out.println(state.getLunchInvites().size() + "size");
+      	        //System.out.println(state.getLunchInvites().size() + "size");
       	        startActivity(eventDetails);
-                System.out.println(state.getLunchInvites().size() + "size2");
+      	        finish();
+                //System.out.println(state.getLunchInvites().size() + "size2");
       	      
       	    }
       	});
