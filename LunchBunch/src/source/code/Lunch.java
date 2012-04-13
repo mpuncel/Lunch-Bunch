@@ -75,6 +75,8 @@ public class Lunch implements Parcelable {
         out.writeString(name);
         out.writeString(time);
         out.writeString(date);
+        out.writeString(comments);
+        out.writeArray(friends.toArray());
         
     }
     
@@ -92,6 +94,8 @@ public class Lunch implements Parcelable {
         name = in.readString();
         time = in.readString();
         date = in.readString();
+        comments = in.readString();
+        friends = in.readArrayList(Friend.class.getClassLoader());
     }
 
 }
