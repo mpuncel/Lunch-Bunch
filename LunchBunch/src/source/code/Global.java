@@ -10,7 +10,6 @@ public class Global extends Application
 	private ArrayList<Lunch> lunchesAttending;
 	private Lunch currentCreatingLunch;
 	private ArrayList<Friend> lunchFriends;
-	private Lunch clickedLunch = null;
 	
 	
     public void makeLunches()
@@ -55,11 +54,6 @@ public class Global extends Application
 	    currentCreatingLunch = l;
 	}
 	
-	public void setClickedLunch(Lunch l)
-	{
-		clickedLunch = l;
-	}
-	
 	public Lunch getCreatingLunch() {
 	    return this.currentCreatingLunch;
 	}
@@ -73,6 +67,7 @@ public class Global extends Application
 	}
 	
 	public void addLunchAttending(Lunch lunch){
+	    System.out.println("Global " + lunch.getTitle() + lunch.getDate() + lunch.getTime());
 		lunchesAttending.add(lunch);
 	}
 	

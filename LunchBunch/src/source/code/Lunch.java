@@ -12,7 +12,6 @@ public class Lunch implements Parcelable {
 	private String comments;
 	private String date;
 	private String time;
-    private int mData;
 	
 	public Lunch(String n)
 	{
@@ -21,6 +20,10 @@ public class Lunch implements Parcelable {
 	
 	public void setFriends(ArrayList<Friend> friends) {
 	    this.friends = friends;
+	}
+	
+	public ArrayList<Friend> getFriends() {
+	    return this.friends;
 	}
 	
 	public void setTime(String time) {
@@ -68,7 +71,9 @@ public class Lunch implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel out, int arg1) {
-        out.writeInt(mData);
+        out.writeString(name);
+        out.writeString(time);
+        out.writeString(date);
         
     }
     
@@ -83,7 +88,9 @@ public class Lunch implements Parcelable {
     };
     
     private Lunch(Parcel in) {
-        mData = in.readInt();
+        name = in.readString();
+        time = in.readString();
+        date = in.readString();
     }
 
 }

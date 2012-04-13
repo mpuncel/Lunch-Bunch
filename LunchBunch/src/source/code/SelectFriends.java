@@ -13,7 +13,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class SelectFriends extends Activity {
 
@@ -99,15 +98,15 @@ public class SelectFriends extends Activity {
         }
     }
     
+    @SuppressWarnings("rawtypes")
     private class FriendListAdapter<T> extends ArrayAdapter {
         
         private ArrayList<Boolean> isChecked;
-        private Context context;
         private ArrayList<Friend> friends;
+        @SuppressWarnings("unchecked")
         public FriendListAdapter(Context context, int resource, ArrayList<Friend> friends)
         {
             super(context, resource, friends);
-            this.context = context;
             this.friends = friends;
             isChecked = new ArrayList<Boolean>(friends.size());
             for (int i = 0; i < friends.size(); i++) {
