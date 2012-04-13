@@ -1,11 +1,13 @@
 package source.code;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,11 +16,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class CreateNewLunch extends Activity {
     /** Called when the activity is first created. */
 
-
+    private final static int SELECTFRIENDSID = 0;
     private EditText mPickDate;
     private EditText mPickTime;
     private int mYear;
@@ -85,7 +88,11 @@ public class CreateNewLunch extends Activity {
     
     public void onDoneClicked(View v) {
         
+        Intent selectFriendsIntent = new Intent(this, SelectFriends.class);
+        startActivity(selectFriendsIntent);
+        
     }
+    
     private void updateTimeDisplay() {
 
     	mPickTime.setText(

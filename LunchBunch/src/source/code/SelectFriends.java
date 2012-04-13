@@ -40,9 +40,9 @@ public class SelectFriends extends Activity {
     }
     
     public void onSelectFriendsButtonClicked(View v) {
-        Intent selectedFriendData = new Intent();
-        selectedFriendData.putParcelableArrayListExtra("friend names", this.friendListAdapter.getSelectedFriends());
-        setResult(Activity.RESULT_OK, selectedFriendData);
+        Global state = (Global) getApplication();
+        ArrayList<Friend> friends = this.friendListAdapter.getSelectedFriends();
+        state.setLunchFriends(friends);
         finish();
     	
     }
