@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="source.code"
+<manifest package="source.code"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-sdk android:minSdkVersion="15" />
 
@@ -20,6 +19,7 @@
         <activity android:name="LunchInvites"></activity>
         <activity android:name=".SelectFriends"></activity>
         <activity android:name="CreateNewLunch"></activity>
+        <activity android:name="EventDetails"></activity>
         <activity android:name="TabsActivity"></activity>
         <activity android:name="BrowseInvites"></activity>
         <activity android:name="BrowseAttending"></activity>

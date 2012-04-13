@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_gravity="left"
+            android:layout_row="0"
+            android:text="Taco Bell"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/button2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_column="1"
+            android:layout_gravity="bottom|right"
+            android:layout_row="0"
+            android:layout_rowSpan="2"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_column="1"
+            android:layout_gravity="left"
+            android:layout_row="0"
+            android:layout_rowSpan="3"
+            android:text="Button" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:text="4/7/12"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:text="12:00 pm"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="bottom"
+            android:layout_row="2"
+            android:layout_rowSpan="2"
+            android:text="Invited by: Mike Puncel"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="4"
+            android:text="Attending:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ScrollView
+            android:layout_width="182dp"
+            android:layout_height="47dp"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="5" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="right"
+                android:layout_row="5"
+                android:layout_rowSpan="2"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="left"
+                    android:layout_row="8"
+                    android:text="Anjali Muralidhar"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="left"
+                    android:layout_row="9"
+                    android:text="Martin Lozano"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="left"
+                    android:layout_row="10"
+                    android:text="Pallavi Powale"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+        </ScrollView>
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="15dp"
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="6" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="7"
+            android:text="Comments:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_row="8"
+            android:text="the one at the galleria!"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="222dp"
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="8" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="39dp"
+            android:layout_column="0"
+            android:layout_row="3" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="46dp"
+            android:layout_column="0"
+            android:layout_row="4" />
+    </GridLayout>
+
+</LinearLayout>
