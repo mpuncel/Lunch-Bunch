@@ -82,6 +82,10 @@ public class CreateNewLunch extends Activity {
 
 
     }
+    
+    public void onDoneClicked(View v) {
+        
+    }
     private void updateTimeDisplay() {
 
     	mPickTime.setText(
