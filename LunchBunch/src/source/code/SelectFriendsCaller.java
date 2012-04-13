@@ -16,7 +16,10 @@ public class SelectFriendsCaller extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_caller);
-    
+        Global state = (Global) getApplication();
+        ArrayList<Lunch> lunchInvites = makeLunches();
+        state.setLunchInvites(lunchInvites);
+        state.setLunchesAttending(lunchInvites); // set lunches attending to same as lunch invites for now
     }
     
     public void onButtonClicked(View v) {
@@ -61,5 +64,21 @@ public class SelectFriendsCaller extends Activity {
             }
         }
     }
+    
+    public ArrayList<Lunch> makeLunches()
+  	{
+    	ArrayList<Lunch> lunches = new ArrayList<Lunch>();
+  		lunches.add(new Lunch("Taco Bell"));
+  		lunches.add(new Lunch("Cosi"));
+  		lunches.add(new Lunch("Masa"));
+  		lunches.add(new Lunch("Taco Bell"));
+  		lunches.add(new Lunch("Cosi"));
+  		lunches.add(new Lunch("Masa"));
+  		lunches.add(new Lunch("Taco Bell"));
+  		lunches.add(new Lunch("Cosi"));
+  		lunches.add(new Lunch("Masa"));
+  		return lunches;
+
+  	}
 
 }

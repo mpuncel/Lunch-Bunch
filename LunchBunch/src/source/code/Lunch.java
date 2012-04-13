@@ -12,6 +12,10 @@ public class Lunch
 		name = n;
 	}
 	
+	public String getTitle()
+	{
+		return name;
+	}
 	public String toString()
 	{
 		

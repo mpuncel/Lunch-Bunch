@@ -20,15 +20,18 @@ import android.widget.Toast;
 public class BrowseInvites extends Activity {
 
     ArrayList<Lunch> lunches;
+    Global state;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.invite_page);
         
-        lunches = new ArrayList<Lunch>();
-        makeLunches();
+        //lunches = new ArrayList<Lunch>();
+        //makeLunches();
 
+        state = (Global) getApplication();
+        lunches = state.getLunchInvites();
         ListView lv = (ListView) findViewById(R.id.listEntries);
         lv.setTextFilterEnabled(true);
 
@@ -40,8 +43,9 @@ public class BrowseInvites extends Activity {
   	  lv.setOnItemClickListener(new OnItemClickListener() {
   	    public void onItemClick(AdapterView<?> parent, View view,
   	        int position, long id) {
+  	      String lunchTitle = (String) ((TextView) view).getText();
   	      // When clicked, show a toast with the TextView text
-  	      Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
+  	      Toast.makeText(getApplicationContext(), lunchTitle,
   	          Toast.LENGTH_SHORT).show();
   	    }
   	  });
@@ -65,7 +69,6 @@ public class BrowseInvites extends Activity {
           // Do something when the button is clicked
   		  Button b = (Button) v;
           //Toast.makeText(BrowseInvites.this, "" + b.getText(), Toast.LENGTH_SHORT).show();
-          
           if (b.getText().equals("Lunches I'm Attending"))
           {
         	  Intent intent = new Intent(this, BrowseAttending.class);
