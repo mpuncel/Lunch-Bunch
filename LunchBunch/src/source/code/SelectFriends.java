@@ -43,8 +43,10 @@ public class SelectFriends extends Activity {
         Global state = (Global) getApplication();
         ArrayList<Friend> friends = this.friendListAdapter.getSelectedFriends();
         state.setLunchFriends(friends);
+        state.createLunchDone();
+        Intent attending = new Intent(this, BrowseAttending.class);
+        startActivity(attending);
         finish();
-    	
     }
     
     public void makeFriends()
