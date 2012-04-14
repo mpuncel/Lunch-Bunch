@@ -2,10 +2,14 @@ package source.code;
 
 import java.util.ArrayList;
 
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -26,8 +30,7 @@ public class BrowseAttending extends Activity {
         lunches = state.getLunchesAttending();
         ListView lv = (ListView) findViewById(R.id.listEntries);
         lv.setTextFilterEnabled(true);
-
-  	  	lv.setAdapter(new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches));
+        lv.setAdapter(new LunchItemAdapter<Lunch>(this, R.layout.attending_item, lunches));
 
         
 
@@ -85,5 +88,40 @@ public class BrowseAttending extends Activity {
   		lunches.add(new Lunch("Attending"));
   		lunches.add(new Lunch("Attending"));
 
+  	}
+  	
+  	private class LunchItemAdapter<T> extends ArrayAdapter {
+
+  	    private ArrayList<Lunch> lunches;
+
+		public LunchItemAdapter(Context context, int textViewResourceId, ArrayList<Lunch> lunches) {
+  	        super(context, textViewResourceId, lunches);
+  	        this.lunches = lunches;
+  	    }
+
+  	    @Override
+  	    public View getView(int position, View convertView, ViewGroup parent) 
+  	    {
+  	        View v = convertView;
+		  	if (v == null) {
+		  	            LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		  	            v = vi.inflate(R.layout.attending_item, null);
+		  	  }
+  	      
+		  	Lunch lunch = lunches.get(position);
+		  	TextView title = (TextView) v.findViewById(R.id.title);
+  	        TextView details = (TextView) v.findViewById(R.id.details);
+  	        TextView confirmed = (TextView) v.findViewById(R.id.confirmed);
+		  	
+			title.setText(lunch.getTitle());
+			details.setText(lunch.getTime() + "   " + lunch.getDate());
+			
+			if (lunch.isConfirmed())
+			{
+				confirmed.setText("confirmed");
+			}
+			return v;
+
+  	    }
   	}
 }
