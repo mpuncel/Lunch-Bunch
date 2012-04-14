@@ -35,6 +35,11 @@ public class InviteDetails extends Activity {
         	fromAttending = true;
         	Button acceptconfirm = (Button) findViewById(R.id.accept);
         	acceptconfirm.setText("Confirm");
+
+        	if (thisLunch.isConfirmed())
+        	{
+            	acceptconfirm.setVisibility(acceptconfirm.INVISIBLE);
+        	}        	
         }
 	    //System.out.println(thisLunch==null);
 	    //TODO: rewrite xml file and this class so that it displays data from thisLunch. Should
@@ -50,7 +55,7 @@ public class InviteDetails extends Activity {
 	    
 	    ListView attending = (ListView) findViewById(R.id.listfriends);
 	    ArrayList<Friend> friends = thisLunch.getFriends();
-	    attending.setAdapter(new ArrayAdapter<Friend>(this, R.layout.attending_item, friends));
+	    attending.setAdapter(new ArrayAdapter<Friend>(this, R.layout.list_item, friends));
 	    
 	    TextView comments = (TextView) findViewById(R.id.comments);
 	    comments.setText(thisLunch.getComments());
@@ -66,6 +71,7 @@ public class InviteDetails extends Activity {
 	    case R.id.accept:
 	    	if (fromAttending)
 	    	{
+	    		thisLunch.setConfirmed(true);
 		        startActivity(attending);
 	    	}
 	    	else
