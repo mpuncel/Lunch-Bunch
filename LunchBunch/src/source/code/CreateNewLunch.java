@@ -101,19 +101,26 @@ public class CreateNewLunch extends Activity {
     }
     
     private void updateTimeDisplay() {
+    	
+    	String AmPm = " am";
+    	if (mHour > 12)
+    	{
+    		AmPm = " pm";
+    	}
+    	
 
     	mPickTime.setText(
             new StringBuilder()
-            .append(pad(mHour%12)).append(":")
-            .append(pad(mMinute)));
+            .append((mHour%12)).append(":")
+            .append((mMinute)).append(AmPm));
 
     }
     private void updateDateDisplay() {
 
     	mPickDate.setText(
             new StringBuilder()
-                    .append(pad(mMonth+1)).append("/")
-                    .append(pad(mDay)).append("/")
+                    .append((mMonth+1)).append("/")
+                    .append((mDay)).append("/")
                     .append(pad(mYear)));
     }
 
