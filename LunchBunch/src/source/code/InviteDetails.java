@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ public class InviteDetails extends Activity {
 
     private Lunch thisLunch;
     private int thisPosition;
+    private boolean fromAttending;
     
 	/** Called when the activity is first created. */
 	@Override
@@ -26,6 +28,14 @@ public class InviteDetails extends Activity {
 	    Global state = (Global) getApplication();
 	    //Intent data = getIntent();
 	    thisLunch = state.getCurrentClickedLunch();
+	    Intent intent = getIntent();
+        String activity = intent.getStringExtra("activity");
+        if (activity.equals("attending"))
+        {
+        	fromAttending = true;
+        	Button acceptconfirm = (Button) findViewById(R.id.accept);
+        	acceptconfirm.setText("Confirm");
+        }
 	    //System.out.println(thisLunch==null);
 	    //TODO: rewrite xml file and this class so that it displays data from thisLunch. Should
 	    //also show list of friends
@@ -47,17 +57,34 @@ public class InviteDetails extends Activity {
 	public void onButtonClicked(View v) {
 	    Global state = (Global)getApplication();
 	    Intent invites = new Intent(this, BrowseInvites.class);
+	    Intent attending = new Intent(this, BrowseAttending.class);
+
 	    switch(v.getId()) {
 	    case R.id.accept:
-	        state.addLunchAttending(thisLunch);
-	        state.removeLunchInvite(thisLunch.getTitle());
-	        startActivity(invites);
-	        Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " added to Lunches I'm Attending", Toast.LENGTH_SHORT).show();
-	        finish();
+	    	if (fromAttending)
+	    	{
+		        startActivity(attending);
+	    	}
+	    	else
+	    	{
+	    		state.addLunchAttending(thisLunch);
+	    		state.removeLunchInvite(thisLunch.getTitle());
+	    		startActivity(invites);
+	    		Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " added to Lunches I'm Attending", Toast.LENGTH_SHORT).show();
+	    	}
+	    	finish();
 	        break;
 	    case R.id.decline:
-	        state.removeLunchInvite(thisLunch.getTitle());
-	        startActivity(invites);
+	    	if (fromAttending)
+	    	{
+		        state.removeLunchesAttending(thisLunch.getTitle());
+		        startActivity(attending);
+	    	}
+	    	else
+	    	{
+	    		state.removeLunchInvite(thisLunch.getTitle());
+	    		startActivity(invites);
+	    	}
 	        finish();
 	        break;
 	    default:
