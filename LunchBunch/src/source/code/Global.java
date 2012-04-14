@@ -9,23 +9,31 @@ public class Global extends Application
 	private ArrayList<Lunch> lunchInvites;
 	private ArrayList<Lunch> lunchesAttending;
 	private Lunch currentCreatingLunch;
+	private Lunch currentClickedLunch;
 	private ArrayList<Friend> lunchFriends;
 	
 	
     public void makeLunches()
     {
         if (lunchInvites == null) {
+        	ArrayList<Friend> attending = new ArrayList<Friend>();
+        	attending.add(new Friend("Anjali Muralihdar"));
+        	attending.add(new Friend("Mike Puncel"));
+        	attending.add(new Friend("Pallavi Powale"));
             lunchInvites = new ArrayList<Lunch>();
             lunchesAttending = new ArrayList<Lunch>();
             Lunch tbell = new Lunch("Taco Bell");
             tbell.setDate("5/7/2012");
             tbell.setTime("12:00 pm");
+            tbell.setFriends(attending);
             Lunch cosi = new Lunch("Cosi");
             cosi.setDate("5/8/2012");
             cosi.setTime("12:00 pm");
+            cosi.setFriends(attending);
             Lunch masa = new Lunch("Masa");
             masa.setDate("5/10/2012");
             masa.setTime("1:00 pm");
+            masa.setFriends(attending);
             lunchInvites.add(tbell);
             lunchInvites.add(cosi);
             lunchInvites.add(masa);
@@ -33,10 +41,12 @@ public class Global extends Application
             Lunch dhaba = new Lunch("Desi Dhaba");
             dhaba.setDate("5/7/2012");
             dhaba.setTime("1:00 pm");
+            dhaba.setFriends(attending);
             
             Lunch maggianos = new Lunch("Maggiano's");
             maggianos.setDate("5/9/2012");
             maggianos.setTime("1:00 pm");
+            maggianos.setFriends(attending);
             lunchesAttending.add(dhaba);
             lunchesAttending.add(maggianos);
         }
@@ -57,6 +67,15 @@ public class Global extends Application
 	public Lunch getCreatingLunch() {
 	    return this.currentCreatingLunch;
 	}
+	
+	public void setCurrentClickedLunch(Lunch l) { 
+	    currentClickedLunch = l;
+	}
+	
+	public Lunch getCurrentClickedLunch() {
+	    return this.currentClickedLunch;
+	}
+	
 	
 	public ArrayList<Friend> getLunchFriends() {
 	    return lunchFriends;

@@ -40,7 +40,6 @@
         android:layout_weight="0.69"
         android:background="@color/MidGray" 
         android:textColor = "@color/black">
-
     </ListView>
 
     <Button
