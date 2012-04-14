@@ -42,9 +42,10 @@ public class BrowseInvites extends Activity {
       	        Global state = (Global)getApplication();
       	        Intent eventDetails = new Intent(parent.getContext(), InviteDetails.class);
       	        Lunch clickedLunch = state.getLunchInvite(position);
-      	        System.out.println("Browse Invites " + clickedLunch.getTitle() + clickedLunch.getDate() + clickedLunch.getTime());
-      	        eventDetails.putExtra("lunch", state.getLunchInvite(position));
-      	        eventDetails.putExtra("position", position);
+      	        //System.out.println("Browse Invites " + clickedLunch.getTitle() + clickedLunch.getDate() + clickedLunch.getTime());
+      	        //eventDetails.putExtra("lunch", state.getLunchInvite(position));
+      	        //eventDetails.putExtra("position", position);
+      	        state.setCurrentClickedLunch(clickedLunch);
       	        startActivity(eventDetails);
       	        finish();
       	      

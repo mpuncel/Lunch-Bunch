@@ -56,8 +56,8 @@
         android:layout_width="97dp"
         android:layout_height="45dp"
         android:onClick="onButtonClicked"
-        android:text="Create Lunch"
+        android:text="Create"
         android:textColor="@color/black"
-        android:textSize="10dp" />
+         />
 
 </LinearLayout>
