@@ -51,6 +51,9 @@ public class InviteDetails extends Activity {
 	    ListView attending = (ListView) findViewById(R.id.listfriends);
 	    ArrayList<Friend> friends = thisLunch.getFriends();
 	    attending.setAdapter(new ArrayAdapter<Friend>(this, R.layout.attending_item, friends));
+	    
+	    TextView comments = (TextView) findViewById(R.id.comments);
+	    comments.setText(thisLunch.getComments());
 	    //thisPosition = data.getIntExtra("position", -1);
 	}
 	
@@ -70,7 +73,7 @@ public class InviteDetails extends Activity {
 	    		state.addLunchAttending(thisLunch);
 	    		state.removeLunchInvite(thisLunch.getTitle());
 	    		startActivity(invites);
-	    		Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " added to Lunches I'm Attending", Toast.LENGTH_SHORT).show();
+	    		Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " accepted and added to Lunches I'm Attending", Toast.LENGTH_SHORT).show();
 	    	}
 	    	finish();
 	        break;
@@ -79,11 +82,14 @@ public class InviteDetails extends Activity {
 	    	{
 		        state.removeLunchesAttending(thisLunch.getTitle());
 		        startActivity(attending);
+	    		Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " declined and removed from Lunches I'm Attending", Toast.LENGTH_SHORT).show();
+
 	    	}
 	    	else
 	    	{
 	    		state.removeLunchInvite(thisLunch.getTitle());
 	    		startActivity(invites);
+	    		Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " declined and removed from Lunch Invites", Toast.LENGTH_SHORT).show();
 	    	}
 	        finish();
 	        break;
