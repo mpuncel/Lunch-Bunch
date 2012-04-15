@@ -114,7 +114,7 @@ public class BrowseAttending extends Activity {
   	        TextView confirmed = (TextView) v.findViewById(R.id.confirmed);
 		  	
 			title.setText(lunch.getTitle());
-			details.setText(lunch.getTime() + "   " + lunch.getDate());
+			details.setText(lunch.getTime() + "      " + lunch.getDate());
 			
 			if (lunch.isConfirmed())
 			{

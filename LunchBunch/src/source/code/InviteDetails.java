@@ -55,7 +55,7 @@ public class InviteDetails extends Activity {
 	    
 	    ListView attending = (ListView) findViewById(R.id.listfriends);
 	    ArrayList<Friend> friends = thisLunch.getFriends();
-	    attending.setAdapter(new ArrayAdapter<Friend>(this, R.layout.list_item, friends));
+	    attending.setAdapter(new ArrayAdapter<Friend>(this, R.layout.whitelist_item, friends));
 	    
 	    TextView comments = (TextView) findViewById(R.id.comments);
 	    comments.setText(thisLunch.getComments());

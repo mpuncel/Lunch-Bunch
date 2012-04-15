@@ -2,15 +2,20 @@ package source.code;
 
 import java.util.ArrayList;
 
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class BrowseInvites extends Activity {
@@ -30,10 +35,7 @@ public class BrowseInvites extends Activity {
         lv = (ListView) findViewById(R.id.listEntries);
         lv.setTextFilterEnabled(true);
 
-        ArrayAdapter<Lunch> arrayAdapter = new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches);
-        arrayAdapter.setNotifyOnChange(true);
-  	  	lv.setAdapter(new ArrayAdapter<Lunch>(this, R.layout.list_item, lunches));
-        //Toast.makeText(BrowseInvites.this, "OnCreateMethod", Toast.LENGTH_SHORT).show();
+        lv.setAdapter(new LunchItemAdapter<Lunch>(this, R.layout.attending_item, lunches));
 
 
       	lv.setOnItemClickListener(new OnItemClickListener() {
@@ -85,4 +87,39 @@ public class BrowseInvites extends Activity {
           }
           finish();
       }
+  	
+  	private class LunchItemAdapter<T> extends ArrayAdapter {
+
+  	    private ArrayList<Lunch> lunches;
+
+		public LunchItemAdapter(Context context, int textViewResourceId, ArrayList<Lunch> lunches) {
+  	        super(context, textViewResourceId, lunches);
+  	        this.lunches = lunches;
+  	    }
+
+  	    @Override
+  	    public View getView(int position, View convertView, ViewGroup parent) 
+  	    {
+  	        View v = convertView;
+		  	if (v == null) {
+		  	            LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		  	            v = vi.inflate(R.layout.attending_item, null);
+		  	  }
+  	      
+		  	Lunch lunch = lunches.get(position);
+		  	TextView title = (TextView) v.findViewById(R.id.title);
+  	        TextView details = (TextView) v.findViewById(R.id.details);
+  	        TextView confirmed = (TextView) v.findViewById(R.id.confirmed);
+		  	
+			title.setText(lunch.getTitle());
+			details.setText(lunch.getTime() + "     " + lunch.getDate());
+			
+			if (lunch.isConfirmed())
+			{
+				confirmed.setText("confirmed");
+			}
+			return v;
+
+  	    }
+  	}
 }
