@@ -12,6 +12,8 @@ public class Lunch implements Parcelable {
 	private String comments;
 	private String date;
 	private String time;
+	private boolean isConfirmed;
+	private boolean reminderRequested;
 	
 	public Lunch(String n)
 	{
@@ -61,16 +63,14 @@ public class Lunch implements Parcelable {
 		        time};
 
 		//TODO: fix formatting so it looks better on invites and attending page
-		String s = String.format("%1$-10s %n %3$-8s    %2$s", a);
+		String s = String.format("%1$-10s %n %3$-8s    %2$12s", a);
 		return s;
 	}
 
-    @Override
     public int describeContents() {
         return 0;
     }
 
-    @Override
     public void writeToParcel(Parcel out, int arg1) {
         out.writeString(name);
         out.writeString(time);
@@ -97,5 +97,21 @@ public class Lunch implements Parcelable {
         comments = in.readString();
         friends = in.readArrayList(Friend.class.getClassLoader());
     }
+
+	public boolean isConfirmed() {
+		return isConfirmed;
+	}
+
+	public void setConfirmed(boolean isConfirmed) {
+		this.isConfirmed = isConfirmed;
+	}
+
+	public boolean isReminderRequested() {
+		return reminderRequested;
+	}
+
+	public void setReminderRequested(boolean reminderRequested) {
+		this.reminderRequested = reminderRequested;
+	}
 
 }

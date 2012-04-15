@@ -1,14 +1,22 @@
 package source.code;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class InviteDetails extends Activity {
 
     private Lunch thisLunch;
     private int thisPosition;
+    private boolean fromAttending;
     
 	/** Called when the activity is first created. */
 	@Override
@@ -17,26 +25,78 @@ public class InviteDetails extends Activity {
 	    //TODO: fix layout (accept and decline buttons not aligned)
 	    setContentView(R.layout.eventdetails);
 	
-	    Intent data = getIntent();
-	    thisLunch = data.getParcelableExtra("lunch");
+	    Global state = (Global) getApplication();
+	    //Intent data = getIntent();
+	    thisLunch = state.getCurrentClickedLunch();
+	    Intent intent = getIntent();
+        String activity = intent.getStringExtra("activity");
+        if (activity.equals("attending"))
+        {
+        	fromAttending = true;
+        	Button acceptconfirm = (Button) findViewById(R.id.accept);
+        	acceptconfirm.setText("Confirm");
+
+        	if (thisLunch.isConfirmed())
+        	{
+            	acceptconfirm.setVisibility(acceptconfirm.INVISIBLE);
+        	}        	
+        }
+	    //System.out.println(thisLunch==null);
 	    //TODO: rewrite xml file and this class so that it displays data from thisLunch. Should
 	    //also show list of friends
-	    thisPosition = data.getIntExtra("position", -1);
+	    TextView location = (TextView) findViewById(R.id.location);
+	    location.setText(thisLunch.getTitle());
+	    
+	    TextView date = (TextView) findViewById(R.id.date);
+	    date.setText(thisLunch.getDate());
+	    
+	    TextView time = (TextView) findViewById(R.id.time);
+	    time.setText(thisLunch.getTime());
+	    
+	    ListView attending = (ListView) findViewById(R.id.listfriends);
+	    ArrayList<Friend> friends = thisLunch.getFriends();
+	    attending.setAdapter(new ArrayAdapter<Friend>(this, R.layout.whitelist_item, friends));
+	    
+	    TextView comments = (TextView) findViewById(R.id.comments);
+	    comments.setText(thisLunch.getComments());
+	    //thisPosition = data.getIntExtra("position", -1);
 	}
 	
 	public void onButtonClicked(View v) {
 	    Global state = (Global)getApplication();
 	    Intent invites = new Intent(this, BrowseInvites.class);
+	    Intent attending = new Intent(this, BrowseAttending.class);
+
 	    switch(v.getId()) {
 	    case R.id.accept:
-	        state.addLunchAttending(thisLunch);
-	        state.removeLunchInvite(thisPosition);
-	        startActivity(invites);
-	        finish();
+	    	if (fromAttending)
+	    	{
+	    		thisLunch.setConfirmed(true);
+		        startActivity(attending);
+	    	}
+	    	else
+	    	{
+	    		state.addLunchAttending(thisLunch);
+	    		state.removeLunchInvite(thisLunch.getTitle());
+	    		startActivity(invites);
+	    		Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " accepted and added to Lunches I'm Attending", Toast.LENGTH_SHORT).show();
+	    	}
+	    	finish();
 	        break;
 	    case R.id.decline:
-	        state.removeLunchInvite(thisPosition);
-	        startActivity(invites);
+	    	if (fromAttending)
+	    	{
+		        state.removeLunchesAttending(thisLunch.getTitle());
+		        startActivity(attending);
+	    		Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " declined and removed from Lunches I'm Attending", Toast.LENGTH_SHORT).show();
+
+	    	}
+	    	else
+	    	{
+	    		state.removeLunchInvite(thisLunch.getTitle());
+	    		startActivity(invites);
+	    		Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " declined and removed from Lunch Invites", Toast.LENGTH_SHORT).show();
+	    	}
 	        finish();
 	        break;
 	    default:
