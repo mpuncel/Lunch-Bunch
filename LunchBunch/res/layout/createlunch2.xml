@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10" >
+
+                <requestFocus />
+            </EditText>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="date" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/reminderlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Do you want to send a reminder?"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/yesReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="yes" />
+
+        <RadioButton
+            android:id="@+id/noReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="no" />
+    </RadioGroup>
+
+    <GridLayout
+        android:id="@+id/reminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/sendreminderlabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_row="0"
+            android:text="Send reminder"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="166dp"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:layout_columnSpan="2"
+            android:layout_row="0" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_column="1"
+            android:layout_gravity="bottom"
+            android:layout_row="1"
+            android:text="before event"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_column="0"
+            android:layout_columnSpan="6"
+            android:layout_row="4"
+            android:text="Do you want to request confirmation with the reminder?"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <EditText android:ems="10" android:id="@+id/comments" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_column="0" android:layout_columnSpan="5" android:layout_gravity="right" android:layout_row="6" android:inputType="textMultiLine"/>
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_column="2"
+            android:layout_columnSpan="3"
+            android:layout_gravity="left"
+            android:layout_row="7"
+            android:text="Done"
+            android:onClick="onDoneClicked"/>
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="21dp"
+            android:layout_column="0"
+            android:layout_row="0" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_column="0"
+            android:layout_columnSpan="6"
+            android:layout_gravity="left"
+            android:layout_row="3"
+            android:orientation="horizontal" >
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/radioGroup3"
+            android:layout_column="0"
+            android:layout_columnSpan="4"
+            android:layout_gravity="right"
+            android:layout_row="5"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/yesConfirmation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="yes" />
+
+            <RadioButton
+                android:id="@+id/noConfirmation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="no" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_row="6"
+            android:text="Comments:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="23dp"
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="6" />
+
+        <EditText
+            android:id="@+id/comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="5"
+            android:layout_row="6"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="115dp"
+            android:layout_column="0"
+            android:layout_row="8" />
+
+        <Space
+            android:layout_width="21dp"
+            android:layout_height="1dp"
+            android:layout_column="0"
+            android:layout_row="0" />
+
+        <Space
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_column="4"
+            android:layout_row="0" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="18dp"
+            android:layout_column="0"
+            android:layout_row="1" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="31dp"
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="4" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="28dp"
+            android:layout_column="0"
+            android:layout_row="6" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="19dp"
+            android:layout_column="0"
+            android:layout_row="5" />
+
+        <Space
+            android:layout_width="27dp"
+            android:layout_height="1dp"
+            android:layout_column="2"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="0" />
+    </GridLayout>
+
+</LinearLayout>
