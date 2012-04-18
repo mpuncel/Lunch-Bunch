@@ -49,7 +49,7 @@ public class CreateNewLunch extends Activity {
         spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
         
         mPickDate = (Button)findViewById(R.id.pickDate);
-        mPickDate.setText("Click to set Date", TextView.BufferType.EDITABLE);
+        mPickDate.setText("Click to set date", TextView.BufferType.EDITABLE);
 
         // add a click listener to the button
         mPickDate.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,7 @@ public class CreateNewLunch extends Activity {
         mDay = c.get(Calendar.DAY_OF_MONTH);
         
         mPickTime = (Button) findViewById(R.id.pickTime);
-        mPickTime.setText("Click to set Time.", TextView.BufferType.EDITABLE);
+        mPickTime.setText("Click to set time", TextView.BufferType.EDITABLE);
 
 
         // add a click listener to the button
@@ -84,7 +84,6 @@ public class CreateNewLunch extends Activity {
         // add a click listener to the reminder radio buttons
        RadioButton no = ((RadioButton) findViewById(R.id.noReminder));
        RadioButton.OnClickListener noListener = new RadioButton.OnClickListener(){
-    		  @Override
     		  public void onClick(View v) {
     			((TextView)findViewById(R.id.sendreminderlabel)).setVisibility(TextView.GONE);
     			((Spinner)findViewById(R.id.spinner)).setVisibility(Spinner.GONE);
@@ -96,7 +95,6 @@ public class CreateNewLunch extends Activity {
        no.setOnClickListener(noListener);
        RadioButton yes = ((RadioButton) findViewById(R.id.yesReminder));
        RadioButton.OnClickListener yesListener = new RadioButton.OnClickListener(){
-    		  @Override
     		  public void onClick(View v) {
     			((TextView)findViewById(R.id.sendreminderlabel)).setVisibility(TextView.VISIBLE);
     			((Spinner)findViewById(R.id.spinner)).setVisibility(Spinner.VISIBLE);
@@ -139,7 +137,7 @@ public class CreateNewLunch extends Activity {
     	mPickTime.setText(
             new StringBuilder()
             .append((mHour%12)).append(":")
-            .append((mMinute)).append(AmPm));
+            .append(pad(mMinute)).append(AmPm));
 
     }
     private void updateDateDisplay() {
