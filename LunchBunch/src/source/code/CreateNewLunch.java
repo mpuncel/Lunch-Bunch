@@ -10,17 +10,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class CreateNewLunch extends Activity {
     /** Called when the activity is first created. */
 
-    private EditText mPickDate;
-    private EditText mPickTime;
+    private Button mPickDate;
+    private Button mPickTime;
     private int mYear;
     private int mMonth;
     private int mDay;
@@ -36,7 +40,7 @@ public class CreateNewLunch extends Activity {
         
         //TODO: fix layout, the button on the bottom is cut off
         setContentView(R.layout.createlunch);
-
+        
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.planets_array, android.R.layout.simple_spinner_item);
@@ -44,7 +48,7 @@ public class CreateNewLunch extends Activity {
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
         
-        mPickDate = (EditText)findViewById(R.id.pickDate);
+        mPickDate = (Button)findViewById(R.id.pickDate);
         mPickDate.setText("Click to set Date", TextView.BufferType.EDITABLE);
 
         // add a click listener to the button
@@ -61,7 +65,7 @@ public class CreateNewLunch extends Activity {
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
         
-        mPickTime = (EditText) findViewById(R.id.pickTime);
+        mPickTime = (Button) findViewById(R.id.pickTime);
         mPickTime.setText("Click to set Time.", TextView.BufferType.EDITABLE);
 
 
@@ -77,11 +81,32 @@ public class CreateNewLunch extends Activity {
         mHour = c.get(Calendar.HOUR_OF_DAY);
         mMinute = c.get(Calendar.MINUTE);
 
+        // add a click listener to the reminder radio buttons
+       RadioButton no = ((RadioButton) findViewById(R.id.noReminder));
+       RadioButton.OnClickListener noListener = new RadioButton.OnClickListener(){
+    		  @Override
+    		  public void onClick(View v) {
+    			((TextView)findViewById(R.id.sendreminderlabel)).setVisibility(TextView.GONE);
+    			((Spinner)findViewById(R.id.spinner)).setVisibility(Spinner.GONE);
+    			((TextView)findViewById(R.id.sendreminderlabel2)).setVisibility(TextView.GONE);
+    			((TextView)findViewById(R.id.confirmation)).setVisibility(TextView.GONE);
+    			((RadioGroup)findViewById(R.id.radioGroup3)).setVisibility(RadioGroup.GONE);
+    		  }
+       };
+       no.setOnClickListener(noListener);
+       RadioButton yes = ((RadioButton) findViewById(R.id.yesReminder));
+       RadioButton.OnClickListener yesListener = new RadioButton.OnClickListener(){
+    		  @Override
+    		  public void onClick(View v) {
+    			((TextView)findViewById(R.id.sendreminderlabel)).setVisibility(TextView.VISIBLE);
+    			((Spinner)findViewById(R.id.spinner)).setVisibility(Spinner.VISIBLE);
+    			((TextView)findViewById(R.id.sendreminderlabel2)).setVisibility(TextView.VISIBLE);
+    			((TextView)findViewById(R.id.confirmation)).setVisibility(TextView.VISIBLE);
+    			((RadioGroup)findViewById(R.id.radioGroup3)).setVisibility(RadioGroup.VISIBLE);
+    		  }
+       };
+       yes.setOnClickListener(yesListener);
         
-
-
-
-
 
     }
     
@@ -89,9 +114,9 @@ public class CreateNewLunch extends Activity {
         String where = ((EditText) findViewById(R.id.pickWhere)).getText().toString();
         Lunch createdLunch = new Lunch(where);
         ((Global)getApplication()).setCurrentCreatingLunch(createdLunch);
-        String time = ((EditText) findViewById(R.id.pickTime)).getText().toString();
+        String time = ((Button) findViewById(R.id.pickTime)).getText().toString();
         createdLunch.setTime(time);
-        String date = ((EditText) findViewById(R.id.pickDate)).getText().toString();
+        String date = ((Button) findViewById(R.id.pickDate)).getText().toString();
         createdLunch.setDate(date);
         String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
         createdLunch.setComments(comments);
@@ -99,6 +124,8 @@ public class CreateNewLunch extends Activity {
         startActivity(selectFriendsIntent);
         
     }
+   
+
     
     private void updateTimeDisplay() {
     	
