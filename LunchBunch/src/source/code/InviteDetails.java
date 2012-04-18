@@ -78,8 +78,8 @@ public class InviteDetails extends Activity {
 	    	{
 	    		state.addLunchAttending(thisLunch);
 	    		state.removeLunchInvite(thisLunch.getTitle());
-	    		startActivity(invites);
-	    		Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " accepted and added to Lunches I'm Attending", Toast.LENGTH_SHORT).show();
+	    		startActivity(attending);
+	    		Toast.makeText(getApplicationContext(), "You have accepted lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
 	    	}
 	    	finish();
 	        break;
@@ -88,14 +88,14 @@ public class InviteDetails extends Activity {
 	    	{
 		        state.removeLunchesAttending(thisLunch.getTitle());
 		        startActivity(attending);
-	    		Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " declined and removed from Lunches I'm Attending", Toast.LENGTH_SHORT).show();
+	    		Toast.makeText(getApplicationContext(), "You have declined lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
 
 	    	}
 	    	else
 	    	{
 	    		state.removeLunchInvite(thisLunch.getTitle());
 	    		startActivity(invites);
-	    		Toast.makeText(getApplicationContext(), thisLunch.getTitle() + " declined and removed from Lunch Invites", Toast.LENGTH_SHORT).show();
+	    		Toast.makeText(getApplicationContext(), "You have declined lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
 	    	}
 	        finish();
 	        break;
