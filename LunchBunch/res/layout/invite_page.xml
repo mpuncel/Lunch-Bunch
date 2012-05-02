@@ -29,6 +29,8 @@
             android:onClick="onButtonClicked"
             android:text="Lunches I&apos;m Attending"
             android:textColor = "@color/black"
+            android:background="#404040"
+            
              />
 
     </LinearLayout>

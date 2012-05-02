@@ -62,6 +62,8 @@ public class BrowseAttending extends Activity {
   		    Intent lunchinvites = new Intent(this, BrowseInvites.class);
             //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(lunchinvites); 
+  		  case R.id.lunchesattendingtab:
+  			  
             break;
           default:
               throw new RuntimeException("Button ID unknown");
