@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,14 +79,20 @@ public class BrowseInvites extends Activity {
           if (b.getText().equals("Lunches I'm Attending"))
           {
         	  Intent intent = new Intent(this, BrowseAttending.class);
-              startActivity(intent);      
+              startActivity(intent); 
+              finish();
+
           }
           if (b.getText().equals("Create"))
           {
         	  Intent intent = new Intent(this, CreateNewLunch.class);
-              startActivity(intent);        	  
+              startActivity(intent); 
+              finish();
           }
-          finish();
+          if (b.getText().equals("Lunch Invites"))
+          {
+        	  // do nothing
+          }
       }
   	
   	private class LunchItemAdapter<T> extends ArrayAdapter {
@@ -114,9 +121,10 @@ public class BrowseInvites extends Activity {
 			title.setText(lunch.getTitle());
 			details.setText(lunch.getTime() + "     " + lunch.getDate());
 			
-			if (lunch.isConfirmed())
+			if (lunch.isDeclined())
 			{
-				confirmed.setText("confirmed");
+				confirmed.setText("declined");
+				confirmed.setTextColor(Color.rgb(191, 0, 0));
 			}
 			return v;
 

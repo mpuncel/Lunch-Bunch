@@ -14,6 +14,7 @@ public class Lunch implements Parcelable {
 	private String time;
 	private boolean isConfirmed;
 	private boolean reminderRequested;
+	private boolean isDeclined;
 	
 	public Lunch(String n)
 	{
@@ -112,6 +113,14 @@ public class Lunch implements Parcelable {
 
 	public void setReminderRequested(boolean reminderRequested) {
 		this.reminderRequested = reminderRequested;
+	}
+
+	public boolean isDeclined() {
+		return isDeclined;
+	}
+
+	public void setDeclined(boolean isDeclined) {
+		this.isDeclined = isDeclined;
 	}
 
 }

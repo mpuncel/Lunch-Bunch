@@ -132,6 +132,10 @@ public class CreateNewLunch extends Activity {
     	{
     		AmPm = " pm";
     	}
+    	if (mHour == 12)
+    	{
+    		AmPm = " pm";
+    	}
     	
 
     	mPickTime.setText(

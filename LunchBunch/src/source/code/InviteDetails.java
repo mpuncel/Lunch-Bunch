@@ -56,6 +56,8 @@ public class InviteDetails extends Activity {
 	    ListView attending = (ListView) findViewById(R.id.listfriends);
 	    ArrayList<Friend> friends = thisLunch.getFriends();
 	    attending.setAdapter(new ArrayAdapter<Friend>(this, R.layout.whitelist_item, friends));
+	    attending.setSelector(android.R.color.transparent); 
+
 	    
 	    TextView comments = (TextView) findViewById(R.id.comments);
 	    comments.setText(thisLunch.getComments());
@@ -86,14 +88,16 @@ public class InviteDetails extends Activity {
 	    case R.id.decline:
 	    	if (fromAttending)
 	    	{
+	    		thisLunch.setDeclined(true);
 		        state.removeLunchesAttending(thisLunch.getTitle());
+		        state.addLunchInvite(thisLunch);
 		        startActivity(attending);
 	    		Toast.makeText(getApplicationContext(), "You have declined lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
 
 	    	}
 	    	else
 	    	{
-	    		state.removeLunchInvite(thisLunch.getTitle());
+	    		thisLunch.setDeclined(true);
 	    		startActivity(invites);
 	    		Toast.makeText(getApplicationContext(), "You have declined lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
 	    	}
