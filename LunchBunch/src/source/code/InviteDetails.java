@@ -41,12 +41,9 @@ public class InviteDetails extends Activity {
             	acceptconfirm.setVisibility(acceptconfirm.INVISIBLE);
         	}        	
         }
-	    //System.out.println(thisLunch==null);
 	    //TODO: rewrite xml file and this class so that it displays data from thisLunch. Should
 	    //also show list of friends
 	    TextView location = (TextView) findViewById(R.id.location);
-	    System.out.println(thisLunch + " foo");
-	    System.out.println();
 	    location.setText(thisLunch.getTitle());
 	    
 	    TextView date = (TextView) findViewById(R.id.date);
@@ -82,7 +79,7 @@ public class InviteDetails extends Activity {
 	    	{
 	    		state.addLunchAttending(thisLunch);
 	    		state.removeLunchInvite(thisLunch.getTitle());
-	    		startActivity(attending);
+	    		startActivity(invites);
 	    		Toast.makeText(getApplicationContext(), "You have accepted lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
 	    	}
 	    	finish();
