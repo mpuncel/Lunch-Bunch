@@ -119,8 +119,20 @@ public class CreateNewLunch extends Activity {
         String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
         createdLunch.setComments(comments);
         Intent selectFriendsIntent = new Intent(this, SelectFriends.class);
-        startActivity(selectFriendsIntent);
+        startActivityForResult(selectFriendsIntent, 0);
+    }
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            finish();
+        }
         
+        else if (resultCode == Activity.RESULT_CANCELED) {
+        }
+        
+        else {
+            throw new RuntimeException ("People to invite screen failed");
+        }
     }
    
 

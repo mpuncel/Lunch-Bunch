@@ -22,6 +22,7 @@ public class SelectFriends extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setResult(Activity.RESULT_CANCELED);
         setContentView(R.layout.selectfriends);
         
         friends = new ArrayList<Friend>();
@@ -45,6 +46,7 @@ public class SelectFriends extends Activity {
         state.createLunchDone();
         Intent attending = new Intent(this, BrowseAttending.class);
         startActivity(attending);
+        setResult(Activity.RESULT_OK);
         finish();
     }
     
