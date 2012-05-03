@@ -11,6 +11,7 @@ public class Global extends Application
 	private Lunch currentCreatingLunch;
 	private Lunch currentClickedLunch;
 	private ArrayList<Friend> lunchFriends;
+	private FriendListAdapter<Friend> friendListAdapter;
 	
 	
     public void makeLunches()
@@ -145,6 +146,14 @@ public class Global extends Application
 	
 	public void removeLunchAttending(int position) {
 	    lunchesAttending.remove(position);
+	}
+	
+	public void setFriendListAdapter(FriendListAdapter<Friend> friendListAdapter) {
+	    this.friendListAdapter = friendListAdapter;
+	}
+	
+	public FriendListAdapter<Friend> getFriendListAdapter() {
+	    return this.friendListAdapter;
 	}
 	
 }
