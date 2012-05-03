@@ -43,7 +43,7 @@ public class BrowseAttending extends Activity {
   	        Lunch clickedLunch = state.getLunchAttending(position);
   	        state.setCurrentClickedLunch(clickedLunch);
   	        startActivity(eventDetails);
-  	        finish();
+  	        //finish();
   	      
   	    }
   	  });

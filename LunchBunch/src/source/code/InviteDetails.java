@@ -45,6 +45,8 @@ public class InviteDetails extends Activity {
 	    //TODO: rewrite xml file and this class so that it displays data from thisLunch. Should
 	    //also show list of friends
 	    TextView location = (TextView) findViewById(R.id.location);
+	    System.out.println(thisLunch + " foo");
+	    System.out.println();
 	    location.setText(thisLunch.getTitle());
 	    
 	    TextView date = (TextView) findViewById(R.id.date);

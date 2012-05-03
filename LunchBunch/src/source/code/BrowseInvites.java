@@ -52,7 +52,7 @@ public class BrowseInvites extends Activity {
       	        //eventDetails.putExtra("position", position);
       	        state.setCurrentClickedLunch(clickedLunch);
       	        startActivity(eventDetails);
-      	        finish();
+      	        //finish();
       	      
       	    }
       	});
@@ -80,14 +80,14 @@ public class BrowseInvites extends Activity {
           {
         	  Intent intent = new Intent(this, BrowseAttending.class);
               startActivity(intent); 
-              finish();
+              //finish();
 
           }
           if (b.getText().equals("Create"))
           {
         	  Intent intent = new Intent(this, CreateNewLunch.class);
               startActivity(intent); 
-              finish();
+              //finish();
           }
           if (b.getText().equals("Lunch Invites"))
           {
