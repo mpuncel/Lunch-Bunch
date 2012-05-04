@@ -47,12 +47,8 @@ public class BrowseInvites extends Activity {
       	        eventDetails.putExtra("activity","invites");
 
       	        Lunch clickedLunch = state.getLunchInvite(position);
-      	        //System.out.println("Browse Invites " + clickedLunch.getTitle() + clickedLunch.getDate() + clickedLunch.getTime());
-      	        //eventDetails.putExtra("lunch", state.getLunchInvite(position));
-      	        //eventDetails.putExtra("position", position);
       	        state.setCurrentClickedLunch(clickedLunch);
       	        startActivity(eventDetails);
-      	        //finish();
       	      
       	    }
       	});

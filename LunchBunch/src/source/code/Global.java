@@ -87,7 +87,6 @@ public class Global extends Application
 	}
 	
 	public void addLunchAttending(Lunch lunch){
-	    System.out.println("Global " + lunch.getTitle() + lunch.getDate() + lunch.getTime());
 		lunchesAttending.add(lunch);
 	}
 	

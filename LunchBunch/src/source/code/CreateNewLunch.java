@@ -131,14 +131,12 @@ public class CreateNewLunch extends Activity {
             if (time.split(" ")[1].equals("pm")) {
                 offset = 12;
             }
-            System.out.println("current time " + rightNow.getTime());
             lunchTime.set(Integer.valueOf(dateInfo[2]), 
                     Integer.valueOf(dateInfo[0]) - 1, 
                     Integer.valueOf(dateInfo[1]),
                     Integer.valueOf(time.split(":")[0]) + offset,
                     Integer.valueOf(time.split(":")[1].split(" ")[0]),
                     0);
-            System.out.println("lunch time " + lunchTime.getTime());
             
             if (rightNow.after(lunchTime)) {
                 Toast.makeText(this, "The selected date has already occurred!", Toast.LENGTH_LONG).show();
