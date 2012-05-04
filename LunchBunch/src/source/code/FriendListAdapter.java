@@ -13,12 +13,14 @@ public class FriendListAdapter<T> extends ArrayAdapter {
     
     private ArrayList<Boolean> isChecked;
     private ArrayList<Friend> friends;
+    private int numChecked;
     @SuppressWarnings("unchecked")
     public FriendListAdapter(Context context, int resource, ArrayList<Friend> friends)
     {
         super(context, resource, friends);
         this.friends = friends;
-        isChecked = new ArrayList<Boolean>(friends.size());
+        this.numChecked = 0;
+        this.isChecked = new ArrayList<Boolean>(friends.size());
         for (int i = 0; i < friends.size(); i++) {
             isChecked.add(i, false);
         }
@@ -33,6 +35,12 @@ public class FriendListAdapter<T> extends ArrayAdapter {
     
     public void setChecked(int position, boolean checked) {
         isChecked.add(position, checked);
+        if (checked == true) {
+            this.numChecked++;
+        }
+        else {
+            this.numChecked--;
+        }
     }
     
     public ArrayList<Friend> getSelectedFriends() {
@@ -43,5 +51,9 @@ public class FriendListAdapter<T> extends ArrayAdapter {
             }
         }
         return selectedFriends;
+    }
+    
+    public int getNumChecked() {
+        return this.numChecked;
     }
 }

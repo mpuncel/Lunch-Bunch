@@ -109,17 +109,36 @@ public class CreateNewLunch extends Activity {
     }
     
     public void onDoneClicked(View v) {
-        String where = ((EditText) findViewById(R.id.pickWhere)).getText().toString();
-        Lunch createdLunch = new Lunch(where);
-        ((Global)getApplication()).setCurrentCreatingLunch(createdLunch);
+        String errortext = "";
         String time = ((Button) findViewById(R.id.pickTime)).getText().toString();
-        createdLunch.setTime(time);
+        if (time.equals("Click to set time")) {
+            errortext = "time";
+        }        
         String date = ((Button) findViewById(R.id.pickDate)).getText().toString();
-        createdLunch.setDate(date);
-        String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
-        createdLunch.setComments(comments);
-        Intent selectFriendsIntent = new Intent(this, SelectFriends.class);
-        startActivityForResult(selectFriendsIntent, 0);
+        if (date.equals("Click to set date")) {
+            errortext = "date";
+        }
+        String where = ((EditText) findViewById(R.id.pickWhere)).getText().toString();
+        if (where.equals("")) {
+            errortext = "location";
+        }
+
+        if (errortext.equals("")) {
+            Lunch createdLunch = new Lunch(where);
+            ((Global)getApplication()).setCurrentCreatingLunch(createdLunch);
+    
+            createdLunch.setTime(time);
+    
+            createdLunch.setDate(date);
+            String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
+            createdLunch.setComments(comments);
+            Intent selectFriendsIntent = new Intent(this, SelectFriends.class);
+            startActivityForResult(selectFriendsIntent, 0);
+        }
+        
+        else {
+            Toast.makeText(this, "Please input a valid " + errortext, Toast.LENGTH_LONG).show();
+        }
     }
     
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

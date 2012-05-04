@@ -13,6 +13,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class SelectFriends extends Activity {
 
@@ -48,15 +49,20 @@ public class SelectFriends extends Activity {
     }
     
     public void onSelectFriendsButtonClicked(View v) {
-        Global state = (Global) getApplication();
-        ArrayList<Friend> friends = this.friendListAdapter.getSelectedFriends();
-        state.getCreatingLunch().setFriends(friends);
-        state.createLunchDone();
-        Intent attending = new Intent(this, BrowseAttending.class);
-        startActivity(attending);
-        setResult(Activity.RESULT_OK);
-        state.setFriendListAdapter(null);
-        finish();
+        if (this.friendListAdapter.getNumChecked() > 0) {
+            Global state = (Global) getApplication();
+            ArrayList<Friend> friends = this.friendListAdapter.getSelectedFriends();
+            state.getCreatingLunch().setFriends(friends);
+            state.createLunchDone();
+            Intent attending = new Intent(this, BrowseAttending.class);
+            startActivity(attending);
+            setResult(Activity.RESULT_OK);
+            state.setFriendListAdapter(null);
+            finish();
+        }
+        else {
+            Toast.makeText(this, "Please invite at least one friend to this lunch!", Toast.LENGTH_LONG).show();
+        }
     }
     
     public void makeFriends()
