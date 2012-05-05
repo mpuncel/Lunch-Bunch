@@ -1,6 +1,7 @@
 package source.code;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -12,6 +13,7 @@ public class Lunch implements Parcelable {
 	private String comments;
 	private String date;
 	private String time;
+	private Calendar lunchTime;
 	private boolean isConfirmed;
 	private boolean reminderRequested;
 	private boolean isDeclined;
@@ -29,20 +31,32 @@ public class Lunch implements Parcelable {
 	    return this.friends;
 	}
 	
-	public void setTime(String time) {
-	    this.time = time;
-	}
-	
 	public String getTime() {
 	    return this.time;
 	}
 	
-	public void setDate(String date) {
-	    this.date = date;
-	}
 	
 	public String getDate() {
 	    return this.date;
+	}
+	
+	public void setLunchTime(Calendar lunchTime) {
+	    this.lunchTime = lunchTime;
+	    String fullDate = lunchTime.getTime().toString();
+	    String[] splitDate = fullDate.split(" ");
+	    this.date = splitDate[0] + " " + splitDate[1] + " " + splitDate[2];
+	    String[] timeValues = splitDate[3].split(":");
+	    int hour = Integer.valueOf(timeValues[0]);
+	    String modifier = "am";
+	    if (hour > 12) {
+	        hour -= 12;
+	        modifier = "pm";
+	    }
+	    this.time = String.valueOf(hour) + ":" + timeValues[1] + " " + modifier;
+	}
+	
+	public Calendar getLunchTime() {
+	    return this.lunchTime;
 	}
 	
 	public String getComments() {

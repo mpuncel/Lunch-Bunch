@@ -47,10 +47,12 @@ public class InviteDetails extends Activity {
 	    location.setText(thisLunch.getTitle());
 	    
 	    TextView date = (TextView) findViewById(R.id.date);
-	    date.setText(thisLunch.getDate());
+	    //TODO: fix this
+	    date.setText(thisLunch.getLunchTime().getTime().toString());
 	    
+	    //TODO: fix this
 	    TextView time = (TextView) findViewById(R.id.time);
-	    time.setText(thisLunch.getTime());
+	    time.setText(thisLunch.getLunchTime().getTime().toString());
 	    
 	    ListView attending = (ListView) findViewById(R.id.listfriends);
 	    ArrayList<Friend> friends = thisLunch.getFriends();

@@ -70,27 +70,6 @@ public class BrowseAttending extends Activity {
   		  }
 
       }
-
-  	
-  	public void makeLunches()
-  	{
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-  		lunches.add(new Lunch("Attending"));
-
-  	}
   	
   	private class LunchItemAdapter<T> extends ArrayAdapter {
 
@@ -116,7 +95,8 @@ public class BrowseAttending extends Activity {
   	        TextView confirmed = (TextView) v.findViewById(R.id.confirmed);
 		  	
 			title.setText(lunch.getTitle());
-			details.setText(lunch.getTime() + "      " + lunch.getDate());
+			System.out.println(lunch.getLunchTime().toString());
+			details.setText(lunch.getDate() + "      " + lunch.getTime());
 			
 			if (lunch.isConfirmed())
 			{

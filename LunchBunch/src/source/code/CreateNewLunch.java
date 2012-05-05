@@ -144,10 +144,10 @@ public class CreateNewLunch extends Activity {
             else {
                 Lunch createdLunch = new Lunch(where);
                 ((Global)getApplication()).setCurrentCreatingLunch(createdLunch);
+                createdLunch.setLunchTime(lunchTime);
+                //createdLunch.setTime(time);
         
-                createdLunch.setTime(time);
-        
-                createdLunch.setDate(date);
+                //createdLunch.setDate(date);
                 String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
                 createdLunch.setComments(comments);
                 Intent selectFriendsIntent = new Intent(this, SelectFriends.class);

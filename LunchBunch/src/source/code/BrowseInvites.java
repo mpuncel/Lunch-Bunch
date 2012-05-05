@@ -115,7 +115,9 @@ public class BrowseInvites extends Activity {
   	        TextView confirmed = (TextView) v.findViewById(R.id.confirmed);
 		  	
 			title.setText(lunch.getTitle());
-			details.setText(lunch.getTime() + "     " + lunch.getDate());
+			System.out.println(lunch == null);
+			System.out.println(lunch.getLunchTime() == null);
+			details.setText(lunch.getDate() + "     " + lunch.getTime());
 			
 			if (lunch.isDeclined())
 			{
