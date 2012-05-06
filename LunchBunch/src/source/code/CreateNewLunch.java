@@ -87,9 +87,8 @@ public class CreateNewLunch extends Activity {
     		  public void onClick(View v) {
     			((TextView)findViewById(R.id.sendreminderlabel)).setVisibility(TextView.GONE);
     			((Spinner)findViewById(R.id.spinner)).setVisibility(Spinner.GONE);
-    			((TextView)findViewById(R.id.sendreminderlabel2)).setVisibility(TextView.GONE);
     			((TextView)findViewById(R.id.confirmation)).setVisibility(TextView.GONE);
-    			((RadioGroup)findViewById(R.id.radioGroup3)).setVisibility(RadioGroup.GONE);
+    			((RadioGroup)findViewById(R.id.confirmgroup)).setVisibility(RadioGroup.GONE);
     		  }
        };
        no.setOnClickListener(noListener);
@@ -98,9 +97,8 @@ public class CreateNewLunch extends Activity {
     		  public void onClick(View v) {
     			((TextView)findViewById(R.id.sendreminderlabel)).setVisibility(TextView.VISIBLE);
     			((Spinner)findViewById(R.id.spinner)).setVisibility(Spinner.VISIBLE);
-    			((TextView)findViewById(R.id.sendreminderlabel2)).setVisibility(TextView.VISIBLE);
     			((TextView)findViewById(R.id.confirmation)).setVisibility(TextView.VISIBLE);
-    			((RadioGroup)findViewById(R.id.radioGroup3)).setVisibility(RadioGroup.VISIBLE);
+    			((RadioGroup)findViewById(R.id.confirmgroup)).setVisibility(RadioGroup.VISIBLE);
     		  }
        };
        yes.setOnClickListener(yesListener);

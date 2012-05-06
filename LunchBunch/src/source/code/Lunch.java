@@ -1,11 +1,13 @@
 package source.code;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.format.Time;
 
-public class Lunch implements Parcelable {
+public class Lunch implements Parcelable, Comparable {
 	
 	private String name;
 	private ArrayList<Friend> friends;
@@ -121,6 +123,60 @@ public class Lunch implements Parcelable {
 
 	public void setDeclined(boolean isDeclined) {
 		this.isDeclined = isDeclined;
+	}
+
+	
+
+	@Override
+	public int compareTo(Object otherlunch) {
+		Date mydate, date2;
+		long mytime, time2;
+	    int year, month, day, hour, minute;
+	    
+
+	    
+    	String[] date =this.getDate().split("/");
+    	year = Integer.parseInt(date[2]);
+    	month = Integer.parseInt(date[0]);
+    	day = Integer.parseInt(date[1]);
+    	
+    	String[] time =this.getTime().split(":");
+    	String[] timeb =time[1].split(" ");
+    	hour =Integer.parseInt(time[0]);
+    	minute =Integer.parseInt(timeb[0]);
+    	if(timeb[1].equals("pm")){
+    		hour+=12;
+    	}
+    	
+    	mydate = new Date(year, month, day);
+    	mytime = mydate.getTime()+hour*3600000+minute*60000; //in milliseconds
+    	
+    	date =((Lunch)otherlunch).getDate().split("/");
+    	year = Integer.parseInt(date[2]);
+    	month = Integer.parseInt(date[0]);
+    	day = Integer.parseInt(date[1]);
+    	
+    	time =((Lunch)otherlunch).getTime().split(":");
+    	timeb =time[1].split(" ");
+    	hour =Integer.parseInt(time[0]);
+    	minute =Integer.parseInt(timeb[0]);
+    	if(timeb[1].equals("pm")){
+    		hour+=12;
+    	}
+    	
+    	date2 = new Date(year, month, day);
+    	time2 = date2.getTime()+hour*3600000+minute*60000; //in milliseconds
+
+		if (mytime<time2){
+			return -1;
+		}
+		else if (mytime>time2){
+			return 1;
+		}
+		else if (mytime==time2){
+			return 0;
+		}
+		return 0;
 	}
 
 }

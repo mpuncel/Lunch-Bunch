@@ -3,6 +3,7 @@ package source.code;
 import java.util.ArrayList;
 
 import android.app.Application;
+import android.widget.Toast;
 
 public class Global extends Application 
 {
@@ -11,6 +12,8 @@ public class Global extends Application
 	private Lunch currentCreatingLunch;
 	private Lunch currentClickedLunch;
 	private ArrayList<Friend> lunchFriends;
+	public int compare;
+	public int insertionindex;
 	
 	
     public void makeLunches()
@@ -52,9 +55,17 @@ public class Global extends Application
         }
     }
     
+    
 	public void createLunchDone() {
-	    lunchesAttending.add(currentCreatingLunch);
-	    //currentCreatingLunch = null;
+	    insertionindex = 0;
+	    for(Lunch lunch:lunchesAttending){
+	    	compare=currentCreatingLunch.compareTo(lunch);
+	    	if(compare>0){
+	    		insertionindex +=1;
+	    	}
+	    }
+	    lunchesAttending.add(insertionindex, currentCreatingLunch);
+	    
 	}
 	
 	public Lunch getCurrentCreatingLunch() {
