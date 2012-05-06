@@ -107,18 +107,68 @@ public class CreateNewLunch extends Activity {
     }
     
     public void onDoneClicked(View v) {
-        String where = ((EditText) findViewById(R.id.pickWhere)).getText().toString();
-        Lunch createdLunch = new Lunch(where);
-        ((Global)getApplication()).setCurrentCreatingLunch(createdLunch);
+        String errortext = "";
         String time = ((Button) findViewById(R.id.pickTime)).getText().toString();
-        createdLunch.setTime(time);
+        if (time.equals("Click to set time")) {
+            errortext = "time";
+        }        
         String date = ((Button) findViewById(R.id.pickDate)).getText().toString();
-        createdLunch.setDate(date);
-        String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
-        createdLunch.setComments(comments);
-        Intent selectFriendsIntent = new Intent(this, SelectFriends.class);
-        startActivity(selectFriendsIntent);
+        if (date.equals("Click to set date")) {
+            errortext = "date";
+        }
+        String where = ((EditText) findViewById(R.id.pickWhere)).getText().toString();
+        if (where.equals("")) {
+            errortext = "location";
+        }
+
+        if (errortext.equals("")) {
+            Calendar rightNow = Calendar.getInstance();
+            String[] dateInfo = date.split("/");
+            Calendar lunchTime = Calendar.getInstance();
+            int offset = 0;
+            if (time.split(" ")[1].equals("pm")) {
+                offset = 12;
+            }
+            lunchTime.set(Integer.valueOf(dateInfo[2]), 
+                    Integer.valueOf(dateInfo[0]) - 1, 
+                    Integer.valueOf(dateInfo[1]),
+                    Integer.valueOf(time.split(":")[0]) + offset,
+                    Integer.valueOf(time.split(":")[1].split(" ")[0]),
+                    0);
+            
+            if (rightNow.after(lunchTime)) {
+                Toast.makeText(this, "The selected date has already occurred!", Toast.LENGTH_LONG).show();
+            }
+            else {
+                Lunch createdLunch = new Lunch(where);
+                ((Global)getApplication()).setCurrentCreatingLunch(createdLunch);
+                createdLunch.setLunchTime(lunchTime);
+                //createdLunch.setTime(time);
         
+                //createdLunch.setDate(date);
+                String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
+                createdLunch.setComments(comments);
+                Intent selectFriendsIntent = new Intent(this, SelectFriends.class);
+                startActivityForResult(selectFriendsIntent, 0);
+            }
+        }
+        
+        else {
+            Toast.makeText(this, "Please input a valid " + errortext, Toast.LENGTH_LONG).show();
+        }
+    }
+    
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            finish();
+        }
+        
+        else if (resultCode == Activity.RESULT_CANCELED) {
+        }
+        
+        else {
+            throw new RuntimeException ("People to invite screen failed");
+        }
     }
    
 

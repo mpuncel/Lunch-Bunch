@@ -23,6 +23,7 @@ public class SelectFriends extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setResult(Activity.RESULT_CANCELED);
         setContentView(R.layout.selectfriends);
         
         friends = new ArrayList<Friend>();
@@ -31,7 +32,15 @@ public class SelectFriends extends Activity {
         ListView lv = (ListView) findViewById(R.id.listEntries);
         lv.setTextFilterEnabled(true);
 
-        this.friendListAdapter = new FriendListAdapter<Friend>(this, R.layout.friend_item, friends);
+        Global state = (Global) getApplication();
+        if (state.getFriendListAdapter() == null) {
+            this.friendListAdapter = new FriendListAdapter<Friend>(this, R.layout.friend_item, friends);
+            state.setFriendListAdapter(this.friendListAdapter);
+        }
+        
+        else {
+            this.friendListAdapter = state.getFriendListAdapter();
+        }
         lv.setAdapter(this.friendListAdapter);
         
         
@@ -40,13 +49,20 @@ public class SelectFriends extends Activity {
     }
     
     public void onSelectFriendsButtonClicked(View v) {
-        Global state = (Global) getApplication();
-        ArrayList<Friend> friends = this.friendListAdapter.getSelectedFriends();
-        state.getCreatingLunch().setFriends(friends);
-        state.createLunchDone();
-        Intent attending = new Intent(this, BrowseAttending.class);
-        startActivity(attending);
-        finish();
+        if (this.friendListAdapter.getNumChecked() > 0) {
+            Global state = (Global) getApplication();
+            ArrayList<Friend> friends = this.friendListAdapter.getSelectedFriends();
+            state.getCreatingLunch().setFriends(friends);
+            state.createLunchDone();
+            Intent attending = new Intent(this, BrowseAttending.class);
+            startActivity(attending);
+            setResult(Activity.RESULT_OK);
+            state.setFriendListAdapter(null);
+            finish();
+        }
+        else {
+            Toast.makeText(this, "Please invite at least one friend to this lunch!", Toast.LENGTH_LONG).show();
+        }
     }
     
     public void makeFriends()
@@ -98,44 +114,5 @@ public class SelectFriends extends Activity {
 
         }
     }
-    
-    @SuppressWarnings("rawtypes")
-    private class FriendListAdapter<T> extends ArrayAdapter {
-        
-        private ArrayList<Boolean> isChecked;
-        private ArrayList<Friend> friends;
-        @SuppressWarnings("unchecked")
-        public FriendListAdapter(Context context, int resource, ArrayList<Friend> friends)
-        {
-            super(context, resource, friends);
-            this.friends = friends;
-            isChecked = new ArrayList<Boolean>(friends.size());
-            for (int i = 0; i < friends.size(); i++) {
-                isChecked.add(i, false);
-            }
-        }
-        
-        public View getView(int position, View convertView, ViewGroup parent) {
-            CheckedTextView v = (CheckedTextView)super.getView(position, convertView, parent);
-            v.setChecked(isChecked.get(position));
-            
-            return v;
-        }
-        
-        public void setChecked(int position, boolean checked) {
-            isChecked.add(position, checked);
-        }
-        
-        public ArrayList<Friend> getSelectedFriends() {
-            ArrayList<Friend> selectedFriends = new ArrayList<Friend>();
-            for (int i = 0; i < this.friends.size(); i++) {
-                if (this.isChecked.get(i) == true) {
-                    selectedFriends.add(this.friends.get(i));
-                }
-            }
-            return selectedFriends;
-        }
-    }
-
 
 }

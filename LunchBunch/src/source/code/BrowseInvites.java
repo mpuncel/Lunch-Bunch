@@ -47,12 +47,8 @@ public class BrowseInvites extends Activity {
       	        eventDetails.putExtra("activity","invites");
 
       	        Lunch clickedLunch = state.getLunchInvite(position);
-      	        //System.out.println("Browse Invites " + clickedLunch.getTitle() + clickedLunch.getDate() + clickedLunch.getTime());
-      	        //eventDetails.putExtra("lunch", state.getLunchInvite(position));
-      	        //eventDetails.putExtra("position", position);
       	        state.setCurrentClickedLunch(clickedLunch);
       	        startActivity(eventDetails);
-      	        finish();
       	      
       	    }
       	});
@@ -80,14 +76,14 @@ public class BrowseInvites extends Activity {
           {
         	  Intent intent = new Intent(this, BrowseAttending.class);
               startActivity(intent); 
-              finish();
+              //finish();
 
           }
           if (b.getText().equals("Create"))
           {
         	  Intent intent = new Intent(this, CreateNewLunch.class);
               startActivity(intent); 
-              finish();
+              //finish();
           }
           if (b.getText().equals("Lunch Invites"))
           {
@@ -119,7 +115,9 @@ public class BrowseInvites extends Activity {
   	        TextView confirmed = (TextView) v.findViewById(R.id.confirmed);
 		  	
 			title.setText(lunch.getTitle());
-			details.setText(lunch.getTime() + "     " + lunch.getDate());
+			System.out.println(lunch == null);
+			System.out.println(lunch.getLunchTime() == null);
+			details.setText(lunch.getDate() + "     " + lunch.getTime());
 			
 			if (lunch.isDeclined())
 			{
