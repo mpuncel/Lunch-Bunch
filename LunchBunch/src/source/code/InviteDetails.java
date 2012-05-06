@@ -62,7 +62,7 @@ public class InviteDetails extends Activity {
 
 	    
 	    TextView comments = (TextView) findViewById(R.id.comments);
-	    System.out.println("bah"+thisLunch.getComments());
+	    
 	    if(thisLunch.getComments()==null || thisLunch.getComments().isEmpty()){
 	    	((TextView)findViewById(R.id.comments)).setVisibility(TextView.GONE);
 	    	((TextView)findViewById(R.id.commentsheader)).setVisibility(TextView.GONE);

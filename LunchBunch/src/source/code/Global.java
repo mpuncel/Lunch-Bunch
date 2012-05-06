@@ -68,6 +68,7 @@ public class Global extends Application
     
     
 	public void createLunchDone() {
+		
 	    int insertionindex = 0;
 	    for(Lunch lunch:lunchesAttending){
 	    	int compare=currentCreatingLunch.compareTo(lunch);
