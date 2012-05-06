@@ -152,6 +152,9 @@ public class CreateNewLunch extends Activity {
                 createdLunch.setComments(comments);
                 Intent selectFriendsIntent = new Intent(this, SelectFriends.class);
                 startActivityForResult(selectFriendsIntent, 0);
+                
+                String reminder = ((EditText) findViewById(R.id.spinner)).getText().toString();
+                createdLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
             }
         }
         

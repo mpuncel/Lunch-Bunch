@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.app.Application;
+import android.app.Notification;
+import android.app.Notification.Builder;
+import android.app.NotificationManager;
+import android.content.Context;
 
 public class Global extends Application 
 {
@@ -13,10 +17,14 @@ public class Global extends Application
 	private Lunch currentClickedLunch;
 	private ArrayList<Friend> lunchFriends;
 	private FriendListAdapter<Friend> friendListAdapter;
+	private NotificationManager notificationManager;
+	private final static int LUNCH_ID = 0;
 	
 	
     public void makeLunches()
     {
+        String ns = Context.NOTIFICATION_SERVICE;
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
         if (lunchInvites == null) {
             Calendar systemTime = Calendar.getInstance();
             Calendar firstLunchTime = (Calendar)systemTime.clone();
@@ -52,12 +60,18 @@ public class Global extends Application
             attendTime.add(Calendar.MINUTE, 35);
             dhaba.setLunchTime(attendTime);
             dhaba.setFriends(attending);
+            dhaba.setReminderTime(30);
+            LunchNotificationBuilder dhabaNotificationBuilder = new LunchNotificationBuilder(dhaba, getApplicationContext());
+            Notification dhabaNotification = dhabaNotificationBuilder.getNotification();
+            notificationManager.notify(LUNCH_ID, dhabaNotification);
+            
             
             Lunch maggianos = new Lunch("Maggiano's");
             Calendar attendTime2 = (Calendar)systemTime.clone();
             attendTime2.add(Calendar.MINUTE, 60);
             maggianos.setLunchTime(attendTime2);
             maggianos.setFriends(attending);
+            maggianos.setReminderTime(30);
             lunchesAttending.add(dhaba);
             lunchesAttending.add(maggianos);
         }

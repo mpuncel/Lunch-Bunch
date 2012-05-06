@@ -17,10 +17,19 @@ public class Lunch implements Parcelable {
 	private boolean isConfirmed;
 	private boolean reminderRequested;
 	private boolean isDeclined;
+	private int reminderTime;
 	
 	public Lunch(String n)
 	{
 		name = n;
+	}
+	
+	public void setReminderTime(int reminderTime) {
+	    this.reminderTime = reminderTime;
+	}
+	
+	public int getReminderTime() {
+	    return this.reminderTime;
 	}
 	
 	public void setFriends(ArrayList<Friend> friends) {
