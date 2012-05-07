@@ -34,7 +34,8 @@ public class FriendListAdapter<T> extends ArrayAdapter {
     }
     
     public void setChecked(int position, boolean checked) {
-        isChecked.add(position, checked);
+        isChecked.set(position, checked);
+        System.out.println(isChecked);
         if (checked == true) {
             this.numChecked++;
         }
