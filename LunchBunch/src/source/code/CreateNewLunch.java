@@ -31,6 +31,7 @@ public class CreateNewLunch extends Activity {
     private int mHour;
     private int mMinute;
     private Lunch thisLunch;
+    private boolean isEditing = false;
 
     static final int TIME_DIALOG_ID = 1;
 
@@ -72,12 +73,15 @@ public class CreateNewLunch extends Activity {
         mPickTime = (Button) findViewById(R.id.pickTime);
         mPickTime.setText("Click to set time", TextView.BufferType.EDITABLE);
 
-        if (activity.equals("editLunch"))
+        if (activity != null)
         {
             thisLunch = state.getCurrentCreatingLunch();
+            isEditing = true;
+        	//mPickTime.setText(thisLunch.getTime());
+        	//mPickDate.setText(thisLunch.getDate());
+            EditText where = ((EditText) findViewById(R.id.pickWhere));
+            where.setText(thisLunch.getTitle());
 
-        	mPickTime.setText(thisLunch.getTime());
-        	mPickDate.setText(thisLunch.getDate());
         }
         // add a click listener to the button
         mPickTime.setOnClickListener(new View.OnClickListener() {
@@ -150,19 +154,36 @@ public class CreateNewLunch extends Activity {
                 Toast.makeText(this, "The selected date has already occurred!", Toast.LENGTH_LONG).show();
             }
             else {
-                Lunch createdLunch = new Lunch(where);
-                ((Global)getApplication()).setCurrentCreatingLunch(createdLunch);
-                createdLunch.setLunchTime(lunchTime);
-                //createdLunch.setTime(time);
-        
-                //createdLunch.setDate(date);
                 String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
-                createdLunch.setComments(comments);
+                String reminder = ((Spinner) findViewById(R.id.spinner)).getSelectedItem().toString();
+
+            	if(isEditing)
+            	{
+            		thisLunch.setTitle(where);
+            		thisLunch.setLunchTime(lunchTime);
+            		thisLunch.setComments(comments);
+            		thisLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
+            	}
+            	else
+            	{
+            		Lunch createdLunch = new Lunch(where);
+            		((Global)getApplication()).setCurrentCreatingLunch(createdLunch);
+            		createdLunch.setLunchTime(lunchTime);
+            		//createdLunch.setTime(time);
+        
+            		//createdLunch.setDate(date);
+            		createdLunch.setComments(comments);
+                    createdLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
+
+            	}
+            	
                 Intent selectFriendsIntent = new Intent(this, SelectFriends.class);
+                if(isEditing)
+                {
+                	selectFriendsIntent.putExtra("activity", "isEditing");
+                }
                 startActivityForResult(selectFriendsIntent, 0);
                 
-                String reminder = ((EditText) findViewById(R.id.spinner)).getText().toString();
-                createdLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
             }
         }
         

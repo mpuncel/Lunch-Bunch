@@ -34,7 +34,7 @@ public class Global extends Application
             firstLunchTime.add(Calendar.MINUTE, 35);  
         	ArrayList<Friend> attending = new ArrayList<Friend>();
         	attending.add(new Friend("Anjali Muralidhar"));
-        	attending.add(new Friend("Mike Puncel"));
+        	attending.add(new Friend("Michael Puncel"));
         	attending.add(new Friend("Pallavi Powale"));
             lunchInvites = new ArrayList<Lunch>();
             lunchesAttending = new ArrayList<Lunch>();

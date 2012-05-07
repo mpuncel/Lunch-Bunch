@@ -38,6 +38,10 @@ public class Lunch implements Parcelable, Comparable {
 	    this.friends = friends;
 	}
 	
+	public void setTitle(String location)
+	{
+		name = location;
+	}
 	public ArrayList<Friend> getFriends() {
 	    return this.friends;
 	}
@@ -55,7 +59,7 @@ public class Lunch implements Parcelable, Comparable {
 	    this.lunchTime = lunchTime;
 	    String fullDate = lunchTime.getTime().toString();
 	    String[] splitDate = fullDate.split(" ");
-	    this.date = splitDate[0] + " " + splitDate[1] + " " + splitDate[2];
+	    this.date = splitDate[0] + ", " + splitDate[1] + " " + splitDate[2];
 	    String[] timeValues = splitDate[3].split(":");
 	    int hour = Integer.valueOf(timeValues[0]);
 	    String modifier = "am";
