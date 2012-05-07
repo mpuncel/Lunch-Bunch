@@ -22,10 +22,11 @@ public class Lunch implements Parcelable, Comparable {
 	private boolean reminderRequested;
 	private boolean isDeclined;
 	private int reminderTime;
-	
+	private boolean isMine;
 	public Lunch(String n)
 	{
 		name = n;
+		setMine(false);
 	}
 	
 	public void setReminderTime(int reminderTime) {
@@ -226,6 +227,14 @@ public class Lunch implements Parcelable, Comparable {
 			return 0;
 		}
 		return 0;
+	}
+
+	public boolean isMine() {
+		return isMine;
+	}
+
+	public void setMine(boolean isMine) {
+		this.isMine = isMine;
 	}
 
 }

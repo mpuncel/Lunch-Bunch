@@ -174,7 +174,7 @@ public class CreateNewLunch extends Activity {
             		//createdLunch.setDate(date);
             		createdLunch.setComments(comments);
                     createdLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
-
+                    createdLunch.setMine(true);
             	}
             	
                 Intent selectFriendsIntent = new Intent(this, SelectFriends.class);

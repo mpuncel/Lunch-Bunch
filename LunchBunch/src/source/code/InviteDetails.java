@@ -81,6 +81,16 @@ public class InviteDetails extends Activity {
 		{
 			confirmed.setVisibility(TextView.GONE);
 		}
+		Button editButton = (Button) findViewById(R.id.edit);
+		if(!thisLunch.isMine())
+		{
+			editButton.setVisibility(TextView.GONE);
+		}
+		else
+		{
+		    TextView invitedBy = (TextView) findViewById(R.id.invitedby);
+		    invitedBy.setText("Invited by: You");	
+		}
 	    //thisPosition = data.getIntExtra("position", -1);
 	}
 	

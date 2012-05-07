@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
-
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnCount="16" >
+        android:columnCount="17" >
 
         <RelativeLayout
             android:id="@+id/titlegroup"
@@ -58,6 +58,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_height="wrap_content"
             android:layout_column="3"
+            android:layout_columnSpan="2"
             android:layout_row="0"
             android:layout_rowSpan="2"
             android:onClick="onButtonClicked"
@@ -82,7 +83,7 @@
             android:layout_row="2"
             android:text="12:00 pm"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <TextView
             android:id="@+id/invitedby"
             android:layout_width="wrap_content"
@@ -94,7 +95,7 @@
             android:layout_rowSpan="2"
             android:text="Invited by: Michael Puncel"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <TextView
             android:id="@+id/attendingheader"
             android:layout_width="wrap_content"
@@ -110,7 +111,7 @@
             android:layout_width="219dp"
             android:layout_height="192dp"
             android:layout_column="1"
-            android:layout_columnSpan="3"
+            android:layout_columnSpan="4"
             android:layout_gravity="bottom"
             android:layout_row="5" >
         </ListView>
@@ -136,10 +137,11 @@
         <Button
             android:id="@+id/edit"
             style="?android:attr/buttonStyleSmall"
-            android:layout_column="3"
+            android:layout_width="wrap_content"
+            android:layout_column="4"
             android:layout_row="8"
-            android:text="Edit" 
-            android:onClick="onButtonClicked"/>
+            android:onClick="onButtonClicked"
+            android:text="Edit" />
 
         <Space
             android:layout_width="1dp"
@@ -178,9 +180,15 @@
             android:layout_row="0" />
 
         <Space
-            android:layout_width="112dp"
+            android:layout_width="19dp"
             android:layout_height="1dp"
             android:layout_column="3"
+            android:layout_row="0" />
+
+        <Space
+            android:layout_width="93dp"
+            android:layout_height="1dp"
+            android:layout_column="4"
             android:layout_row="0" />
     </GridLayout>
 
