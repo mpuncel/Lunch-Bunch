@@ -19,13 +19,14 @@ public class SelectFriends extends Activity {
 
     ArrayList<Friend> friends;
     FriendListAdapter<Friend> friendListAdapter;
+    private boolean isEditing;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setResult(Activity.RESULT_CANCELED);
         setContentView(R.layout.selectfriends);
-        
+        isEditing = false;
         friends = new ArrayList<Friend>();
         makeFriends();
 
@@ -45,6 +46,7 @@ public class SelectFriends extends Activity {
         String activity = intent.getStringExtra("activity");
         if(activity != null)
         {
+        	isEditing = true;
         	ArrayList<Friend> invitedFriends = state.getCurrentCreatingLunch().getFriends();
         	System.out.println(invitedFriends.size());
         	for (int i = 0; i < invitedFriends.size(); i++)
@@ -63,11 +65,7 @@ public class SelectFriends extends Activity {
         		}
         		
         	}
-            /*ArrayList<Boolean> isChecked = friendListAdapter.getIsChecked();
-            for (int i = 0; i< isChecked.size(); i++)
-            {
-            	System.out.println(isChecked.get(i));
-            }*/
+            
         }
         
         lv.setOnItemClickListener(new MyOnItemClickListener(this.friendListAdapter));
@@ -78,8 +76,12 @@ public class SelectFriends extends Activity {
         if (this.friendListAdapter.getNumChecked() > 0) {
             Global state = (Global) getApplication();
             ArrayList<Friend> friends = this.friendListAdapter.getSelectedFriends();
-            state.getCreatingLunch().setFriends(friends);
-            state.createLunchDone();
+            Lunch thisLunch = state.getCreatingLunch();
+            thisLunch.setFriends(friends);
+            if(!isEditing)
+            {
+                state.createLunchDone();
+            }
             Intent attending = new Intent(this, BrowseAttending.class);
             startActivity(attending);
             setResult(Activity.RESULT_OK);
