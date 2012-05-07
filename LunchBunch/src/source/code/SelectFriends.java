@@ -37,12 +37,38 @@ public class SelectFriends extends Activity {
             this.friendListAdapter = new FriendListAdapter<Friend>(this, R.layout.friend_item, friends);
             state.setFriendListAdapter(this.friendListAdapter);
         }
-        
         else {
             this.friendListAdapter = state.getFriendListAdapter();
         }
         lv.setAdapter(this.friendListAdapter);
-        
+        Intent intent = getIntent();
+        String activity = intent.getStringExtra("activity");
+        if(activity != null)
+        {
+        	ArrayList<Friend> invitedFriends = state.getCurrentCreatingLunch().getFriends();
+        	System.out.println(invitedFriends.size());
+        	for (int i = 0; i < invitedFriends.size(); i++)
+        	{
+    			String invitee = invitedFriends.get(i).toString();
+
+        	
+        		for(int j = 0; j < friends.size(); j++)
+        		{
+        			String friend = friends.get(j).toString();
+        			if (invitee.equals(friend))
+        			{
+        				//CheckedTextView textView = (CheckedTextView) findViewById(R.id.checkedtext);
+                        friendListAdapter.setChecked(j, true);
+        			}
+        		}
+        		
+        	}
+            ArrayList<Boolean> isChecked = friendListAdapter.getIsChecked();
+            for (int i = 0; i< isChecked.size(); i++)
+            {
+            	System.out.println(isChecked.get(i));
+            }
+        }
         
         lv.setOnItemClickListener(new MyOnItemClickListener(this.friendListAdapter));
 

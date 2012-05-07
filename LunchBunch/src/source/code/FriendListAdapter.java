@@ -43,11 +43,18 @@ public class FriendListAdapter<T> extends ArrayAdapter {
         }
     }
     
+    public ArrayList<Boolean> getIsChecked()
+    {
+    	return isChecked;
+    }
+    
     public ArrayList<Friend> getSelectedFriends() {
         ArrayList<Friend> selectedFriends = new ArrayList<Friend>();
         for (int i = 0; i < this.friends.size(); i++) {
             if (this.isChecked.get(i) == true) {
                 selectedFriends.add(this.friends.get(i));
+                System.out.println("i = " + i);
+                System.out.println(friends.get(i).toString());
             }
         }
         return selectedFriends;

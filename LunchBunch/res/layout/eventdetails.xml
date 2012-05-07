@@ -82,7 +82,7 @@
             android:layout_row="2"
             android:text="12:00 pm"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <TextView
             android:id="@+id/invitedby"
             android:layout_width="wrap_content"
@@ -92,9 +92,9 @@
             android:layout_gravity="bottom"
             android:layout_row="2"
             android:layout_rowSpan="2"
-            android:text="Invited by: Mike Puncel"
+            android:text="Invited by: Michael Puncel"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <TextView
             android:id="@+id/attendingheader"
             android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
             android:layout_column="0"
             android:layout_columnSpan="2"
             android:layout_row="4"
-            android:text="Invited:"
+            android:text="Also Invited:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <ListView
