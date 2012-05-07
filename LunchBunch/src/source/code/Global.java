@@ -130,8 +130,6 @@ public class Global extends Application
 	public synchronized void addLunchAttending(Lunch lunch){
 	    lunchesAttending.add(lunch);
 	    if (lunchReminders.size() == 0 ) {
-	        //TODO:
-	        System.out.println("Lunch reminders is 0");
 	        lunchReminders.add(lunch);
 	    }
 	    

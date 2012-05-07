@@ -46,7 +46,6 @@ public class NotificationService extends Service {
         }
         
         public void run() {
-            System.out.println(state.getNextReminder().getTitle());
             while(true) {
                 if (state.numLunchReminders() > 0) {
                     Lunch reminder = state.getNextReminder();
@@ -60,7 +59,6 @@ public class NotificationService extends Service {
         }
         
         public void showNotification(Lunch lunch) {
-            System.out.println("Show Notification being called");
             LunchNotificationBuilder notificationBuilder = new LunchNotificationBuilder(lunch, getApplicationContext());
             Notification dhabaNotification = notificationBuilder.getNotification();
             notificationManager.notify(LUNCH_ID, dhabaNotification);
