@@ -30,6 +30,7 @@ public class CreateNewLunch extends Activity {
     private int mDay;
     private int mHour;
     private int mMinute;
+    private Lunch thisLunch;
 
     static final int TIME_DIALOG_ID = 1;
 
@@ -37,6 +38,9 @@ public class CreateNewLunch extends Activity {
     static final int DATE_DIALOG_ID = 0;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        String activity = intent.getStringExtra("activity");
+        Global state = (Global) getApplication();
         
         //TODO: fix layout, the button on the bottom is cut off
         setContentView(R.layout.createlunch);
@@ -68,7 +72,13 @@ public class CreateNewLunch extends Activity {
         mPickTime = (Button) findViewById(R.id.pickTime);
         mPickTime.setText("Click to set time", TextView.BufferType.EDITABLE);
 
+        if (activity.equals("editLunch"))
+        {
+            thisLunch = state.getCurrentCreatingLunch();
 
+        	mPickTime.setText(thisLunch.getTime());
+        	mPickDate.setText(thisLunch.getDate());
+        }
         // add a click listener to the button
         mPickTime.setOnClickListener(new View.OnClickListener() {
             @SuppressWarnings("deprecation")

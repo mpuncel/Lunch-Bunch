@@ -49,11 +49,11 @@ public class InviteDetails extends Activity {
 	    
 	    TextView date = (TextView) findViewById(R.id.date);
 	    //TODO: fix this
-	    date.setText(thisLunch.getLunchTime().getTime().toString());
+	    date.setText(thisLunch.getDate().toString());
 	    
 	    //TODO: fix this
 	    TextView time = (TextView) findViewById(R.id.time);
-	    time.setText(thisLunch.getLunchTime().getTime().toString());
+	    time.setText(thisLunch.getTime().toString());
 	    
 	    ListView attending = (ListView) findViewById(R.id.listfriends);
 	    ArrayList<Friend> friends = thisLunch.getFriends();
@@ -116,6 +116,13 @@ public class InviteDetails extends Activity {
 	    		startActivity(invites);
 	    		Toast.makeText(getApplicationContext(), "You have declined lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
 	    	}
+	    	finish();
+	        break;
+	    case R.id.edit:
+	    	Intent editLunch = new Intent(this, CreateNewLunch.class);
+	    	editLunch.putExtra("activity","editLunch");
+	    	state.setCurrentCreatingLunch(thisLunch);
+	    	startActivity(editLunch);
 	        finish();
 	        break;
 	    default:

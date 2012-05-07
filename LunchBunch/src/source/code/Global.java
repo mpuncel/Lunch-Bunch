@@ -26,7 +26,7 @@ public class Global extends Application
     public void makeLunches()
     {
         String ns = Context.NOTIFICATION_SERVICE;
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(ns);
+        notificationManager = (NotificationManager) getSystemService(ns);
         if (lunchInvites == null) {
             Calendar systemTime = Calendar.getInstance();
             Calendar firstLunchTime = (Calendar)systemTime.clone();
