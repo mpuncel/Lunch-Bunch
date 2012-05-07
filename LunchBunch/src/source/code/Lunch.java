@@ -21,19 +21,28 @@ public class Lunch implements Parcelable, Comparable {
 	private boolean isConfirmed;
 	private boolean reminderRequested;
 	private boolean isDeclined;
-	private int reminderTime;
 	private boolean isMine;
+	private Calendar reminderTime;
+	private int reminderOffset;
+
 	public Lunch(String n)
 	{
 		name = n;
 		setMine(false);
 	}
 	
-	public void setReminderTime(int reminderTime) {
+	public void setReminderTime(int reminderTimeOffset) {
+	    Calendar reminderTime = (Calendar)this.lunchTime.clone();
+	    reminderTime.add(Calendar.MINUTE, -1 * reminderTimeOffset);
 	    this.reminderTime = reminderTime;
+	    this.reminderOffset = reminderTimeOffset;
 	}
 	
-	public int getReminderTime() {
+	public int getReminderOffset() {
+	    return this.reminderOffset;
+	}
+	
+	public Calendar getReminderTime() {
 	    return this.reminderTime;
 	}
 	
