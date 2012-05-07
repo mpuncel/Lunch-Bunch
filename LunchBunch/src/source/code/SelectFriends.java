@@ -63,11 +63,11 @@ public class SelectFriends extends Activity {
         		}
         		
         	}
-            ArrayList<Boolean> isChecked = friendListAdapter.getIsChecked();
+            /*ArrayList<Boolean> isChecked = friendListAdapter.getIsChecked();
             for (int i = 0; i< isChecked.size(); i++)
             {
             	System.out.println(isChecked.get(i));
-            }
+            }*/
         }
         
         lv.setOnItemClickListener(new MyOnItemClickListener(this.friendListAdapter));
