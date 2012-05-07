@@ -23,6 +23,7 @@
         <activity android:name="TabsActivity"></activity>
         
         <activity android:name="BrowseAttending"></activity>
+        <service android:name="NotificationService"></service>
 
     </application>
 

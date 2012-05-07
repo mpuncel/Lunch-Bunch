@@ -15,9 +15,8 @@ public class LunchNotificationBuilder {
     public LunchNotificationBuilder(Lunch lunch, Context context) {
         this.lunch = lunch;
         this.builder = new Builder(context);
-        Calendar lunchTime = (Calendar)this.lunch.getLunchTime().clone();
-        lunchTime.add(Calendar.MINUTE, -1 * this.lunch.getReminderTime());
-        builder.setWhen(lunchTime.getTimeInMillis());
+        Calendar reminderTime = (Calendar)this.lunch.getReminderTime().clone();
+        builder.setWhen(reminderTime.getTimeInMillis());
         builder.setTicker("Reminder for " + this.lunch.getTitle());
         builder.setContentTitle("LunchBunch Notification");
         builder.setContentText("Upcoming lunch at " + this.lunch.getTitle());
