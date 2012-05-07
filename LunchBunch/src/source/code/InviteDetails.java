@@ -1,11 +1,15 @@
 package source.code;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -28,6 +32,7 @@ public class InviteDetails extends Activity {
 	
 	    Global state = (Global) getApplication();
 	    //Intent data = getIntent();
+	    
 	    thisLunch = state.getCurrentClickedLunch();
 	    Intent intent = getIntent();
         String activity = intent.getStringExtra("activity");
@@ -57,7 +62,7 @@ public class InviteDetails extends Activity {
 	    
 	    ListView attending = (ListView) findViewById(R.id.listfriends);
 	    ArrayList<Friend> friends = thisLunch.getFriends();
-	    attending.setAdapter(new ArrayAdapter<Friend>(this, R.layout.whitelist_item, friends));
+	    attending.setAdapter(new InviteeItemAdapter<Friend>(this, R.layout.whitelist_item, friends));
 	    attending.setSelector(android.R.color.transparent); 
 
 	    
@@ -129,5 +134,41 @@ public class InviteDetails extends Activity {
 	        throw new RuntimeException("Button ID not understood");
 	    }
 	}
+	
+	private class InviteeItemAdapter<T> extends ArrayAdapter {
+
+  	    private ArrayList<Friend> friends;
+
+		public InviteeItemAdapter(Context context, int textViewResourceId, ArrayList<Friend> friends) {
+  	        super(context, textViewResourceId, friends);
+  	        this.friends = friends;
+  	    }
+
+  	    @Override
+  	    public View getView(int position, View convertView, ViewGroup parent) 
+  	    {
+  	        View v = convertView;
+		  	if (v == null) {
+		  	            LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		  	            v = vi.inflate(R.layout.whitelist_item, null);
+		  	  }
+  	      
+		  	Friend friend = friends.get(position);
+		  	TextView name = (TextView) v.findViewById(R.id.name);
+		  	name.setText(friend.toString());
+
+  	        TextView accepted = (TextView) v.findViewById(R.id.accepted);
+  	        
+			if (thisLunch.getAcceptedFriends().contains(friend))
+			{
+				accepted.setText("accepted");
+			}
+			else{
+				accepted.setVisibility(TextView.GONE);
+			}
+			return v;
+
+  	    }
+  	}
 
 }

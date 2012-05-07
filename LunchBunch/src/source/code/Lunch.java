@@ -3,6 +3,7 @@ package source.code;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -12,6 +13,7 @@ public class Lunch implements Parcelable, Comparable {
 	
 	private String name;
 	private ArrayList<Friend> friends;
+	private HashSet<Friend> acceptedfriends = new HashSet<Friend>();
 	private String comments;
 	private String date;
 	private String time;
@@ -38,8 +40,20 @@ public class Lunch implements Parcelable, Comparable {
 	    this.friends = friends;
 	}
 	
+	public void addAcceptedFriend(Friend friend) {
+	    this.acceptedfriends.add(friend);
+	}
+	
+	public void removeAcceptedFriend(Friend friend) {
+	    this.acceptedfriends.remove(friend);
+	}
+	
 	public ArrayList<Friend> getFriends() {
 	    return this.friends;
+	}
+	
+	public HashSet<Friend> getAcceptedFriends() {
+	    return this.acceptedfriends;
 	}
 	
 	public String getTime() {
