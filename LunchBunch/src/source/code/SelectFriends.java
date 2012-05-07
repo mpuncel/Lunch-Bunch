@@ -48,7 +48,6 @@ public class SelectFriends extends Activity {
         {
         	isEditing = true;
         	ArrayList<Friend> invitedFriends = state.getCurrentCreatingLunch().getFriends();
-        	System.out.println(invitedFriends.size());
         	for (int i = 0; i < invitedFriends.size(); i++)
         	{
     			String invitee = invitedFriends.get(i).toString();
