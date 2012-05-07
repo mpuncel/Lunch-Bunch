@@ -8,6 +8,7 @@ import android.app.Notification;
 import android.app.Notification.Builder;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.widget.Toast;
 
 public class Global extends Application 
 {
@@ -19,6 +20,7 @@ public class Global extends Application
 	private FriendListAdapter<Friend> friendListAdapter;
 	private NotificationManager notificationManager;
 	private final static int LUNCH_ID = 0;
+
 	
 	
     public void makeLunches()
@@ -77,9 +79,18 @@ public class Global extends Application
         }
     }
     
+    
 	public void createLunchDone() {
-	    lunchesAttending.add(currentCreatingLunch);
-	    //currentCreatingLunch = null;
+		
+	    int insertionindex = 0;
+	    for(Lunch lunch:lunchesAttending){
+	    	int compare=currentCreatingLunch.compareTo(lunch);
+	    	if(compare>0){
+	    		insertionindex +=1;
+	    	}
+	    }
+	    lunchesAttending.add(insertionindex, currentCreatingLunch);
+	    
 	}
 	
 	public Lunch getCurrentCreatingLunch() {

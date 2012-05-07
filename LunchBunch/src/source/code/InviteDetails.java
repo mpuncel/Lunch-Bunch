@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +62,20 @@ public class InviteDetails extends Activity {
 
 	    
 	    TextView comments = (TextView) findViewById(R.id.comments);
-	    comments.setText(thisLunch.getComments());
+	    
+	    if(thisLunch.getComments()==null || thisLunch.getComments().isEmpty()){
+	    	((TextView)findViewById(R.id.comments)).setVisibility(TextView.GONE);
+	    	((TextView)findViewById(R.id.commentsheader)).setVisibility(TextView.GONE);
+	    }
+	    else{
+	    	comments.setText(thisLunch.getComments());
+	    }
+	    
+	   TextView confirmed = (TextView) findViewById(R.id.confirmed);
+		if (!thisLunch.isConfirmed())
+		{
+			confirmed.setVisibility(TextView.GONE);
+		}
 	    //thisPosition = data.getIntExtra("position", -1);
 	}
 	
