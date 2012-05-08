@@ -111,15 +111,18 @@ public class BrowseInvites extends Activity {
   	      
 		  	Lunch lunch = lunches.get(position);
 		  	TextView title = (TextView) v.findViewById(R.id.title);
-  	        TextView details = (TextView) v.findViewById(R.id.details);
+		  	TextView date = (TextView) v.findViewById(R.id.date);
+  	        TextView time = (TextView) v.findViewById(R.id.time);
   	        TextView confirmed = (TextView) v.findViewById(R.id.confirmed);
 		  	
 			title.setText(lunch.getTitle());
-			details.setText(lunch.getDate() + "     " + lunch.getTime());
+			date.setText(lunch.getDate());
+			time.setText(lunch.getTime());
 			
 			if (lunch.isDeclined())
 			{
 				confirmed.setText("declined");
+				confirmed.setVisibility(confirmed.VISIBLE);
 				confirmed.setTextColor(Color.rgb(191, 0, 0));
 			}
 			return v;

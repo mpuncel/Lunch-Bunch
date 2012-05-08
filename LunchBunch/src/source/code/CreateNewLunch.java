@@ -32,6 +32,7 @@ public class CreateNewLunch extends Activity {
     private int mMinute;
     private Lunch thisLunch;
     private boolean isEditing = false;
+    private String[] dateInfo;
 
     static final int TIME_DIALOG_ID = 1;
 
@@ -137,15 +138,15 @@ public class CreateNewLunch extends Activity {
 
         if (errortext.equals("")) {
             Calendar rightNow = Calendar.getInstance();
-            String[] dateInfo = date.split("/");
+            dateInfo = date.split(" ");
             Calendar lunchTime = Calendar.getInstance();
             int offset = 0;
             if (time.split(" ")[1].equals("pm")) {
                 offset = 12;
             }
             lunchTime.set(Integer.valueOf(dateInfo[2]), 
-                    Integer.valueOf(dateInfo[0]) - 1, 
-                    Integer.valueOf(dateInfo[1]),
+                    Integer.valueOf(mMonth), 
+                    Integer.valueOf(dateInfo[1].split(",")[0]),
                     Integer.valueOf(time.split(":")[0]) + offset,
                     Integer.valueOf(time.split(":")[1].split(" ")[0]),
                     0);
@@ -219,20 +220,52 @@ public class CreateNewLunch extends Activity {
     		AmPm = " pm";
     	}
     	
+    	int hour = mHour%12;
+    	if (hour == 0){
+    		hour = 12;
+    	}
 
     	mPickTime.setText(
             new StringBuilder()
-            .append((mHour%12)).append(":")
+            .append((hour)).append(":")
             .append(pad(mMinute)).append(AmPm));
 
     }
     private void updateDateDisplay() {
+    	String month = "";
+    	switch(mMonth)
+    	{
+    	case 0: month = "Jan"; break;
+    	case 1: month = "Feb"; break;
+    	case 2: month = "Mar"; break;
+    	case 3: month = "Apr"; break;
+    	case 4: month = "May"; break;
+    	case 5: month = "Jun"; break;
+    	case 6: month = "Jul"; break;
+    	case 7: month = "Aug"; break;
+    	case 8: month = "Sep"; break;
+    	case 9: month = "Oct"; break;
+    	case 10: month = "Nov"; break;
+    	case 11: month = "Dec"; break;
+    	}
+    	
 
-    	mPickDate.setText(
+    	Calendar lunchTime = Calendar.getInstance();
+    	lunchTime.set(Integer.valueOf(mYear), 
+                Integer.valueOf(mMonth), 
+                Integer.valueOf(mDay),
+                Integer.valueOf(0),
+                Integer.valueOf(0),
+                0);
+    	String dayOfWeek = lunchTime.getTime().toString().split(" ")[0];
+    	
+    	mPickDate.setText(month + " " + mDay + ", " + pad(mYear));
+
+    	/*mPickDate.setText(
             new StringBuilder()
                     .append((mMonth+1)).append("/")
                     .append((mDay)).append("/")
-                    .append(pad(mYear)));
+                    .append(pad(mYear)));*/
     }
 
     private static String pad(int c) {
