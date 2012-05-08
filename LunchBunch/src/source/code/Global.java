@@ -6,6 +6,7 @@ import java.util.Calendar;
 import android.app.Application;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 
 public class Global extends Application 
 {
@@ -22,6 +23,7 @@ public class Global extends Application
 	
     public void makeLunches()
     {
+        System.out.println(Build.VERSION.RELEASE);
         if (lunchInvites == null) {
             Calendar systemTime = Calendar.getInstance();
             Calendar firstLunchTime = (Calendar)systemTime.clone();

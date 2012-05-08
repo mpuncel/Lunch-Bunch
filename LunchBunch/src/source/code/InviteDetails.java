@@ -29,6 +29,7 @@ public class InviteDetails extends Activity {
 	    super.onCreate(savedInstanceState);
 	    //TODO: fix layout (accept and decline buttons not aligned)
 	    setContentView(R.layout.eventdetails);
+	    System.out.println("I'm called");
 	
 	    Global state = (Global) getApplication();
 	    //Intent data = getIntent();
