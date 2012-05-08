@@ -132,7 +132,7 @@ public class Lunch implements Parcelable, Comparable {
         out.writeString(time);
         out.writeString(date);
         out.writeString(comments);
-        out.writeArray(friends.toArray());
+        out.writeTypedList(friends);
         
     }
     
@@ -147,11 +147,12 @@ public class Lunch implements Parcelable, Comparable {
     };
     
     private Lunch(Parcel in) {
+        friends = new ArrayList<Friend>();
         name = in.readString();
         time = in.readString();
         date = in.readString();
         comments = in.readString();
-        friends = in.readArrayList(Friend.class.getClassLoader());
+        in.readTypedList(friends, Friend.CREATOR);
     }
 
 	public boolean isConfirmed() {
