@@ -29,7 +29,6 @@ public class InviteDetails extends Activity {
 	    super.onCreate(savedInstanceState);
 	    //TODO: fix layout (accept and decline buttons not aligned)
 	    setContentView(R.layout.eventdetails);
-	    System.out.println("I'm called");
 	
 	    Global state = (Global) getApplication();
 	    //Intent data = getIntent();
@@ -37,8 +36,8 @@ public class InviteDetails extends Activity {
 	    //thisLunch = state.getCurrentClickedLunch();
 	    Intent intent = getIntent();
 	    thisLunch = intent.getParcelableExtra("lunch");
+	    System.out.println(String.valueOf(thisLunch.getAcceptedFriends()) + " acceptedfriends");
         String activity = intent.getStringExtra("activity");
-        System.out.println("activity = " + activity);
         if (activity.equals("attending"))
         {
         	fromAttending = true;
@@ -65,6 +64,7 @@ public class InviteDetails extends Activity {
 	    
 	    ListView attending = (ListView) findViewById(R.id.listfriends);
 	    ArrayList<Friend> friends = thisLunch.getFriends();
+	    System.out.println(friends + " friends");
 	    attending.setAdapter(new InviteeItemAdapter<Friend>(this, R.layout.whitelist_item, friends));
 	    attending.setSelector(android.R.color.transparent); 
 
@@ -172,7 +172,10 @@ public class InviteDetails extends Activity {
 
   	        TextView accepted = (TextView) v.findViewById(R.id.accepted);
   	        
-			if (thisLunch.getAcceptedFriends().contains(friend))
+  	        System.out.println(friend + " friend");
+  	        System.out.println(thisLunch.getAcceptedFriends() + " acceptedFriends");
+  	        System.out.println(thisLunch.getAcceptedFriends().containsKey(friend.toString()));
+			if (thisLunch.getAcceptedFriends().containsKey(friend.toString()))
 			{
 				accepted.setText("accepted");
 			}

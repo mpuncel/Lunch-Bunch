@@ -3,17 +3,17 @@ package source.code;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.format.Time;
 
 public class Lunch implements Parcelable, Comparable {
 	
 	private String name;
 	private ArrayList<Friend> friends;
-	private HashSet<Friend> acceptedfriends = new HashSet<Friend>();
+	private HashMap<String, Friend> acceptedfriends = new HashMap<String, Friend>();
 	private String comments;
 	private String date;
 	private String time;
@@ -52,7 +52,7 @@ public class Lunch implements Parcelable, Comparable {
 	
 
 	public void addAcceptedFriend(Friend friend) {
-	    this.acceptedfriends.add(friend);
+	    this.acceptedfriends.put(friend.toString(), friend);
 	}
 	
 	public void removeAcceptedFriend(Friend friend) {
@@ -64,11 +64,12 @@ public class Lunch implements Parcelable, Comparable {
 	{
 		name = location;
 	}
+	
 	public ArrayList<Friend> getFriends() {
 	    return this.friends;
 	}
 	
-	public HashSet<Friend> getAcceptedFriends() {
+	public HashMap<String, Friend> getAcceptedFriends() {
 	    return this.acceptedfriends;
 	}
 	
@@ -133,6 +134,12 @@ public class Lunch implements Parcelable, Comparable {
         out.writeString(date);
         out.writeString(comments);
         out.writeTypedList(friends);
+        out.writeMap(acceptedfriends);
+        out.writeValue(lunchTime);
+        boolean[] boolarray = {isConfirmed, reminderRequested, isDeclined, isMine};
+        out.writeBooleanArray(boolarray);
+        out.writeValue(reminderTime);
+        out.writeInt(reminderOffset);
         
     }
     
@@ -148,11 +155,22 @@ public class Lunch implements Parcelable, Comparable {
     
     private Lunch(Parcel in) {
         friends = new ArrayList<Friend>();
+        acceptedfriends = new HashMap<String, Friend>();
         name = in.readString();
         time = in.readString();
         date = in.readString();
         comments = in.readString();
         in.readTypedList(friends, Friend.CREATOR);
+        in.readMap(acceptedfriends, Friend.class.getClassLoader());
+        lunchTime = (Calendar)in.readValue(Calendar.class.getClassLoader());
+        boolean[] boolarray = new boolean[4];
+        in.readBooleanArray(boolarray);
+        isConfirmed = boolarray[0];
+        reminderRequested = boolarray[1];
+        isDeclined = boolarray[2];
+        isMine = boolarray[3];
+        reminderTime = (Calendar)in.readValue(Calendar.class.getClassLoader());
+        reminderOffset = in.readInt();
     }
 
 	public boolean isConfirmed() {

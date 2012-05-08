@@ -23,7 +23,6 @@ public class Global extends Application
 	
     public void makeLunches()
     {
-        System.out.println(Build.VERSION.RELEASE);
         if (lunchInvites == null) {
             Calendar systemTime = Calendar.getInstance();
             Calendar firstLunchTime = (Calendar)systemTime.clone();
