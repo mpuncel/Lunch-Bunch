@@ -172,9 +172,6 @@ public class InviteDetails extends Activity {
 
   	        TextView accepted = (TextView) v.findViewById(R.id.accepted);
   	        
-  	        System.out.println(friend + " friend");
-  	        System.out.println(thisLunch.getAcceptedFriends() + " acceptedFriends");
-  	        System.out.println(thisLunch.getAcceptedFriends().containsKey(friend.toString()));
 			if (thisLunch.getAcceptedFriends().containsKey(friend.toString()))
 			{
 				accepted.setText("accepted");

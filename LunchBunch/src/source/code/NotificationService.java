@@ -13,7 +13,7 @@ import android.os.IBinder;
 public class NotificationService extends Service {
 
     private NotificationManager notificationManager;
-    private final static int LUNCH_ID = 0;
+    private int lunch_id = 0;
     public final IBinder binder = new NotificationBinder();
     @Override
     public IBinder onBind(Intent arg0) {
@@ -64,7 +64,9 @@ public class NotificationService extends Service {
         public void showNotification(Lunch lunch) {
             LunchNotificationBuilder notificationBuilder = new LunchNotificationBuilder(lunch, getApplicationContext());
             Notification dhabaNotification = notificationBuilder.getNotification();
-            notificationManager.notify(LUNCH_ID, dhabaNotification);
+            notificationManager.notify(lunch_id, dhabaNotification);
+            lunch_id++;
+            
         }
     }
 

@@ -26,6 +26,7 @@ public class LunchNotificationBuilder {
     
     private Notification notification;
     public LunchNotificationBuilder(Lunch lunch, Context context) {
+        System.out.println(lunch.getTitle());
         int icon = R.drawable.ic_launcher;
         String tickerText = "Reminder for " + lunch.getTitle();
         long when = System.currentTimeMillis();
@@ -37,7 +38,8 @@ public class LunchNotificationBuilder {
         intent.putExtra("activity", "attending");
         intent.putExtra("lunch", lunch);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        intent.setAction(lunch.getTitle());
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         notification.setLatestEventInfo(context, contentTitle, contentText, pendingIntent);
     }
     
