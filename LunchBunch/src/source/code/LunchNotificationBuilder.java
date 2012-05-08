@@ -21,8 +21,9 @@ public class LunchNotificationBuilder {
         builder.setContentTitle("LunchBunch Notification");
         builder.setContentText("Upcoming lunch at " + this.lunch.getTitle());
         builder.setSmallIcon(R.drawable.ic_launcher);
-        Intent intent = new Intent(context, BrowseAttending.class);
-        builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
+        Intent intent = new Intent(context, InviteDetails.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT));
         this.notification = builder.getNotification();
     }
     

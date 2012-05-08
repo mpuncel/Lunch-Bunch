@@ -71,12 +71,12 @@ public class Global extends Application
             
             Lunch maggianos = new Lunch("Maggiano's");
             Calendar attendTime2 = (Calendar)systemTime.clone();
-            attendTime2.add(Calendar.MINUTE, 60);
+            attendTime2.add(Calendar.MINUTE, 36);
             maggianos.setLunchTime(attendTime2);
             maggianos.setFriends(attending);
             maggianos.addAcceptedFriend(attending.get(2));
             maggianos.addAcceptedFriend(attending.get(1));
-            maggianos.setReminderTime(30);
+            maggianos.setReminderTime(34);
             addLunchAttending(dhaba);
             addLunchAttending(maggianos);
             
@@ -137,6 +137,10 @@ public class Global extends Application
 	        for (int i = 0; i < lunchReminders.size(); i++) {
 	            if (lunchReminders.get(i).getReminderTime().after(lunch.getReminderTime())){
 	                lunchReminders.add(i, lunch);
+	                break;
+	            }
+	            if (i == lunchReminders.size() - 1) {
+	                lunchReminders.add(lunch);
 	                break;
 	            }
 	        }
