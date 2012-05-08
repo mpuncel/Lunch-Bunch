@@ -36,7 +36,6 @@ public class InviteDetails extends Activity {
 	    //thisLunch = state.getCurrentClickedLunch();
 	    Intent intent = getIntent();
 	    thisLunch = intent.getParcelableExtra("lunch");
-	    System.out.println(String.valueOf(thisLunch.getAcceptedFriends()) + " acceptedfriends");
         String activity = intent.getStringExtra("activity");
         if (activity.equals("attending"))
         {
@@ -64,7 +63,6 @@ public class InviteDetails extends Activity {
 	    
 	    ListView attending = (ListView) findViewById(R.id.listfriends);
 	    ArrayList<Friend> friends = thisLunch.getFriends();
-	    System.out.println(friends + " friends");
 	    attending.setAdapter(new InviteeItemAdapter<Friend>(this, R.layout.whitelist_item, friends));
 	    attending.setSelector(android.R.color.transparent); 
 

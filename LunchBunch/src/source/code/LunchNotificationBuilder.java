@@ -26,7 +26,6 @@ public class LunchNotificationBuilder {
     
     private Notification notification;
     public LunchNotificationBuilder(Lunch lunch, Context context) {
-        System.out.println(lunch.getTitle());
         int icon = R.drawable.ic_launcher;
         String tickerText = "Reminder for " + lunch.getTitle();
         long when = System.currentTimeMillis();
