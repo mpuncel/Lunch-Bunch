@@ -52,7 +52,8 @@ public class NotificationService extends Service {
                 if (state.numLunchReminders() > 0) {
                     reminder = state.getNextReminder();
                     rightNow = Calendar.getInstance();
-                    if (reminder.getReminderTime().before(rightNow)) {
+                    Calendar reminderTime = reminder.getReminderTime();
+                    if (reminderTime != null && reminderTime.before(rightNow)) {
                         showNotification(reminder);
                         state.lunchReminded();
                     }

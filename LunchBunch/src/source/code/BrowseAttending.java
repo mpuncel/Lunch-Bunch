@@ -41,6 +41,7 @@ public class BrowseAttending extends Activity {
   	        Intent eventDetails = new Intent(parent.getContext(), InviteDetails.class);
   	        eventDetails.putExtra("activity","attending");
   	        Lunch clickedLunch = state.getLunchAttending(position);
+  	        eventDetails.putExtra("lunch", clickedLunch);
   	        state.setCurrentClickedLunch(clickedLunch);
   	        startActivity(eventDetails);
   	        //finish();

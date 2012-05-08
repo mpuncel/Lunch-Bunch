@@ -32,9 +32,12 @@ public class LunchNotificationBuilder {
         this.notification = new Notification(icon, tickerText, when);
         Calendar reminderTime = (Calendar)lunch.getReminderTime().clone();
         String contentTitle = "LunchBunch Notification";
-        String contentText = "Upcoming lunch at " + lunch.getTitle();
+        String contentText = "Upcoming lunch at " + lunch.getTitle() + " at " + lunch.getTime();
         Intent intent = new Intent(context, InviteDetails.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        intent.putExtra("activity", "attending");
+        intent.putExtra("lunch", lunch);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         notification.setLatestEventInfo(context, contentTitle, contentText, pendingIntent);
     }
     

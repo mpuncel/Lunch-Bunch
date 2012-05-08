@@ -82,8 +82,8 @@ public class Global extends Application
             addLunchAttending(dhaba);
             addLunchAttending(maggianos);
             
-            //Intent intent = new Intent(this, NotificationService.class);
-            //startService(intent);
+            Intent intent = new Intent(this, NotificationService.class);
+            startService(intent);
         }
     }
     

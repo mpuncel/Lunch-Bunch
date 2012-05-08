@@ -34,9 +34,11 @@ public class InviteDetails extends Activity {
 	    Global state = (Global) getApplication();
 	    //Intent data = getIntent();
 	    
-	    thisLunch = state.getCurrentClickedLunch();
+	    //thisLunch = state.getCurrentClickedLunch();
 	    Intent intent = getIntent();
+	    thisLunch = intent.getParcelableExtra("lunch");
         String activity = intent.getStringExtra("activity");
+        System.out.println("activity = " + activity);
         if (activity.equals("attending"))
         {
         	fromAttending = true;
