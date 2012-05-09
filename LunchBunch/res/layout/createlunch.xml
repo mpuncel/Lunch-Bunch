@@ -100,6 +100,7 @@
                 android:layout_row="0"
                 android:layout_rowSpan="2"
                 android:imeOptions="actionDone"
+                android:singleLine="true"
                 android:ems="10" >
 
                 <requestFocus />
