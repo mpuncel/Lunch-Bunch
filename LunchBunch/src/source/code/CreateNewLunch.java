@@ -230,9 +230,6 @@ public class CreateNewLunch extends Activity {
             		Lunch createdLunch = new Lunch(where);
             		((Global)getApplication()).setCurrentCreatingLunch(createdLunch);
             		createdLunch.setLunchTime(lunchTime);
-            		//createdLunch.setTime(time);
-        
-            		//createdLunch.setDate(date);
             		createdLunch.setComments(comments);
             		if(reminder != null)
             		{

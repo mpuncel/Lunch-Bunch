@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.app.Application;
-import android.app.NotificationManager;
 import android.content.Intent;
-import android.os.Build;
 
 public class Global extends Application 
 {
@@ -17,7 +15,6 @@ public class Global extends Application
 	private Lunch currentClickedLunch;
 	private ArrayList<Friend> lunchFriends;
 	private FriendListAdapter<Friend> friendListAdapter;
-	private NotificationManager notificationManager;
 
 	
 	
@@ -96,8 +93,7 @@ public class Global extends Application
 	    		insertionindex +=1;
 	    	}
 	    }
-	    lunchesAttending.add(insertionindex, currentCreatingLunch);
-	    
+	    addLunchAttending(currentCreatingLunch, insertionindex);
 	}
 	
 	public Lunch getCurrentCreatingLunch() {
@@ -128,8 +124,28 @@ public class Global extends Application
 		lunchInvites.add(lunch);
 	}
 	
-	public synchronized void addLunchAttending(Lunch lunch){
-	    lunchesAttending.add(lunch);
+	public synchronized void addLunchAttending(Lunch lunch) {
+       lunchesAttending.add(lunch);
+        if (lunchReminders.size() == 0 ) {
+            lunchReminders.add(lunch);
+        }
+        
+        else {
+            for (int i = 0; i < lunchReminders.size(); i++) {
+                if (lunchReminders.get(i).getReminderTime().after(lunch.getReminderTime())){
+                    lunchReminders.add(i, lunch);
+                    break;
+                }
+                if (i == lunchReminders.size() - 1) {
+                    lunchReminders.add(lunch);
+                    break;
+                }
+            }
+        }
+	}
+	
+	public synchronized void addLunchAttending(Lunch lunch, int index){
+	    lunchesAttending.add(index, lunch);
 	    if (lunchReminders.size() == 0 ) {
 	        lunchReminders.add(lunch);
 	    }
