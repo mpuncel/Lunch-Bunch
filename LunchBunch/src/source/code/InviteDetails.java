@@ -6,6 +6,7 @@ import java.util.Random;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,17 +37,37 @@ public class InviteDetails extends Activity {
 	    //thisLunch = state.getCurrentClickedLunch();
 	    Intent intent = getIntent();
 	    thisLunch = intent.getParcelableExtra("lunch");
+	    
         String activity = intent.getStringExtra("activity");
         if (activity.equals("attending"))
         {
         	fromAttending = true;
         	Button acceptconfirm = (Button) findViewById(R.id.accept);
         	acceptconfirm.setText("Confirm");
+        	ArrayList<Lunch> lunchesAttending = state.getLunchesAttending();
+        	for(int i = 0; i < lunchesAttending.size(); i++)
+        	{
+        		if (thisLunch.getTitle().equals(lunchesAttending.get(i).getTitle()))
+        		{
+        			thisLunch = lunchesAttending.get(i);
+        		}
+        	}
 
         	if (thisLunch.isConfirmed())
         	{
             	acceptconfirm.setVisibility(acceptconfirm.INVISIBLE);
         	}        	
+        }
+        else if (activity.equals("invites"))
+        {
+        	ArrayList<Lunch> lunchInvites = state.getLunchInvites();
+        	for(int i = 0; i < lunchInvites.size(); i++)
+        	{
+        		if (thisLunch.getTitle().equals(lunchInvites.get(i).getTitle()))
+        		{
+        			thisLunch = lunchInvites.get(i);
+        		}
+        	}
         }
 	    //TODO: rewrite xml file and this class so that it displays data from thisLunch. Should
 	    //also show list of friends
@@ -82,6 +103,11 @@ public class InviteDetails extends Activity {
 		{
 			confirmed.setVisibility(TextView.GONE);
 		}
+		Button declineButton = (Button) findViewById(R.id.decline);
+		if(thisLunch.isDeclined())
+		{
+			declineButton.setVisibility(declineButton.INVISIBLE);
+		}
 		Button editButton = (Button) findViewById(R.id.edit);
 		if(!thisLunch.isMine())
 		{
@@ -105,10 +131,13 @@ public class InviteDetails extends Activity {
 	    	if (fromAttending)
 	    	{
 	    		thisLunch.setConfirmed(true);
+	    		System.out.println("CONFIRMED " + thisLunch.getTitle() + ": " + thisLunch + " "+ thisLunch.isConfirmed());
 		        startActivity(attending);
+		        
 	    	}
 	    	else
 	    	{
+	    		thisLunch.setDeclined(false);
 	    		state.addLunchAttending(thisLunch);
 	    		state.removeLunchInvite(thisLunch.getTitle());
 	    		startActivity(invites);
@@ -173,6 +202,7 @@ public class InviteDetails extends Activity {
 			if (thisLunch.getAcceptedFriends().containsKey(friend.toString()))
 			{
 				accepted.setText("accepted");
+				accepted.setTextColor(Color.rgb(128, 128, 128));
 			}
 			else{
 				accepted.setVisibility(TextView.GONE);

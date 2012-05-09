@@ -99,6 +99,7 @@ public class BrowseAttending extends Activity {
 			title.setText(lunch.getTitle());
 			date.setText(lunch.getDate());
 			time.setText(lunch.getTime());
+			System.out.println(lunch.getTitle() + " " + lunch + " isConfirmed: " + lunch.isConfirmed());
 			
 			if (lunch.isConfirmed())
 			{

@@ -78,8 +78,13 @@ public class CreateNewLunch extends Activity {
         {
             thisLunch = state.getCurrentCreatingLunch();
             isEditing = true;
-        	//mPickTime.setText(thisLunch.getTime());
-        	//mPickDate.setText(thisLunch.getDate());
+            String fullDate = thisLunch.getDate().toString();
+    	    String[] splitDate = fullDate.split(" ");
+    	    System.out.println(fullDate);
+    	    String date = splitDate[1] + " " + Integer.parseInt(splitDate[2]) + ", " + mYear;
+    	   
+        	mPickTime.setText(thisLunch.getTime());
+        	mPickDate.setText(date);
             EditText where = ((EditText) findViewById(R.id.pickWhere));
             where.setText(thisLunch.getTitle());
 
@@ -250,14 +255,14 @@ public class CreateNewLunch extends Activity {
     	}
     	
 
-    	Calendar lunchTime = Calendar.getInstance();
+    	/*Calendar lunchTime = Calendar.getInstance();
     	lunchTime.set(Integer.valueOf(mYear), 
                 Integer.valueOf(mMonth), 
                 Integer.valueOf(mDay),
                 Integer.valueOf(0),
                 Integer.valueOf(0),
                 0);
-    	String dayOfWeek = lunchTime.getTime().toString().split(" ")[0];
+    	String dayOfWeek = lunchTime.getTime().toString().split(" ")[0];*/
     	
     	mPickDate.setText(month + " " + mDay + ", " + pad(mYear));
 

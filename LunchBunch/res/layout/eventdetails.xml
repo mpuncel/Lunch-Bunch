@@ -32,15 +32,14 @@
                 android:id="@+id/confirmed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/location"
-                android:layout_column="2"
-                android:layout_columnSpan="2"
-                android:layout_row="0"
-                android:layout_toRightOf="@id/location"
+                android:layout_alignBaseline="@+id/location"
+                android:layout_alignBottom="@+id/location"
+                android:layout_toRightOf="@+id/location"
                 android:text="  confirmed"
                 android:textColor="#63E600"
                 android:textSize="10dp"
                 android:textStyle="italic" />
+
         </RelativeLayout>
 
         <Button
