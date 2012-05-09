@@ -98,6 +98,7 @@
                 android:layout_gravity="bottom"
                 android:layout_row="0"
                 android:layout_rowSpan="2"
+                android:imeOptions="actionDone"
                 android:ems="10" >
 
                 <requestFocus />

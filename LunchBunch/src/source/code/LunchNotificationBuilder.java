@@ -40,6 +40,7 @@ public class LunchNotificationBuilder {
         intent.setAction(lunch.getTitle());
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         notification.setLatestEventInfo(context, contentTitle, contentText, pendingIntent);
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
     }
     
     public Notification getNotification() {

@@ -80,7 +80,6 @@ public class CreateNewLunch extends Activity {
             isEditing = true;
             String fullDate = thisLunch.getDate().toString();
     	    String[] splitDate = fullDate.split(" ");
-    	    System.out.println(fullDate);
     	    String date = splitDate[1] + " " + Integer.parseInt(splitDate[2]) + ", " + mYear;
     	   
         	mPickTime.setText(thisLunch.getTime());
