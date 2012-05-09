@@ -78,6 +78,9 @@ public class CreateNewLunch extends Activity {
         
         mPickTime = (Button) findViewById(R.id.pickTime);
         mPickTime.setText("Click to set time", TextView.BufferType.EDITABLE);
+        
+        EditText where = ((EditText) findViewById(R.id.pickWhere));
+        where.setOnEditorActionListener(new DoneOnEditorActionListener());
 
         if (activity != null)
         {
@@ -89,9 +92,8 @@ public class CreateNewLunch extends Activity {
     	   
         	mPickTime.setText(thisLunch.getTime());
         	mPickDate.setText(date);
-            EditText where = ((EditText) findViewById(R.id.pickWhere));
+            where = ((EditText) findViewById(R.id.pickWhere));
             where.setText(thisLunch.getTitle());
-            where.setOnEditorActionListener(new DoneOnEditorActionListener());
             String comments = thisLunch.getComments();
             EditText commentsField = (EditText) findViewById(R.id.comments);
             if (comments != null || !(comments.equals("")))
