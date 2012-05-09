@@ -87,6 +87,30 @@ public class CreateNewLunch extends Activity {
         	mPickDate.setText(date);
             EditText where = ((EditText) findViewById(R.id.pickWhere));
             where.setText(thisLunch.getTitle());
+            String comments = thisLunch.getComments();
+            EditText commentsField = (EditText) findViewById(R.id.comments);
+            if (comments != null || !(comments.equals("")))
+            {
+            	commentsField.setText(comments);
+            }
+            Calendar reminderTime = thisLunch.getReminderTime();
+            Spinner reminder = (Spinner) findViewById(R.id.spinner);
+        			
+            if (reminderTime != null)
+            {
+            	//idk yet
+            }
+            else
+            {
+            	RadioButton noButton = (RadioButton) findViewById(R.id.noReminder);
+            	noButton.setChecked(true);
+            	RadioButton yesButton = (RadioButton) findViewById(R.id.yesReminder);
+            	yesButton.setChecked(false);
+            	((TextView)findViewById(R.id.sendreminderlabel)).setVisibility(TextView.GONE);
+    			((Spinner)findViewById(R.id.spinner)).setVisibility(Spinner.GONE);
+    			((TextView)findViewById(R.id.confirmation)).setVisibility(TextView.GONE);
+    			((RadioGroup)findViewById(R.id.confirmgroup)).setVisibility(RadioGroup.GONE);
+            }
 
         }
         // add a click listener to the button
@@ -144,13 +168,17 @@ public class CreateNewLunch extends Activity {
         if (errortext.equals("")) {
             Calendar rightNow = Calendar.getInstance();
             dateInfo = date.split(" ");
+            int month = getMonthNum(dateInfo[0]);
+            System.out.println(dateInfo[0]);
+            System.out.println(date);
+            System.out.println(month);
             Calendar lunchTime = Calendar.getInstance();
             int offset = 0;
             if (time.split(" ")[1].equals("pm")) {
                 offset = 12;
             }
             lunchTime.set(Integer.valueOf(dateInfo[2]), 
-                    Integer.valueOf(mMonth), 
+                    Integer.valueOf(month-1), 
                     Integer.valueOf(dateInfo[1].split(",")[0]),
                     Integer.valueOf(time.split(":")[0]) + offset,
                     Integer.valueOf(time.split(":")[1].split(" ")[0]),
@@ -161,14 +189,22 @@ public class CreateNewLunch extends Activity {
             }
             else {
                 String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
-                String reminder = ((Spinner) findViewById(R.id.spinner)).getSelectedItem().toString();
+                RadioButton yesButton = (RadioButton) findViewById(R.id.yesReminder);
+                String reminder = null;
+            	if(yesButton.isChecked())
+            	{
+            		reminder = ((Spinner) findViewById(R.id.spinner)).getSelectedItem().toString();
+            	}
 
             	if(isEditing)
             	{
             		thisLunch.setTitle(where);
             		thisLunch.setLunchTime(lunchTime);
             		thisLunch.setComments(comments);
-            		thisLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
+            		if(reminder != null)
+            		{
+            			thisLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
+            		}
             	}
             	else
             	{
@@ -179,7 +215,10 @@ public class CreateNewLunch extends Activity {
         
             		//createdLunch.setDate(date);
             		createdLunch.setComments(comments);
-                    createdLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
+            		if(reminder != null)
+            		{
+            			createdLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
+            		}
                     createdLunch.setMine(true);
             	}
             	
@@ -279,6 +318,27 @@ public class CreateNewLunch extends Activity {
         else
             return "0" + String.valueOf(c);
     }
+    
+    public int getMonthNum(String month)
+    {
+	    if(month.equals("Jan")) return 1;
+	    if(month.equals("Feb")) return 2;
+	    if(month.equals("Mar")) return 3;
+	    if(month.equals("Apr")) return 4;
+	    if(month.equals("May")) return 5;
+	    if(month.equals("Jun")) return 6;
+	    if(month.equals("Jul")) return 7;
+	    if(month.equals("Aug")) return 8;
+	    if(month.equals("Sep")) return 9;
+	    if(month.equals("Oct")) return 10;
+	    if(month.equals("Nov")) return 11;
+	    else return 12;
+
+
+
+
+
+    }
     protected Dialog onCreateDialog(int id) {
         switch (id) {
         case DATE_DIALOG_ID:
@@ -315,4 +375,5 @@ public class CreateNewLunch extends Activity {
         	}
             };
 
+            
 }
