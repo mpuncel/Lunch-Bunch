@@ -158,7 +158,6 @@ public class CreateNewLunch extends Activity {
     }
     
     class DoneOnEditorActionListener implements OnEditorActionListener {
-        @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 InputMethodManager imm = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -210,9 +209,15 @@ public class CreateNewLunch extends Activity {
                 String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
                 RadioButton yesButton = (RadioButton) findViewById(R.id.yesReminder);
                 String reminder = null;
+                boolean confirmRequested = false;
             	if(yesButton.isChecked())
             	{
             		reminder = ((Spinner) findViewById(R.id.spinner)).getSelectedItem().toString();
+            		RadioButton yesconfirm = (RadioButton) findViewById(R.id.yesConfirmation);
+            		if (yesconfirm.isChecked())
+            		{
+            			confirmRequested = true;
+            		}
             	}
 
             	if(isEditing)
@@ -220,6 +225,7 @@ public class CreateNewLunch extends Activity {
             		thisLunch.setTitle(where);
             		thisLunch.setLunchTime(lunchTime);
             		thisLunch.setComments(comments);
+            		thisLunch.setConfirmationRequested(confirmRequested);
             		if(reminder != null)
             		{
             			thisLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
@@ -231,6 +237,8 @@ public class CreateNewLunch extends Activity {
             		((Global)getApplication()).setCurrentCreatingLunch(createdLunch);
             		createdLunch.setLunchTime(lunchTime);
             		createdLunch.setComments(comments);
+            		createdLunch.setConfirmationRequested(confirmRequested);
+            		System.out.println("confimation requested: " + confirmRequested);
             		if(reminder != null)
             		{
             			createdLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));

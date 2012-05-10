@@ -1,6 +1,7 @@
 package source.code;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Random;
 
 import android.app.Activity;
@@ -44,6 +45,10 @@ public class InviteDetails extends Activity {
         	fromAttending = true;
         	Button acceptconfirm = (Button) findViewById(R.id.accept);
         	acceptconfirm.setText("Confirm");
+        	acceptconfirm.setVisibility(acceptconfirm.INVISIBLE);
+        	//TextView confirmhint = (TextView) findViewById(R.id.pleaseConfirm);
+        	//confirmhint.setVisibility(confirmhint.INVISIBLE);
+
         	ArrayList<Lunch> lunchesAttending = state.getLunchesAttending();
         	for(int i = 0; i < lunchesAttending.size(); i++)
         	{
@@ -52,11 +57,29 @@ public class InviteDetails extends Activity {
         			thisLunch = lunchesAttending.get(i);
         		}
         	}
-
-        	if (thisLunch.isConfirmed())
+        	Calendar reminderTime = null;
+        	if (thisLunch.getReminderTime() != null && thisLunch.isConfirmationRequested())
         	{
-            	acceptconfirm.setVisibility(acceptconfirm.INVISIBLE);
-        	}        	
+        		reminderTime = thisLunch.getReminderTime();
+        		if(Calendar.getInstance().after(reminderTime))
+            	{
+        			if(!thisLunch.isConfirmed())
+        			{
+        				acceptconfirm.setVisibility(acceptconfirm.VISIBLE);
+        				//confirmhint.setVisibility(confirmhint.VISIBLE);
+        			}
+    	        	/*// HIDE CONFIRM BUTTON FOR THE FOLLOWING CASES 
+    	    		if (!thisLunch.isConfirmationRequested()) //hide confirm button is no confirmation is requested
+    	    		{
+    	    			acceptconfirm.setVisibility(acceptconfirm.INVISIBLE);
+    	    		}
+    	    		else if ((thisLunch.isConfirmationRequested() && thisLunch.isConfirmed()))
+    	    		{
+    	    			acceptconfirm.setVisibility(acceptconfirm.INVISIBLE);
+    	    		}*/
+            	}
+        	}
+        	
         }
         else if (activity.equals("invites"))
         {
@@ -99,10 +122,11 @@ public class InviteDetails extends Activity {
 	    }
 	    
 	   TextView confirmed = (TextView) findViewById(R.id.confirmed);
-		if (!thisLunch.isConfirmed())
-		{
-			confirmed.setVisibility(TextView.GONE);
-		}
+	   if(!thisLunch.isConfirmed())
+	   {
+		   confirmed.setVisibility(TextView.GONE);
+	   }
+		
 		Button declineButton = (Button) findViewById(R.id.decline);
 		if(thisLunch.isDeclined())
 		{

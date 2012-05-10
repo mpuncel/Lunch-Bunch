@@ -22,6 +22,7 @@ public class Lunch implements Parcelable, Comparable {
 	private boolean reminderRequested;
 	private boolean isDeclined;
 	private boolean isMine;
+	private boolean confirmationRequested;
 	private Calendar reminderTime;
 	private int reminderOffset;
 
@@ -136,7 +137,7 @@ public class Lunch implements Parcelable, Comparable {
         out.writeTypedList(friends);
         out.writeMap(acceptedfriends);
         out.writeValue(lunchTime);
-        boolean[] boolarray = {isConfirmed, reminderRequested, isDeclined, isMine};
+        boolean[] boolarray = {isConfirmed, reminderRequested, isDeclined, isMine, confirmationRequested};
         out.writeBooleanArray(boolarray);
         out.writeValue(reminderTime);
         out.writeInt(reminderOffset);
@@ -163,12 +164,13 @@ public class Lunch implements Parcelable, Comparable {
         in.readTypedList(friends, Friend.CREATOR);
         in.readMap(acceptedfriends, Friend.class.getClassLoader());
         lunchTime = (Calendar)in.readValue(Calendar.class.getClassLoader());
-        boolean[] boolarray = new boolean[4];
+        boolean[] boolarray = new boolean[5];
         in.readBooleanArray(boolarray);
         isConfirmed = boolarray[0];
         reminderRequested = boolarray[1];
         isDeclined = boolarray[2];
         isMine = boolarray[3];
+        confirmationRequested = boolarray[4];
         reminderTime = (Calendar)in.readValue(Calendar.class.getClassLoader());
         reminderOffset = in.readInt();
     }
@@ -263,6 +265,14 @@ public class Lunch implements Parcelable, Comparable {
 
 	public void setMine(boolean isMine) {
 		this.isMine = isMine;
+	}
+
+	public boolean isConfirmationRequested() {
+		return confirmationRequested;
+	}
+
+	public void setConfirmationRequested(boolean confirmationRequested) {
+		this.confirmationRequested = confirmationRequested;
 	}
 
 }

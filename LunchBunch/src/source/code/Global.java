@@ -64,6 +64,7 @@ public class Global extends Application
             dhaba.setFriends(attending);
             dhaba.addAcceptedFriend(attending.get(0));
             dhaba.addAcceptedFriend(attending.get(1));
+            dhaba.setConfirmationRequested(true);
             dhaba.setReminderTime(34);
             
             

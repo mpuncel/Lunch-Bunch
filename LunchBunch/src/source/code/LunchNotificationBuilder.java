@@ -31,7 +31,7 @@ public class LunchNotificationBuilder {
         long when = System.currentTimeMillis();
         this.notification = new Notification(icon, tickerText, when);
         Calendar reminderTime = (Calendar)lunch.getReminderTime().clone();
-        String contentTitle = "LunchBunch Notification";
+        String contentTitle = "LunchBunch";
         String contentText = "Upcoming lunch at " + lunch.getTitle() + " at " + lunch.getTime();
         Intent intent = new Intent(context, InviteDetails.class);
         intent.putExtra("activity", "attending");
