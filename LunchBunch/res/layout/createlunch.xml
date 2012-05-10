@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" >
-
+
         <GridLayout
             android:id="@+id/createlunch"
             android:layout_width="match_parent"
@@ -28,23 +28,36 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
+                android:id="@+id/reminderlabel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_columnSpan="4"
+                android:layout_gravity="right"
+                android:layout_row="5"
+                android:layout_rowSpan="2"
+                android:gravity="center_vertical"
+                android:text="Send reminder?"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_columnSpan="4"
-                android:layout_gravity="bottom"
-                android:layout_row="9"
+                android:layout_row="10"
                 android:text="Comments:"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <EditText
                 android:id="@+id/comments"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:layout_columnSpan="6"
-                android:layout_row="12"
+                android:layout_row="11"
+                android:layout_rowSpan="4"
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:inputType="textMultiLine" />
@@ -99,9 +112,9 @@
                 android:layout_gravity="bottom"
                 android:layout_row="0"
                 android:layout_rowSpan="2"
+                android:ems="10"
                 android:imeOptions="actionDone"
-                android:singleLine="true"
-                android:ems="10" >
+                android:singleLine="true" >
 
                 <requestFocus />
             </EditText>
@@ -154,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="4"
                 android:layout_columnSpan="2"
-                android:layout_row="13"
+                android:layout_row="15"
                 android:onClick="onDoneClicked"
                 android:text="Done" />
 
@@ -170,50 +183,40 @@
                 <RadioButton
                     android:id="@+id/yesReminder"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="6"
-                    android:layout_row="4"
-                    android:layout_rowSpan="3"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
                     android:checked="true"
                     android:text="yes" />
 
                 <RadioButton
                     android:id="@+id/noReminder"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_column="7"
+                    android:layout_gravity="center_vertical"
                     android:layout_row="4"
                     android:layout_rowSpan="3"
                     android:text="no" />
             </RadioGroup>
-
+
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="166dp"
-                android:layout_height="33dp"
-                android:layout_column="5"
-                android:layout_gravity="bottom"
-                android:layout_row="7" />
-
-            <TextView
-                android:id="@+id/reminderlabel"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_columnSpan="4"
-                android:layout_row="5"
-                android:layout_rowSpan="2"
-                android:text="Send reminder?"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
+                android:layout_column="5"
+                android:layout_gravity="center_vertical"
+                android:layout_row="7"
+                android:gravity="center_vertical" />
+
             <TextView
                 android:id="@+id/sendreminderlabel"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="33dp"
                 android:layout_column="1"
                 android:layout_columnSpan="5"
                 android:layout_gravity="center_vertical"
                 android:layout_row="7"
+                android:gravity="center_vertical"
                 android:text="Send reminder:"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -279,9 +282,9 @@
 
             <Space
                 android:layout_width="1dp"
-                android:layout_height="56dp"
+                android:layout_height="5dp"
                 android:layout_column="0"
-                android:layout_row="9" />
+                android:layout_row="11" />
         </GridLayout>
 
     </ScrollView>

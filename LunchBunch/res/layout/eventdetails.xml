@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
-
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,7 +39,6 @@
                 android:textColor="#63E600"
                 android:textSize="10dp"
                 android:textStyle="italic" />
-
         </RelativeLayout>
 
         <Button
@@ -91,7 +90,7 @@
             android:layout_columnSpan="3"
             android:layout_gravity="bottom"
             android:layout_row="2"
-            android:layout_rowSpan="2"
+            android:layout_rowSpan="4"
             android:text="Invited by: Michael Puncel"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -101,7 +100,7 @@
             android:layout_height="30dp"
             android:layout_column="0"
             android:layout_columnSpan="2"
-            android:layout_row="4"
+            android:layout_row="6"
             android:text="Also Invited:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -112,7 +111,7 @@
             android:layout_column="1"
             android:layout_columnSpan="4"
             android:layout_gravity="bottom"
-            android:layout_row="5" >
+            android:layout_row="7" >
         </ListView>
 
         <TextView
@@ -120,7 +119,7 @@
             android:layout_column="0"
             android:layout_columnSpan="2"
             android:layout_gravity="left"
-            android:layout_row="6"
+            android:layout_row="8"
             android:text="Comments:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -129,7 +128,7 @@
             android:layout_column="0"
             android:layout_columnSpan="3"
             android:layout_gravity="left"
-            android:layout_row="7"
+            android:layout_row="9"
             android:text="the one at the galleria!"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -138,27 +137,37 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_column="4"
-            android:layout_row="8"
+            android:layout_row="10"
             android:onClick="onButtonClicked"
             android:text="Edit" />
 
         <Space
             android:layout_width="1dp"
+            android:layout_height="15dp"
+            android:layout_gravity="fill_horizontal" />
+
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="15dp"
+            android:layout_gravity="fill_horizontal" />
+
+        <Space
+            android:layout_width="1dp"
             android:layout_height="39dp"
             android:layout_column="0"
-            android:layout_row="3" />
+            android:layout_row="5" />
 
         <Space
             android:layout_width="1dp"
             android:layout_height="30dp"
             android:layout_column="0"
-            android:layout_row="4" />
+            android:layout_row="6" />
 
         <Space
             android:layout_width="1dp"
             android:layout_height="358dp"
             android:layout_column="0"
-            android:layout_row="8" />
+            android:layout_row="10" />
 
         <Space
             android:layout_width="52dp"
@@ -189,6 +198,23 @@
             android:layout_height="1dp"
             android:layout_column="4"
             android:layout_row="0" />
+
+        <TextView
+            android:id="@+id/pleaseConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_column="0"
+            android:layout_columnSpan="5"
+            android:layout_gravity="top"
+            android:layout_margin="5dp"
+            android:layout_row="5"
+            android:gravity="center|top"
+            android:text="Please confirm your attendance"
+            android:textColor="#D0D000"
+            android:textSize="12dp"
+            android:textStyle="italic"
+            android:visibility="gone" />
+
     </GridLayout>
 
 </LinearLayout>

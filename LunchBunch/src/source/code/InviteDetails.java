@@ -46,8 +46,7 @@ public class InviteDetails extends Activity {
         	Button acceptconfirm = (Button) findViewById(R.id.accept);
         	acceptconfirm.setText("Confirm");
         	acceptconfirm.setVisibility(acceptconfirm.INVISIBLE);
-        	//TextView confirmhint = (TextView) findViewById(R.id.pleaseConfirm);
-        	//confirmhint.setVisibility(confirmhint.INVISIBLE);
+        	TextView confirmhint = (TextView) findViewById(R.id.pleaseConfirm);
 
         	ArrayList<Lunch> lunchesAttending = state.getLunchesAttending();
         	for(int i = 0; i < lunchesAttending.size(); i++)
@@ -66,7 +65,7 @@ public class InviteDetails extends Activity {
         			if(!thisLunch.isConfirmed())
         			{
         				acceptconfirm.setVisibility(acceptconfirm.VISIBLE);
-        				//confirmhint.setVisibility(confirmhint.VISIBLE);
+        				confirmhint.setVisibility(confirmhint.VISIBLE);
         			}
     	        	/*// HIDE CONFIRM BUTTON FOR THE FOLLOWING CASES 
     	    		if (!thisLunch.isConfirmationRequested()) //hide confirm button is no confirmation is requested
