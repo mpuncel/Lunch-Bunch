@@ -19,13 +19,12 @@
         android:onClick="onButtonClicked"
         android:text="Lunch \nInvites"
         android:textColor="@color/black" />
-
+
     <Button
         android:id="@+id/lunchesattendingtab"
-        android:layout_width="wrap_content"
+        android:layout_width="165dp"
         android:layout_height="70dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
         android:layout_gravity="top"
         android:layout_weight="1"
         android:background="@color/MidGray"
