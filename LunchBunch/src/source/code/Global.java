@@ -16,8 +16,6 @@ public class Global extends Application
 	private ArrayList<Friend> lunchFriends;
 	private FriendListAdapter<Friend> friendListAdapter;
 
-	
-	
     public void makeLunches()
     {
         if (lunchInvites == null) {
@@ -195,6 +193,13 @@ public class Global extends Application
 				lunchesAttending.remove(i);
 				break;
 			}
+		}
+		
+		for (int i = 0; i < lunchReminders.size(); i++) {
+		    if (lunchTitle.startsWith(lunchReminders.get(i).getTitle())) {
+		        lunchReminders.remove(i);
+		        break;
+		    }
 		}
 	}
 	
