@@ -263,10 +263,17 @@ public class InviteDetails extends Activity {
         		reminderTime = thisLunch.getReminderTime();
         		if(Calendar.getInstance().after(reminderTime))
             	{
+        			System.out.println("it's after the reminderTime");
 					if(thisLunch.isMine())
 					{
-			  	        accepted.setText("confirmed");
-			  	        accepted.setTextColor(Color.rgb(128,128,128));
+	        			System.out.println("it's your lunch");
+
+						if(position == 0)
+						{
+							accepted.setText("confirmed");
+							accepted.setTextColor(Color.rgb(128,128,128));
+							accepted.setVisibility(TextView.VISIBLE);
+						}
 					}
             	}
         	}
