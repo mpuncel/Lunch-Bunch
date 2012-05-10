@@ -127,22 +127,25 @@ public class Global extends Application
 	
 	public synchronized void addLunchAttending(Lunch lunch) {
        lunchesAttending.add(lunch);
-        if (lunchReminders.size() == 0 ) {
-            lunchReminders.add(lunch);
-        }
-        
-        else {
-            for (int i = 0; i < lunchReminders.size(); i++) {
-                if (lunchReminders.get(i).getReminderTime().after(lunch.getReminderTime())){
-                    lunchReminders.add(i, lunch);
-                    break;
-                }
-                if (i == lunchReminders.size() - 1) {
-                    lunchReminders.add(lunch);
-                    break;
-                }
-            }
-        }
+       if(lunch.getReminderTime() != null)
+       {
+	        if (lunchReminders.size() == 0 ) {
+	            lunchReminders.add(lunch);
+	        }
+	        
+	        else {
+	            for (int i = 0; i < lunchReminders.size(); i++) {
+	                if (lunchReminders.get(i).getReminderTime().after(lunch.getReminderTime())){
+	                    lunchReminders.add(i, lunch);
+	                    break;
+	                }
+	                if (i == lunchReminders.size() - 1) {
+	                    lunchReminders.add(lunch);
+	                    break;
+	                }
+	            }
+	        }
+       }
 	}
 	
 	public synchronized void addLunchAttending(Lunch lunch, int index){

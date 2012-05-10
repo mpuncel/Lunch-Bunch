@@ -5,7 +5,9 @@ import java.util.Calendar;
 import java.util.Random;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -62,20 +64,13 @@ public class InviteDetails extends Activity {
         		reminderTime = thisLunch.getReminderTime();
         		if(Calendar.getInstance().after(reminderTime))
             	{
-        			if(!thisLunch.isConfirmed())
+        			if(!thisLunch.isConfirmed() && !thisLunch.isMine())
         			{
         				acceptconfirm.setVisibility(acceptconfirm.VISIBLE);
         				confirmhint.setVisibility(confirmhint.VISIBLE);
         			}
-    	        	/*// HIDE CONFIRM BUTTON FOR THE FOLLOWING CASES 
-    	    		if (!thisLunch.isConfirmationRequested()) //hide confirm button is no confirmation is requested
-    	    		{
-    	    			acceptconfirm.setVisibility(acceptconfirm.INVISIBLE);
-    	    		}
-    	    		else if ((thisLunch.isConfirmationRequested() && thisLunch.isConfirmed()))
-    	    		{
-    	    			acceptconfirm.setVisibility(acceptconfirm.INVISIBLE);
-    	    		}*/
+        			
+    	        	
             	}
         	}
         	
@@ -91,6 +86,11 @@ public class InviteDetails extends Activity {
         		}
         	}
         }
+        Button declineButton = (Button) findViewById(R.id.decline);
+		if (thisLunch.isMine())
+		{
+			declineButton.setText("Cancel");
+		}
 	    //TODO: rewrite xml file and this class so that it displays data from thisLunch. Should
 	    //also show list of friends
 	    TextView location = (TextView) findViewById(R.id.location);
@@ -126,7 +126,7 @@ public class InviteDetails extends Activity {
 		   confirmed.setVisibility(TextView.GONE);
 	   }
 		
-		Button declineButton = (Button) findViewById(R.id.decline);
+		
 		if(thisLunch.isDeclined())
 		{
 			declineButton.setVisibility(declineButton.INVISIBLE);
@@ -145,9 +145,9 @@ public class InviteDetails extends Activity {
 	}
 	
 	public void onButtonClicked(View v) {
-	    Global state = (Global)getApplication();
+	    final Global state = (Global)getApplication();
 	    Intent invites = new Intent(this, BrowseInvites.class);
-	    Intent attending = new Intent(this, BrowseAttending.class);
+	    final Intent attending = new Intent(this, BrowseAttending.class);
 
 	    switch(v.getId()) {
 	    case R.id.accept:
@@ -171,20 +171,47 @@ public class InviteDetails extends Activity {
 	    case R.id.decline:
 	    	if (fromAttending)
 	    	{
-	    		thisLunch.setDeclined(true);
-		        state.removeLunchesAttending(thisLunch.getTitle());
-		        state.addLunchInvite(thisLunch);
-		        startActivity(attending);
-	    		Toast.makeText(getApplicationContext(), "You have declined lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
-
+	    		if (thisLunch.isMine())
+	    		{
+	    			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    			builder.setMessage("Are you sure you want to cancel lunch at " + thisLunch.getTitle() + " ?")
+	    			       .setCancelable(false)
+	    			       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+	    			           public void onClick(DialogInterface dialog, int id) {
+	    			        	   state.removeLunchesAttending(thisLunch.getTitle());
+	    			        	   startActivity(attending);
+	    			        	   Toast.makeText(getApplicationContext(), "You have cancelled lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
+	    			        	   finish();
+	    			           }
+	    			       })
+	    			       .setNegativeButton("No", new DialogInterface.OnClickListener() {
+	    			           public void onClick(DialogInterface dialog, int id) {
+	    			                dialog.cancel();
+	    			           }
+	    			       });
+	    			AlertDialog alert = builder.create();
+	    			alert.show();
+	    			
+	    		}
+	    		else
+	    		{
+	    			state.removeLunchesAttending(thisLunch.getTitle());
+	    			thisLunch.setDeclined(true);
+	    			state.addLunchInvite(thisLunch);
+	    			startActivity(attending);
+		    		Toast.makeText(getApplicationContext(), "You have declined lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
+		    		finish();
+	    		}
+		        
 	    	}
 	    	else
 	    	{
 	    		thisLunch.setDeclined(true);
 	    		startActivity(invites);
 	    		Toast.makeText(getApplicationContext(), "You have declined lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
+	    		finish();
 	    	}
-	    	finish();
+	    	
 	        break;
 	    case R.id.edit:
 	    	Intent editLunch = new Intent(this, CreateNewLunch.class);
@@ -230,6 +257,19 @@ public class InviteDetails extends Activity {
 			else{
 				accepted.setVisibility(TextView.GONE);
 			}
+			Calendar reminderTime = null;
+        	if (thisLunch.getReminderTime() != null && thisLunch.isConfirmationRequested())
+        	{
+        		reminderTime = thisLunch.getReminderTime();
+        		if(Calendar.getInstance().after(reminderTime))
+            	{
+					if(thisLunch.isMine())
+					{
+			  	        accepted.setText("confirmed");
+			  	        accepted.setTextColor(Color.rgb(128,128,128));
+					}
+            	}
+        	}
 			return v;
 
   	    }

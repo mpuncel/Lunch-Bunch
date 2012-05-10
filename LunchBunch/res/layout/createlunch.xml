@@ -7,8 +7,7 @@
     <ScrollView
         android:id="@+id/createlunch_scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" >
+        android:layout_height="wrap_content" >
 
         <GridLayout
             android:id="@+id/createlunch"
@@ -21,9 +20,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_columnSpan="4"
+                android:layout_columnSpan="8"
                 android:layout_row="0"
-                android:layout_rowSpan="2"
+                android:layout_rowSpan="6"
                 android:text="Where:"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -32,9 +31,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_column="0"
-                android:layout_columnSpan="4"
+                android:layout_columnSpan="8"
                 android:layout_gravity="right"
-                android:layout_row="5"
+                android:layout_row="9"
                 android:layout_rowSpan="2"
                 android:gravity="center_vertical"
                 android:text="Send reminder?"
@@ -45,8 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_columnSpan="4"
-                android:layout_row="10"
+                android:layout_columnSpan="8"
+                android:layout_row="14"
                 android:text="Comments:"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -55,8 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="0"
-                android:layout_columnSpan="6"
-                android:layout_row="11"
+                android:layout_columnSpan="10"
+                android:layout_row="15"
                 android:layout_rowSpan="4"
                 android:ems="10"
                 android:imeOptions="actionDone"
@@ -67,8 +66,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:layout_columnSpan="15"
-                android:layout_row="8"
+                android:layout_columnSpan="9"
+                android:layout_row="12"
                 android:text="Request confirmation with reminder?"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -77,8 +76,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
-                android:layout_columnSpan="4"
-                android:layout_row="9"
+                android:layout_columnSpan="8"
+                android:layout_row="13"
                 android:orientation="horizontal" >
 
                 <RadioButton
@@ -107,11 +106,11 @@
                 android:id="@+id/pickWhere"
                 android:layout_width="247dp"
                 android:layout_height="wrap_content"
-                android:layout_column="3"
+                android:layout_column="7"
                 android:layout_columnSpan="3"
                 android:layout_gravity="bottom"
                 android:layout_row="0"
-                android:layout_rowSpan="2"
+                android:layout_rowSpan="6"
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:singleLine="true" >
@@ -124,8 +123,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_columnSpan="6"
-                android:layout_row="2"
+                android:layout_columnSpan="10"
+                android:layout_row="6"
                 android:text="Date:"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -134,8 +133,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_columnSpan="6"
-                android:layout_row="3"
+                android:layout_columnSpan="10"
+                android:layout_row="7"
                 android:text="Time:"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -144,10 +143,10 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="170dp"
                 android:layout_height="34dp"
-                android:layout_column="3"
+                android:layout_column="7"
                 android:layout_columnSpan="3"
                 android:layout_gravity="bottom"
-                android:layout_row="2"
+                android:layout_row="6"
                 android:text="Button" />
 
             <Button
@@ -155,19 +154,19 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="170dp"
                 android:layout_height="34dp"
-                android:layout_column="3"
+                android:layout_column="7"
                 android:layout_columnSpan="3"
                 android:layout_gravity="bottom"
-                android:layout_row="3"
+                android:layout_row="7"
                 android:text="Button" />
 
             <Button
                 android:id="@+id/doneButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="4"
+                android:layout_column="8"
                 android:layout_columnSpan="2"
-                android:layout_row="15"
+                android:layout_row="19"
                 android:onClick="onDoneClicked"
                 android:text="Done" />
 
@@ -175,8 +174,8 @@
                 android:id="@+id/remindergroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="5"
-                android:layout_row="4"
+                android:layout_column="9"
+                android:layout_row="8"
                 android:layout_rowSpan="4"
                 android:orientation="horizontal" >
 
@@ -198,24 +197,24 @@
                     android:layout_rowSpan="3"
                     android:text="no" />
             </RadioGroup>
-
+
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="166dp"
                 android:layout_height="wrap_content"
-                android:layout_column="5"
+                android:layout_column="9"
                 android:layout_gravity="center_vertical"
-                android:layout_row="7"
+                android:layout_row="11"
                 android:gravity="center_vertical" />
-
+
             <TextView
                 android:id="@+id/sendreminderlabel"
                 android:layout_width="wrap_content"
                 android:layout_height="33dp"
                 android:layout_column="1"
-                android:layout_columnSpan="5"
+                android:layout_columnSpan="9"
                 android:layout_gravity="center_vertical"
-                android:layout_row="7"
+                android:layout_row="11"
                 android:gravity="center_vertical"
                 android:text="Send reminder:"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -230,19 +229,19 @@
                 android:layout_width="1dp"
                 android:layout_height="10dp"
                 android:layout_column="0"
-                android:layout_row="4" />
+                android:layout_row="8" />
 
             <Space
                 android:layout_width="1dp"
                 android:layout_height="10dp"
                 android:layout_column="0"
-                android:layout_row="4" />
+                android:layout_row="8" />
 
             <Space
                 android:layout_width="1dp"
                 android:layout_height="10dp"
                 android:layout_column="0"
-                android:layout_row="4" />
+                android:layout_row="8" />
 
             <Space
                 android:layout_width="21dp"
@@ -265,26 +264,26 @@
             <Space
                 android:layout_width="30dp"
                 android:layout_height="1dp"
-                android:layout_column="4"
+                android:layout_column="8"
                 android:layout_row="0" />
 
             <Space
                 android:layout_width="236dp"
                 android:layout_height="1dp"
-                android:layout_column="5"
+                android:layout_column="9"
                 android:layout_row="0" />
 
             <Space
                 android:layout_width="1dp"
                 android:layout_height="10dp"
                 android:layout_column="0"
-                android:layout_row="8" />
+                android:layout_row="12" />
 
             <Space
                 android:layout_width="1dp"
                 android:layout_height="5dp"
                 android:layout_column="0"
-                android:layout_row="11" />
+                android:layout_row="15" />
         </GridLayout>
 
     </ScrollView>
