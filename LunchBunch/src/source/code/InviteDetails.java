@@ -155,13 +155,21 @@ public class InviteDetails extends Activity {
 	    	{
 	    		thisLunch.setConfirmed(true);
 	    		System.out.println("CONFIRMED " + thisLunch.getTitle() + ": " + thisLunch + " "+ thisLunch.isConfirmed());
-		        startActivity(attending);
+	    		startActivity(attending);
 		        
 	    	}
 	    	else
 	    	{
+	    	    int insertionindex = 0;
+	    	    for(Lunch lunch:state.getLunchesAttending()){
+	    	    	int compare=thisLunch.compareTo(lunch);
+	    	    	if(compare>0){
+	    	    		insertionindex +=1;
+	    	    	}
+	    	    }
+	    	   
 	    		thisLunch.setDeclined(false);
-	    		state.addLunchAttending(thisLunch);
+	    		state.addLunchAttending(thisLunch,insertionindex);
 	    		state.removeLunchInvite(thisLunch.getTitle());
 	    		startActivity(invites);
 	    		Toast.makeText(getApplicationContext(), "You have accepted lunch at " +thisLunch.getTitle(), Toast.LENGTH_SHORT).show();
@@ -195,6 +203,7 @@ public class InviteDetails extends Activity {
 	    		}
 	    		else
 	    		{
+	    			
 	    			state.removeLunchesAttending(thisLunch.getTitle());
 	    			thisLunch.setDeclined(true);
 	    			state.addLunchInvite(thisLunch);

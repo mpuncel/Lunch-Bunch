@@ -16,7 +16,24 @@ public class Global extends Application
 	private ArrayList<Friend> lunchFriends;
 	private FriendListAdapter<Friend> friendListAdapter;
 
-	
+	public void removeOldLunches(){
+		ArrayList<Lunch> toberemoved = new ArrayList<Lunch>();
+		for(Lunch lunch:lunchInvites){
+			if(lunch.getLunchTime().getTimeInMillis()<System.currentTimeMillis()){
+				toberemoved.add(lunch);
+			}
+		}
+		lunchInvites.removeAll(toberemoved);
+		toberemoved.clear();
+		for(Lunch lunch:lunchesAttending){
+			if(lunch.getLunchTime().getTimeInMillis()<System.currentTimeMillis()){
+				toberemoved.add(lunch);
+				System.out.println("removed"+ lunch.getTitle());
+			}
+		}
+		lunchesAttending.removeAll(toberemoved);
+		toberemoved.clear();
+	}	
 	
     public void makeLunches()
     {
@@ -122,7 +139,14 @@ public class Global extends Application
 	}
 	
 	public void addLunchInvite(Lunch lunch){
-		lunchInvites.add(lunch);
+	    int insertionindex = 0;
+	    for(Lunch l:lunchInvites){
+	    	int compare=lunch.compareTo(l);
+	    	if(compare>0){
+	    		insertionindex +=1;
+	    	}
+	    }
+		lunchInvites.add(insertionindex,lunch);
 	}
 	
 	public synchronized void addLunchAttending(Lunch lunch) {
@@ -150,22 +174,25 @@ public class Global extends Application
 	
 	public synchronized void addLunchAttending(Lunch lunch, int index){
 	    lunchesAttending.add(index, lunch);
-	    if (lunchReminders.size() == 0 ) {
-	        lunchReminders.add(lunch);
-	    }
-	    
-	    else {
-	        for (int i = 0; i < lunchReminders.size(); i++) {
-	            if (lunchReminders.get(i).getReminderTime().after(lunch.getReminderTime())){
-	                lunchReminders.add(i, lunch);
-	                break;
-	            }
-	            if (i == lunchReminders.size() - 1) {
-	                lunchReminders.add(lunch);
-	                break;
-	            }
-	        }
-	    }
+	       if(lunch.getReminderTime() != null)
+	       {
+		        if (lunchReminders.size() == 0 ) {
+		            lunchReminders.add(lunch);
+		        }
+		        
+		        else {
+		            for (int i = 0; i < lunchReminders.size(); i++) {
+		                if (lunchReminders.get(i).getReminderTime().after(lunch.getReminderTime())){
+		                    lunchReminders.add(i, lunch);
+		                    break;
+		                }
+		                if (i == lunchReminders.size() - 1) {
+		                    lunchReminders.add(lunch);
+		                    break;
+		                }
+		            }
+		        }
+	       }
 	}
 	
 	public synchronized Lunch getNextReminder() {

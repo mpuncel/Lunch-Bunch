@@ -27,6 +27,7 @@ public class BrowseAttending extends Activity {
         setContentView(R.layout.attending_page);
 
         Global state = (Global) getApplication();
+        state.removeOldLunches();
         lunches = state.getLunchesAttending();
         ListView lv = (ListView) findViewById(R.id.listEntries);
         lv.setTextFilterEnabled(true);
