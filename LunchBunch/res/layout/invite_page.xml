@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center|right"
     android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:baselineAligned="false" >
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:background="@color/MidGray"
-            android:onClick="onButtonClicked"
-            android:text="Lunch \nInvites"
-            android:textColor = "@color/black" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:onClick="onButtonClicked"
-            android:text="Lunches I&apos;m Attending"
-            android:textColor = "@color/black"
-            android:background="#404040"
-            
-             />
 
-    </LinearLayout>
-
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/button2"
+        android:layout_weight="1"
+        android:background="@color/MidGray"
+        android:onClick="onButtonClicked"
+        android:text="Lunch \nInvites"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="1"
+        android:background="#404040"
+        android:onClick="onButtonClicked"
+        android:text="Lunches I&apos;m Attending"
+        android:textColor="@color/black" />
+
     <ListView
         android:id="@+id/listEntries"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_above="@+id/Create"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button1"
         android:layout_weight="0.69"
-        android:background="@color/MidGray" 
-        android:textColor = "@color/black">
+        android:background="@color/MidGray"
+        android:textColor="@color/black" >
+
     </ListView>
 
     <Button
         android:id="@+id/Create"
         android:layout_width="97dp"
         android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:onClick="onButtonClicked"
         android:text="Create"
-        android:textColor="@color/black"
-         />
+        android:textColor="@color/black" />
 
-</LinearLayout>
+</RelativeLayout>
