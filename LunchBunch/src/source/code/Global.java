@@ -104,7 +104,8 @@ public class Global extends Application
             startService(intent);
             
             fakeInvite = new Lunch("Cinderella's");
-            attendTime.add(Calendar.DAY_OF_MONTH, 1);
+            Calendar fakeTime = (Calendar)attendTime.clone();
+            fakeTime.add(Calendar.DAY_OF_MONTH, 1);
             fakeInvite.setLunchTime(attendTime);
             fakeInvite.setFriends(attending);
             fakeInvite.addAcceptedFriend(attending.get(2));
