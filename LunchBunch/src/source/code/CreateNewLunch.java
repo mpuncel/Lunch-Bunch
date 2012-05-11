@@ -105,7 +105,15 @@ public class CreateNewLunch extends Activity {
         			
             if (reminderTime != null)
             {
-            	//idk yet
+            	int reminderOffset = thisLunch.getReminderOffset();
+            	switch (reminderOffset)
+            	{
+            	case 30: reminder.setSelection(0); break;
+            	case 60: reminder.setSelection(1); break;
+            	case 120: reminder.setSelection(2); break;
+            	case 1440: reminder.setSelection(3); break;
+            	}
+            	
             }
             else
             {
@@ -209,10 +217,12 @@ public class CreateNewLunch extends Activity {
                 String comments = ((EditText) findViewById(R.id.comments)).getText().toString();
                 RadioButton yesButton = (RadioButton) findViewById(R.id.yesReminder);
                 String reminder = null;
+                int minutes = 15;
                 boolean confirmRequested = false;
             	if(yesButton.isChecked())
             	{
             		reminder = ((Spinner) findViewById(R.id.spinner)).getSelectedItem().toString();
+            		minutes = getMinutes(reminder);
             		RadioButton yesconfirm = (RadioButton) findViewById(R.id.yesConfirmation);
             		if (yesconfirm.isChecked())
             		{
@@ -228,7 +238,7 @@ public class CreateNewLunch extends Activity {
             		thisLunch.setConfirmationRequested(confirmRequested);
             		if(reminder != null)
             		{
-            			thisLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
+            			thisLunch.setReminderTime(minutes);
             		}
             	}
             	else
@@ -241,7 +251,7 @@ public class CreateNewLunch extends Activity {
             		System.out.println("confimation requested: " + confirmRequested);
             		if(reminder != null)
             		{
-            			createdLunch.setReminderTime(Integer.valueOf(reminder.split(" ")[0]));
+            			createdLunch.setReminderTime(minutes);
             		}
                     createdLunch.setMine(true);
             	}
@@ -362,6 +372,13 @@ public class CreateNewLunch extends Activity {
 
 
 
+    }
+    public int getMinutes(String time)
+    {
+	    if(time.equals("30 minutes")) return 30;
+	    if(time.equals("1 hour")) return 60;
+	    if(time.equals("2 hours")) return 120;
+	    else return 24*60;
     }
     protected Dialog onCreateDialog(int id) {
         switch (id) {
