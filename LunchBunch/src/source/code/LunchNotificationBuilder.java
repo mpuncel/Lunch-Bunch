@@ -25,22 +25,35 @@ public class LunchNotificationBuilder {
 //    }
     
     private Notification notification;
-    public LunchNotificationBuilder(Lunch lunch, Context context) {
+    public LunchNotificationBuilder(Lunch lunch, Context context, String type) {
         int icon = R.drawable.ic_launcher;
-        String tickerText = "Reminder for " + lunch.getTitle();
-        long when = System.currentTimeMillis();
-        this.notification = new Notification(icon, tickerText, when);
-        Calendar reminderTime = (Calendar)lunch.getReminderTime().clone();
         String contentTitle = "LunchBunch";
-        String contentText = "Upcoming lunch at " + lunch.getTitle() + " at " + lunch.getTime();
         Intent intent = new Intent(context, InviteDetails.class);
-        intent.putExtra("activity", "attending");
         intent.putExtra("lunch", lunch);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setAction(lunch.getTitle());
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        notification.setLatestEventInfo(context, contentTitle, contentText, pendingIntent);
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        
+        long when = System.currentTimeMillis();
+        if (type.equals("reminder")) {
+            String tickerText = "Reminder for " + lunch.getTitle();
+            this.notification = new Notification(icon, tickerText, when);
+            String contentText = "Upcoming lunch at " + lunch.getTitle() + " at " + lunch.getTime();
+            intent.putExtra("activity", "attending");
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            notification.setLatestEventInfo(context, contentTitle, contentText, pendingIntent);
+            notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        }
+        
+        if (type.equals("invite")) {
+            String tickerText = "You've been invited to " + lunch.getTitle();
+            this.notification = new Notification(icon, tickerText, when);
+            String contentText = "Invite for lunch at " + lunch.getTitle();
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("activity", "invites");
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            notification.setLatestEventInfo(context, contentTitle, contentText, pendingIntent);
+            notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        }
     }
     
     public Notification getNotification() {

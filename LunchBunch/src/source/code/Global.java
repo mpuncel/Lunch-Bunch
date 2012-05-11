@@ -15,6 +15,9 @@ public class Global extends Application
 	private Lunch currentClickedLunch;
 	private ArrayList<Friend> lunchFriends;
 	private FriendListAdapter<Friend> friendListAdapter;
+	private Calendar startTime;
+	private Lunch fakeInvite;
+	private boolean fakeInviteBool = false;
 
 	public void removeOldLunches(){
 		ArrayList<Lunch> toberemoved = new ArrayList<Lunch>();
@@ -38,7 +41,9 @@ public class Global extends Application
     public void makeLunches()
     {
         if (lunchInvites == null) {
+            
             Calendar systemTime = Calendar.getInstance();
+            startTime = (Calendar)systemTime.clone();
             Calendar firstLunchTime = (Calendar)systemTime.clone();
             firstLunchTime.add(Calendar.DAY_OF_YEAR, 1);  
             firstLunchTime.add(Calendar.MINUTE, 35);  
@@ -92,13 +97,27 @@ public class Global extends Application
             maggianos.setFriends(attending);
             maggianos.addAcceptedFriend(attending.get(2));
             maggianos.addAcceptedFriend(attending.get(1));
-            maggianos.setReminderTime(34);
             addLunchAttending(dhaba);
             addLunchAttending(maggianos);
             
             Intent intent = new Intent(this, NotificationService.class);
             startService(intent);
+            
+            fakeInvite = new Lunch("Cinderella's");
+            attendTime.add(Calendar.DAY_OF_MONTH, 1);
+            fakeInvite.setLunchTime(attendTime);
+            fakeInvite.setFriends(attending);
+            fakeInvite.addAcceptedFriend(attending.get(2));
         }
+    }
+    
+    public Lunch getFakeLunch() {
+        return this.fakeInvite;
+    }
+    
+    
+    public Calendar getStartTime() {
+        return this.startTime;
     }
     
     
@@ -136,6 +155,14 @@ public class Global extends Application
 	
 	public ArrayList<Friend> getLunchFriends() {
 	    return lunchFriends;
+	}
+	
+	public void setFakeInviteBool(boolean bool) {
+	    this.fakeInviteBool = bool;
+	}
+	
+	public boolean getFakeInviteBool() {
+	    return this.fakeInviteBool;
 	}
 	
 	public void addLunchInvite(Lunch lunch){

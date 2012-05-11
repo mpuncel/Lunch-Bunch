@@ -49,20 +49,28 @@ public class NotificationService extends Service {
             Lunch reminder;
             Calendar rightNow;
             while(true) {
+                rightNow = Calendar.getInstance();
                 if (state.numLunchReminders() > 0) {
                     reminder = state.getNextReminder();
-                    rightNow = Calendar.getInstance();
                     Calendar reminderTime = reminder.getReminderTime();
                     if (reminderTime != null && reminderTime.before(rightNow)) {
-                        showNotification(reminder);
+                        showNotification(reminder, "reminder");
                         state.lunchReminded();
                     }
+                }
+                rightNow.add(Calendar.MINUTE, -2);
+                if (rightNow.after(state.getStartTime()) && state.getFakeInviteBool() == false) {
+                   showNotification(state.getFakeLunch(), "invite");
+                   state.setFakeInviteBool(true);
                 }
             }
         }
         
-        public void showNotification(Lunch lunch) {
-            LunchNotificationBuilder notificationBuilder = new LunchNotificationBuilder(lunch, getApplicationContext());
+        public void showNotification(Lunch lunch, String type) {
+            if (type.equals("invite")) {
+                state.addLunchInvite(state.getFakeLunch());
+            }
+            LunchNotificationBuilder notificationBuilder = new LunchNotificationBuilder(lunch, getApplicationContext(), type);
             Notification dhabaNotification = notificationBuilder.getNotification();
             notificationManager.notify(lunch_id, dhabaNotification);
             lunch_id++;
