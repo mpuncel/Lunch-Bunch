@@ -106,7 +106,7 @@ public class Global extends Application
             fakeInvite = new Lunch("Cinderella's");
             Calendar fakeTime = (Calendar)attendTime.clone();
             fakeTime.add(Calendar.DAY_OF_MONTH, 1);
-            fakeInvite.setLunchTime(attendTime);
+            fakeInvite.setLunchTime(fakeTime);
             fakeInvite.setFriends(attending);
             fakeInvite.addAcceptedFriend(attending.get(2));
         }

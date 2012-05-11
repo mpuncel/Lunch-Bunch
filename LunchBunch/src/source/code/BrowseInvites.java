@@ -118,6 +118,12 @@ public class BrowseInvites extends Activity {
 		  	
 			title.setText(lunch.getTitle());
 			date.setText(lunch.getDate());
+			
+	        String timeString = lunch.getTime();
+	            String[] timeblocks = timeString.split(":");
+	            if (timeblocks[0].equals("0")) {
+	                timeString = "12".concat(timeString.substring(1));
+	            }
 			time.setText(lunch.getTime());
 			
 			if (lunch.isDeclined())
