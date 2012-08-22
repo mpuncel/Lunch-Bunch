@@ -1,7 +1,8 @@
 Lunch-Bunch
 ==============
 
-This was a group project for an HCI class at MIT.  Its purpose was to explore
+This was a group project for an HCI class at MIT.  It was developed using
+the Android SDK in Eclipse.  Its purpose was to explore
 the user interface aspects of developing a mobile application.  This project
 is compatible with Android OS 4.0+ (Ice Cream Sandwich).
 
