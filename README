@@ -1,3 +1,19 @@
-Good resource if you don't know how to use git
+Lunch-Bunch
+==============
 
-http://progit.org/book/
+This was a group project for an HCI class at MIT.  Its purpose was to explore
+the user interface aspects of developing a mobile application.  This project
+is compatible with Android OS 4.0+ (Ice Cream Sandwich).
+
+This project has a developed front end, with a mostly mocked backend.  There
+is no server functionality, notifications are faked off of timers, etc.
+Developing a backend was not within the scope of the class.
+
+Lunch-Bunch is a front-end mock for an app that would allow its users to
+coordinate lunch (or any other sort of event) with their peers.  A user
+can create and receive lunch invites as well as browse, accept, or decline
+invites to lunches created by friends.  A user can also be notified about
+an upcoming lunch they have rsvp'd to through Android's notification
+system.  The app comes with a fake set of internal contacts that allow
+the user to explore all of this functionality, and the user will receive
+notifications based off of the timer from the installation of the app.
